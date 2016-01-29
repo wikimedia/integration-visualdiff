@@ -1,7 +1,6 @@
 "use strict";
 
-var resemble = require('resemble').resemble,
-	fs = require('fs'),
+var fs = require('fs'),
 	Util = require('../lib/differ.utils.js').Util;
 
 var customOpts = {
@@ -23,6 +22,8 @@ if (opts !== null) {
 	var prefix = opts.prefix;
 	var indir = (opts.indir || ".").replace(/\/$/, '') + "/" + opts.wiki + "/";
 
+	// SSS FIXME: This doesn't yet use the diff algorithm option yet. TODO.
+	var resemble = require('resemble').resemble,
 	if (opts.outputSettings) {
 		resemble.outputSettings(opts.outputSettings);
 	}
