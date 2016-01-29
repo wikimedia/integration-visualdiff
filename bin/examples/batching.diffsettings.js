@@ -22,7 +22,7 @@ module.exports = {
     name: 'no-batching',
     stylesYamlFile: '../lib/parsoid.custom_styles.yaml',
     postprocessorScript: '../lib/parsoid.postprocess.js',
-    server: 'http://parsoid-lb.eqiad.wikimedia.org/',
+    server: '<parsoid-server-url-here>',
     injectJQuery: true,
     computeURL: function(server, wiki, title) {
         return server + wiki + '/' + encodeURIComponent(title);
