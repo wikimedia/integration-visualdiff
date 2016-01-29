@@ -4,7 +4,7 @@
  */
 'use strict';
 var path = require('path');
-var clientScripts = require('./client.scripts.js');
+var clientScripts = require('FULL_PATH_TO_VISUALDIFF_REPO/client.scripts.js');
 
 (function() {
 	if (typeof module === 'object') {
