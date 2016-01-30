@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "dependencies": {
     "babybird": "^0.0.1",
-    "libyaml": "^0.2.5",
+    "js-yaml": "^3.5.2",
     "phantom": "x.x",
     "phantomjs": "~1.9",
     "prfun": "^2.1.3",
