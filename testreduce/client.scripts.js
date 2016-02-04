@@ -1,7 +1,7 @@
 'use strict';
 
 var Util = require('../lib/differ.utils.js').Util;
-var Differ = require('../lib/differ.js').VisualDiffer;
+var VisualDiffer = require('../lib/differ.js').VisualDiffer;
 var Promise = require('prfun/wrap')(require('babybird'));
 var request = require('request');
 
@@ -31,11 +31,13 @@ function generateVisualDiff(opts, test) {
 			opts = Util.clone(opts);
 			opts.wiki = test.prefix;
 			opts.title = test.title;
+			opts.jsonFormat = true;
+			opts.discardDiff = false;
 			opts = Util.computeOpts(opts);
 
 			var logger = opts.quiet ? function(){} : function(msg) { console.log(msg); };
 			logger('Diffing ' + test.prefix + ':' + test.title);
-			Differ.genVisualDiff(opts, logger,
+			VisualDiffer.genVisualDiff(opts, logger,
 				function(err, diffData) {
 					if (err) {
 						console.error( 'ERROR for ' + test.prefix + ':' + test.title + ': ' + err );
