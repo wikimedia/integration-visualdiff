@@ -40,9 +40,10 @@ function generateVisualDiff(opts, test) {
 			VisualDiffer.genVisualDiff(opts, logger,
 				function(err, diffData) {
 					if (err) {
-						console.error( 'ERROR for ' + test.prefix + ':' + test.title + ': ' + err );
+						console.error('ERROR for ' + test.prefix + ':' + test.title + ': ' + err);
 						reject(err);
 					} else {
+						console.log('DIFF: ' + JSON.stringify(diffData));
 						resolve(diffData);
 					}
 				}
