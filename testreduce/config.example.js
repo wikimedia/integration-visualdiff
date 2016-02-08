@@ -51,6 +51,8 @@ var clientScripts = require('/home/subbu/work/wmf/visualdiff/testreduce/client.s
 				},
 			},
 
+			postJSON: true,
+
 			gitCommitFetch: clientScripts.gitCommitFetch,
 
 			runTest: clientScripts.generateVisualDiff,
