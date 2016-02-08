@@ -51,6 +51,8 @@ var clientScripts = require('FULL_PATH_TO_VISUALDIFF_REPO/client.scripts.js');
 				},
 			},
 
+			postJSON: true,
+
 			gitCommitFetch: clientScripts.gitCommitFetch,
 
 			runTest: clientScripts.generateVisualDiff,
