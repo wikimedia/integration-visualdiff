@@ -35,6 +35,12 @@ function generateVisualDiff(opts, test) {
 			opts.discardDiff = false;
 			opts = Util.computeOpts(opts);
 
+			// FIXME: Workaround the fact that we cannot
+			// use yargv to initialize defaults
+			if (opts.screenShotDelay === undefined) {
+				opts.screenShotDelay = 2;
+			}
+
 			var logger = opts.quiet ? function(){} : function(msg) { console.log(msg); };
 			logger('Diffing ' + test.prefix + ':' + test.title);
 			VisualDiffer.genVisualDiff(opts, logger,
