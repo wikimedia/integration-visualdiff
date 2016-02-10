@@ -66,7 +66,7 @@ app.get(/^\/diff\/([^/]*)\/(.*)/, function(req, res) {
 	var opts = Util.clone(settings);
 	opts.wiki = wiki;
 	opts.title = title;
-	opts = Util.computeOpts(opts);
+	opts = Util.getNonCLIOpts(opts);
 	Differ.genVisualDiff(opts, logger,
 		function(err, diffData) {
 			if (err) {

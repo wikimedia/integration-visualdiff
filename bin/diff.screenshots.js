@@ -17,7 +17,7 @@ var customOpts = {
 	}
 };
 
-var opts = Util.getopts(customOpts);
+var opts = Util.getCLIOpts(customOpts);
 if (opts !== null) {
 	var prefix = opts.prefix;
 	var indir = (opts.indir || ".").replace(/\/$/, '') + "/" + opts.wiki + "/";

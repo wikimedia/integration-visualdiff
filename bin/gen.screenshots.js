@@ -21,7 +21,7 @@ var customOpts = {
 	}
 };
 
-var opts = Util.getopts(customOpts);
+var opts = Util.getCLIOpts(customOpts);
 if (opts !== null) {
 	Differ.takeScreenshots(opts, function(msg) {
 			console.log(msg);
