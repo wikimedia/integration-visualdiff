@@ -33,13 +33,7 @@ function generateVisualDiff(opts, test) {
 			opts.title = test.title;
 			opts.jsonFormat = true;
 			opts.discardDiff = false;
-			opts = Util.computeOpts(opts);
-
-			// FIXME: Workaround the fact that we cannot
-			// use yargv to initialize defaults
-			if (opts.screenShotDelay === undefined) {
-				opts.screenShotDelay = 2;
-			}
+			opts = Util.getNonCLIOpts(opts);
 
 			var logger = opts.quiet ? function(){} : function(msg) { console.log(msg); };
 			logger('Diffing ' + test.prefix + ':' + test.title);
@@ -49,7 +43,7 @@ function generateVisualDiff(opts, test) {
 						console.error('ERROR for ' + test.prefix + ':' + test.title + ': ' + err);
 						reject(err);
 					} else {
-						console.log('DIFF: ' + JSON.stringify(diffData));
+						logger('DIFF: ' + JSON.stringify(diffData));
 						resolve(diffData);
 					}
 				}
@@ -63,8 +57,9 @@ function generateVisualDiff(opts, test) {
 }
 
 function gitCommitFetch(opts) {
+	// Make a copy since we are going to modify it
 	opts = Util.clone(opts);
-	var parsoidServer = Util.computeOpts(opts).html2.server;
+	var parsoidServer = Util.getNonCLIOpts(opts).html2.server;
 	var requestOptions = {
 		uri: parsoidServer + '_version',
 		proxy: process.env.HTTP_PROXY_IP_AND_PORT || '',
@@ -76,7 +71,7 @@ function gitCommitFetch(opts) {
 			var err;
 			if (error || !response) {
 				err = 'Error could not find the current commit from ' + parsoidServer;
-				console.log(err);
+				console.error(err);
 				reject(err);
 			} else if (response.statusCode === 200) {
 				try {
@@ -87,12 +82,12 @@ function gitCommitFetch(opts) {
 				} catch (e) {
 					err = 'Got response: ' + body + ' from ' + requestOptions.uri;
 					err = err + '\nError extracing commit SHA from it: ' + e;
-					console.log(err);
+					console.error(err);
 					reject(err);
 				}
 			} else {
 				err = requestOptions.uri + ' responded with a HTTP status ' + response.statusCode;
-				console.log(err);
+				console.error(err);
 				reject(err);
 			}
 		});
