@@ -3,6 +3,7 @@
   "description": "Visual Diffs for Parsoid",
   "version": "0.0.1",
   "dependencies": {
+    "express": "4.x.x",
     "babybird": "^0.0.1",
     "js-yaml": "^3.5.2",
     "phantom": "x.x",
