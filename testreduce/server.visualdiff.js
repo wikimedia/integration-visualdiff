@@ -8,7 +8,7 @@ function setupEndpoints(settings, app, mysql, db, hbs) {
 
 if (typeof module === "object") {
 	module.exports.parsoidRTConfig = {
-		parseSelserStats: function() {}, // Nothing to do
+		parseSelserStats: function() { return 0; }, // Nothing to do
 		setupEndpoints: setupEndpoints,
 		updateIndexPageUrls: function() {}, // Nothing to do
 		updateIndexData: function() {}, // Nothing to do
