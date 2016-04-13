@@ -1,10 +1,11 @@
 {
   "name": "visual_diffs",
-  "description": "Visual Diffs for Parsoid",
+  "description": "Visual diffing code",
   "version": "0.0.1",
   "dependencies": {
-    "express": "4.x.x",
+    "crypto": "^0.0.3",
     "babybird": "^0.0.1",
+    "express": "4.x.x",
     "js-yaml": "^3.5.2",
     "phantom": "x.x",
     "phantomjs": "~1.9",
