@@ -35,12 +35,13 @@ function generateVisualDiff(opts, test) {
 			opts.discardDiff = false;
 			opts = Util.getNonCLIOpts(opts);
 
-			var logger = opts.quiet ? function(){} : function(msg) { console.log(msg); };
+			var pidPrefix = '[' + process.pid + ']: ';
+			var logger = opts.quiet ? function(){} : function(msg) { console.log(pidPrefix + msg); };
 			logger('Diffing ' + test.prefix + ':' + test.title);
 			VisualDiffer.genVisualDiff(opts, logger,
 				function(err, diffData) {
 					if (err) {
-						console.error('ERROR for ' + test.prefix + ':' + test.title + ': ' + err);
+						console.error(pidPrefix + 'ERROR for ' + test.prefix + ':' + test.title + ': ' + err);
 						reject(err);
 					} else {
 						logger('DIFF: ' + JSON.stringify(diffData));
@@ -49,8 +50,8 @@ function generateVisualDiff(opts, test) {
 				}
 			);
 		} catch (err) {
-			console.error( 'ERROR in ' + test.prefix + ':' + test.title + ': ' + err );
-			console.error( 'stack trace: ' + err.stack);
+			console.error(pidPrefix + 'ERROR in ' + test.prefix + ':' + test.title + ': ' + err);
+			console.error(pidPrefix + 'stack trace: ' + err.stack);
 			reject(err);
 		}
 	});
