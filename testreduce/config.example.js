@@ -49,6 +49,20 @@ var clientScripts = require('FULL_PATH_TO_VISUALDIFF_REPO/client.scripts.js');
 					errorType: 'flat',
 					largeImageThreshold: 1000,
 				},
+
+				// Assign random port between 37370 and 42370
+				assignRandomPort: true,
+				minPort: 37370,
+				range: 500,
+
+				// Wait 1.5 sec before diffing screenshots
+				diffDelay: 1500, // 1.5 sec
+
+				// Timeout if test doesn't complete in 5 mins
+				testTimeout: 5*60*1000, // 5 min
+
+				// Retry at most 2 additional times
+				maxRetries: 2,
 			},
 
 			postJSON: true,
