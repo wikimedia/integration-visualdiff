@@ -89,7 +89,7 @@ app.get(/^\/diff\/([^/]*)\/(.*)/, function(req, res) {
 
 	if (fs.existsSync(opts.diffFile) &&
 		fs.existsSync(opts.html1.screenShot) &&
-		fs.existsSync(opts.html1.screenShot)) {
+		fs.existsSync(opts.html2.screenShot)) {
 		// Everything found on disk .. send them along!
 		sendResponse(res, opts);
 	} else {
