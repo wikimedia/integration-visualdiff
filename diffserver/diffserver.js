@@ -55,6 +55,17 @@ app.get(/^\/robots.txt$/, function (req, res) {
 	res.end('User-agent: *\nDisallow: /\n');
 });
 
+function getLink(screenShot, baseDir, targetDir) {
+	// Set up relative links.
+	// - walk 2 levels up (/diff/wikiprefix/) to set up the right urls.
+	// - replace baseDir with targetDir (since we don't know if
+	//   the contents of baseDir are web accessible outside this webapp).
+	// - Replace %2F back to / since the differ doesn't seem to be
+	//   url-encoding / and that is interpreted as a directory component
+	//   in the filename and we want to retain that.
+	return '../../' + encodeURIComponent(screenShot.replace(baseDir, targetDir)).replace(/%2F/g, '/');
+}
+
 function sendResponse(res, opts) {
 	var pageTitle = 'Visual diff for ' + opts.wiki + ':' + opts.title;
 	var page = '<html>';
@@ -62,11 +73,9 @@ function sendResponse(res, opts) {
 	page += '<body>';
 	page += '<h1>' + pageTitle + '</h1>';
 	page += '<ul>';
-	// Set up relative links.
-	// -- walk 2 levels up (/diff/wikiprefix/) to set up the right urls.
-	page += '<li><a href="../../' + opts.html1.screenShot.replace(baseDir, 'images/') + '">' + opts.html1.name + ' Screenshot</a></li>';
-	page += '<li><a href="../../' + opts.html2.screenShot.replace(baseDir, 'images/') + '">' + opts.html2.name + ' Screenshot</a></li>';
-	page += '<li><a href="../../' + opts.diffFile.replace(baseDir, 'images/') + '">Visual Diff</a></li>';
+	page += '<li><a href="' + getLink(opts.html1.screenShot, baseDir, 'images') + '">' + opts.html1.name + ' Screenshot</a></li>';
+	page += '<li><a href="' + getLink(opts.html2.screenShot, baseDir, 'images') + '">' + opts.html2.name + ' Screenshot</a></li>';
+	page += '<li><a href="' + getLink(opts.diffFile, baseDir, 'images') + '">Visual Diff</a></li>';
 	page += '</ul></body>';
 	page += '</html>';
 
