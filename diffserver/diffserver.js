@@ -110,11 +110,6 @@ app.get(/^\/diff\/([^/]*)\/(.*)/, function(req, res) {
 					return;
 				}
 
-				// Dump diff
-				var png_data = diffData.getImageDataUrl('').replace(/^data:image\/png;base64,/, '');
-				var png_buffer = new Buffer(png_data, 'base64');
-				fs.writeFileSync(opts.diffFile, png_buffer);
-
 				// Send HTML
 				sendResponse(res, opts);
 			}
