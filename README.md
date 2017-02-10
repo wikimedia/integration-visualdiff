@@ -33,11 +33,11 @@ $ node gen.visual_diff.js --outdir /tmp/ --url1 http://en.wikipedia.org/wiki/Ham
 $ node gen.visual_diff.js --outdir /tmp/ --url1 enwiki/Hampi.php.html --url2 enwiki/Hampi.parsoid.html
 
 # Fetch PHP parser and Parsoid HTML output from their servers and compare them (read config from a config file)
-$ node gen.visual_diff.js --wiki itwiki --title Luna --config parsoid.diffsettings.js
+$ node gen.visual_diff.js --wiki en.wikipedia.org --title Hospet --config parsoid.diffsettings.js
 
 # Fetch PHP parser and Parsoid HTML output from their servers and compare them (config on commandline), and also dump the HTML
 # after suitably postprocessing them
-$ node gen.visual_diff.js --wiki enwiki --title Hampi --html1PP ../lib/php_parser.postprocess.js --html2PP ../lib/parsoid.postprocess.js --dumpHTML1 --dumpHTML2
+$ node gen.visual_diff.js --wiki en.wikipedia.org --title Hampi --html1PP ../lib/php_parser.postprocess.js --html2PP ../lib/parsoid.postprocess.js --dumpHTML1 --dumpHTML2
 ```
 
 The <code>bin/examples</code> directory has a sample enwiki titles list and a bunch of example config files for 3 different use cases
