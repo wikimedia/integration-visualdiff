@@ -24,12 +24,10 @@ var customOpts = {
 
 var opts = Util.getCLIOpts(customOpts);
 if (opts !== null) {
-	Differ.genVisualDiff(opts, function(msg) {
-		console.log(msg);
-	}, function(err, data) {
-		if (!err) {
-			// analysis stats
-			console.error("STATS: " + JSON.stringify(data));
-		}
+	Differ.genVisualDiff(opts, function(msg) { console.log(msg); }).then(function(data) {
+		// analysis stats
+		console.error("STATS: " + JSON.stringify(data));
+	}).catch(function(err) {
+		console.warn(err);
 	});
 }
