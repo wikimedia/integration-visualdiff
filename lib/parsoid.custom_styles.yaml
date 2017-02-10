@@ -1,4 +1,4 @@
-enwiki: |
+en.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
     span.mw-ref {

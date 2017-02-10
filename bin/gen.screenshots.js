@@ -23,13 +23,9 @@ var customOpts = {
 
 var opts = Util.getCLIOpts(customOpts);
 if (opts !== null) {
-	Differ.takeScreenshots(opts, function(msg) {
-			console.log(msg);
-		}, function(err) {
-			if (err) {
-				console.warn(err);
-			} else {
-				console.warn("--all done--");
-			}
-		});
+	Differ.takeScreenshots(opts, function(msg) { console.log(msg); }).then(function{
+		console.warn("--all done--");
+	}).catch(function(err) {
+		console.warn(err);
+	});
 }
