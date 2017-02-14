@@ -27,17 +27,17 @@ OR this script
 
 ``` bash
 # Compare rendering of two existing HTML files (on the web)
-$ node gen.visual_diff.js --outdir /tmp/ --url1 http://en.wikipedia.org/wiki/Hampi --url2 http://en.wikipedia.org/wiki/Hospet
+$ cd bin; node gen.visual_diff.js --outdir /tmp/ --url1 http://en.wikipedia.org/wiki/Hampi --url2 http://en.wikipedia.org/wiki/Hospet
 
 # Compare rendering of two existing HTML files
-$ node gen.visual_diff.js --outdir /tmp/ --url1 enwiki/Hampi.php.html --url2 enwiki/Hampi.parsoid.html
+$ cd bin; node gen.visual_diff.js --outdir /tmp/ --url1 enwiki/Hampi.php.html --url2 enwiki/Hampi.parsoid.html
 
 # Fetch PHP parser and Parsoid HTML output from their servers and compare them (read config from a config file)
-$ node gen.visual_diff.js --wiki en.wikipedia.org --title Hospet --config parsoid.diffsettings.js
+$ cd bin; node gen.visual_diff.js --wiki en.wikipedia.org --title Hospet --config examples/parsoid.php.diffsettings.js
 
 # Fetch PHP parser and Parsoid HTML output from their servers and compare them (config on commandline), and also dump the HTML
 # after suitably postprocessing them
-$ node gen.visual_diff.js --wiki en.wikipedia.org --title Hampi --html1PP ../lib/php_parser.postprocess.js --html2PP ../lib/parsoid.postprocess.js --dumpHTML1 --dumpHTML2
+$ cd bin; node gen.visual_diff.js --wiki en.wikipedia.org --title Hampi --html1PP ../lib/php_parser.postprocess.js --html2PP ../lib/parsoid.postprocess.js --dumpHTML1 --dumpHTML2
 ```
 
 The <code>bin/examples</code> directory has a sample enwiki titles list and a bunch of example config files for 3 different use cases
