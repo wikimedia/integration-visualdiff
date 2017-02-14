@@ -7,8 +7,8 @@
 * Add $PWD/node_modules/phantomjs/bin to $PATH
 
 ## Working with proxies
-* Set the HTTP_PROXY_IP_AND_PORT if you have a proxy in between.
-  Ex: HTTP_PROXY_IP_AND_PORT=http://11.12.13.14:8138
+* Set the HTTP_PROXY_AND_PORT if you have a proxy in between.
+  Ex: HTTP_PROXY_AND_PORT=http://some.proxy:8138
 
 ## Commandline
 

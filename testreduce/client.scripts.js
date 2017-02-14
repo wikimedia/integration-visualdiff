@@ -59,7 +59,7 @@ function gitCommitFetch(opts) {
 	var parsoidServer = Util.getNonCLIOpts(opts).html2.server;
 	var requestOptions = {
 		uri: parsoidServer + '_version',
-		proxy: process.env.HTTP_PROXY_IP_AND_PORT || '',
+		proxy: process.env.HTTP_PROXY_AND_PORT || '',
 		method: 'GET'
 	};
 
