@@ -38,17 +38,13 @@ function generateVisualDiff(opts, test) {
 			var pidPrefix = '[' + process.pid + ']: ';
 			var logger = opts.quiet ? function(){} : function(msg) { console.log(pidPrefix + msg); };
 			logger('Diffing ' + test.prefix + ':' + test.title);
-			VisualDiffer.genVisualDiff(opts, logger,
-				function(err, diffData) {
-					if (err) {
-						console.error(pidPrefix + 'ERROR for ' + test.prefix + ':' + test.title + ': ' + err);
-						reject(err);
-					} else {
-						logger('DIFF: ' + JSON.stringify(diffData));
-						resolve(diffData);
-					}
-				}
-			);
+			return VisualDiffer.genVisualDiff(opts, logger).then(function(diffData) {
+				logger('DIFF: ' + JSON.stringify(diffData));
+				resolve(diffData);
+			}).catch(function(err) {
+				console.error(pidPrefix + 'ERROR for ' + test.prefix + ':' + test.title + ': ' + err);
+				reject(err);
+			});
 		} catch (err) {
 			console.error(pidPrefix + 'ERROR in ' + test.prefix + ':' + test.title + ': ' + err);
 			console.error(pidPrefix + 'stack trace: ' + err.stack);
