@@ -1,3 +1,38 @@
+# ------------------------ These styles apply to all wikis ------------------------
+all: |
+    /* No background for plainlinks */
+    .plainlinks a[rel="mw:ExtLink"],
+    .plainlinks a[href^="http"] {
+        background:none !important;
+        padding:0 !important
+    }
+
+    .mw-body a[rel="mw:ExtLink"],
+    .mw-body a[href^="http"] {
+        background: url("https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png") no-repeat right;
+        padding-right: 13px;
+        color: #36b;
+    }
+    /* Change the external link icon to an Adobe icon for all PDF files
+       in browsers that support these CSS selectors, like Mozilla and Opera */
+    .mw-body a[href$=".pdf"].external,
+    .mw-body a[href*=".pdf?"].external,
+    .mw-body a[href*=".pdf#"].external,
+    .mw-body a[href$=".PDF"].external,
+    .mw-body a[href*=".PDF?"].external,
+    .mw-body a[href*=".PDF#"].external {
+        background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
+        padding-right: 18px;
+    }
+
+    /* Change the external link icon to an Adobe icon anywhere the PDFlink class
+    is used (notably Template:PDFlink). This works in IE, unlike the above. */
+    .mw-body span.PDFlink a {
+        background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
+        padding-right: 18px;
+    }
+
+# ------------------------ These styles apply to enwiki only ------------------------
 en.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
@@ -30,36 +65,4 @@ en.wikipedia.org: |
 
     span[rel="mw:referencedBy"] a::after {
         content: ' ';
-    }
-
-    /* No background for plainlinks */
-    .plainlinks a[rel="mw:ExtLink"],
-    .plainlinks a[href^="http"] {
-        background:none !important;
-        padding:0 !important
-    }
-
-    .mw-body a[rel="mw:ExtLink"],
-    .mw-body a[href^="http"] {
-        background: url("https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png") no-repeat right;
-        padding-right: 13px;
-        color: #36b;
-    }
-    /* Change the external link icon to an Adobe icon for all PDF files
-       in browsers that support these CSS selectors, like Mozilla and Opera */
-    .mw-body a[href$=".pdf"].external,
-    .mw-body a[href*=".pdf?"].external,
-    .mw-body a[href*=".pdf#"].external,
-    .mw-body a[href$=".PDF"].external,
-    .mw-body a[href*=".PDF?"].external,
-    .mw-body a[href*=".PDF#"].external {
-        background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
-        padding-right: 18px;
-    }
-
-    /* Change the external link icon to an Adobe icon anywhere the PDFlink class
-    is used (notably Template:PDFlink). This works in IE, unlike the above. */
-    .mw-body span.PDFlink a {
-        background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
-        padding-right: 18px;
     }
