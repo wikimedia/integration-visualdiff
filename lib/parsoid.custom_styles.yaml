@@ -41,8 +41,9 @@ en.wikipedia.org: |
 
     .mw-body a[rel="mw:ExtLink"],
     .mw-body a[href^="http"] {
-        background: url("https://upload.wikimedia.org/wikipedia/commons/6/64/Icon_External_Link.png") no-repeat right;
+        background: url("https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png") no-repeat right;
         padding-right: 13px;
+        color: #36b;
     }
     /* Change the external link icon to an Adobe icon for all PDF files
        in browsers that support these CSS selectors, like Mozilla and Opera */
