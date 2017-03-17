@@ -66,18 +66,28 @@ function getLink(screenShot, baseDir, targetDir) {
 	return '../../' + encodeURIComponent(screenShot.replace(baseDir, targetDir)).replace(/%2F/g, '/');
 }
 
+function getWikiTitle(wiki, title, vm) {
+	return 'http://' + wiki.replace(/wiki$/, '') + '.' + vm + '.wikitextexp.wmflabs.org/wiki/' + encodeURIComponent(title);
+}
+
 function sendResponse(res, opts) {
 	var pageTitle = 'Visual diff for ' + opts.wiki + ':' + opts.title;
 	var page = '<html>';
-	page += '<head><title>' + pageTitle + '</title></head>';
-	page += '<body>';
-	page += '<h1>' + pageTitle + '</h1>';
-	page += '<ul>';
-	page += '<li><a href="' + getLink(opts.html1.screenShot, baseDir, 'images') + '">' + opts.html1.name + ' Screenshot</a></li>';
-	page += '<li><a href="' + getLink(opts.html2.screenShot, baseDir, 'images') + '">' + opts.html2.name + ' Screenshot</a></li>';
-	page += '<li><a href="' + getLink(opts.diffFile, baseDir, 'images') + '">Visual Diff</a></li>';
-	page += '</ul></body>';
-	page += '</html>';
+	page += '<head><title>' + pageTitle + '</title></head>\n';
+	page += '<body>\n';
+	page += '<h1>' + pageTitle + '</h1>\n';
+	page += '<h2>Screenshots</h2>\n';
+	page += '<ul>\n';
+	page += '<li><a target="_blank" href="' + getLink(opts.html1.screenShot, baseDir, 'images') + '">' + opts.html1.name + ' Screenshot</a></li>\n';
+	page += '<li><a target="_blank" href="' + getLink(opts.html2.screenShot, baseDir, 'images') + '">' + opts.html2.name + ' Screenshot</a></li>\n';
+	page += '<li><a target="_blank" href="' + getLink(opts.diffFile, baseDir, 'images') + '">Visual Diff</a></li>\n';
+	page += '</ul>\n';
+	page += '<h2>Page on the target wikis</h2>\n';
+	page += '<ul>\n';
+	page += '<li><a target="_blank" href="' + getWikiTitle(opts.wiki, opts.title, 'base') + '">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + getWikiTitle(opts.wiki, opts.title, 'expt') + '">' + opts.html2.name + ' HTML</a></li>\n';
+	page += '</ul>\n';
+	page += '</body></html>';
 
 	// Send response
 	res.setHeader('Content-Type', 'text/html; charset=UTF-8');
