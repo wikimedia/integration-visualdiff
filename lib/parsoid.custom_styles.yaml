@@ -66,3 +66,41 @@ en.wikipedia.org: |
     span[rel="mw:referencedBy"] a::after {
         content: ' ';
     }
+
+# ------------------------ These styles apply to itwiki only ------------------------
+it.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
+   }
+
+    /* Some of these tweaks will probably be part of ext.cite.style.css
+       Rest will be specific to enwiki and will be part of enwiki's common.css */
+    span.mw-ref {
+        line-height: 1;
+        font-size: 80%;
+    }
+
+    sup,sub { line-height:1; }
+    body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
+
+    [rel="mw:referencedBy"]::before {
+        content: "^ ";
+    }
+
+    [rel="mw:referencedBy"] {
+        counter-reset: mw-ref-linkback 0;
+    }
+
+    ol[data-mw-group="lower-alpha"].mw-references li {
+        list-style-type: lower-alpha;
+    }
+
+    span[rel="mw:referencedBy"] a::before {
+        content: counter(mw-ref-linkback, lower-alpha);
+        font-style: italic;
+        font-size: 80%;
+    }
+
+    span[rel="mw:referencedBy"] a::after {
+        content: ' ';
+    }
