@@ -75,7 +75,7 @@ function sendResponse(res, opts) {
 	page += '<li><a href="' + getLink(opts.diffFile, baseDir, 'diffs') + '">Visual Diff</a></li>';
 	page += '</ul>\n';
 	page += '<h2>Parsoid & PHP HTML</h2>\n';
-	page += 'The diffs generated above are after the PHP-parser HTML and Parsoid HTML are post-process to strip the skin, expand all collapsed elements, and missing CSS is applied to Parsoid HTML.";
+	page += 'The diffs generated above are after the PHP-parser HTML and Parsoid HTML are post-process to strip the skin, expand all collapsed elements, and missing CSS is applied to Parsoid HTML.';
 	page += '<ul>\n';
 	page += '<li><a target="_blank" href="https://' + opts.wiki + "/wiki/" + encodeURIComponent(pageTitle) + '">' + opts.html1.name + ' HTML</a></li>\n';
 	page += '<li><a target="_blank" href="https://parsoid-rt-tests.wikimedia.org/parsoid/' + opts.wiki + "/v3/page/html/" + encodeURIComponent(pageTitle) + '">' + opts.html2.name + ' HTML</a></li>\n';
