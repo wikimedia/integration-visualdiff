@@ -79,8 +79,8 @@ function sendResponse(res, opts) {
 
 	var domain = Util.getWikiBaseURL(opts.wiki).replace(/https?:\/\/(.*)\/wiki\//, '$1');
 	page += '<ul>\n';
-	page += '<li><a target="_blank" href="https://' + domain + "/wiki/" + encodeURIComponent(pageTitle) + '">' + opts.html1.name + ' HTML</a></li>\n';
-	page += '<li><a target="_blank" href="https://parsoid-rt-tests.wikimedia.org/parsoid/' + domain + "/v3/page/html/" + encodeURIComponent(pageTitle) + '">' + opts.html2.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="https://' + domain + "/wiki/" + encodeURIComponent(opts.title) + '">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="https://parsoid-rt-tests.wikimedia.org/parsoid/' + domain + "/v3/page/html/" + encodeURIComponent(opts.title) + '">' + opts.html2.name + ' HTML</a></li>\n';
 	page += '</ul></body>';
 	page += '</html>';
 
