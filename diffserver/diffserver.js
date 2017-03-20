@@ -47,9 +47,6 @@ var baseDir = settings.outdir.slice().replace('\/$', '');
 // Make an app
 var app = express();
 
-// Declare static directory
-app.use('/images', express.static(baseDir));
-
 // robots.txt: no indexing.
 app.get(/^\/robots.txt$/, function (req, res) {
 	res.end('User-agent: *\nDisallow: /\n');
@@ -73,9 +70,15 @@ function sendResponse(res, opts) {
 	page += '<body>';
 	page += '<h1>' + pageTitle + '</h1>';
 	page += '<ul>';
-	page += '<li><a href="' + getLink(opts.html1.screenShot, baseDir, 'images') + '">' + opts.html1.name + ' Screenshot</a></li>';
-	page += '<li><a href="' + getLink(opts.html2.screenShot, baseDir, 'images') + '">' + opts.html2.name + ' Screenshot</a></li>';
-	page += '<li><a href="' + getLink(opts.diffFile, baseDir, 'images') + '">Visual Diff</a></li>';
+	page += '<li><a href="' + getLink(opts.html1.screenShot, baseDir, 'diffs') + '">' + opts.html1.name + ' Screenshot</a></li>';
+	page += '<li><a href="' + getLink(opts.html2.screenShot, baseDir, 'diffs') + '">' + opts.html2.name + ' Screenshot</a></li>';
+	page += '<li><a href="' + getLink(opts.diffFile, baseDir, 'diffs') + '">Visual Diff</a></li>';
+	page += '</ul>\n';
+	page += '<h2>Parsoid & PHP HTML</h2>\n';
+	page += 'The diffs generated above are after the PHP-parser HTML and Parsoid HTML are post-process to strip the skin, expand all collapsed elements, and missing CSS is applied to Parsoid HTML.";
+	page += '<ul>\n';
+	page += '<li><a target="_blank" href="https://' + opts.wiki + "/wiki/" + encodeURIComponent(pageTitle) + '">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="https://parsoid-rt-tests.wikimedia.org/parsoid/' + opts.wiki + "/v3/page/html/" + encodeURIComponent(pageTitle) + '">' + opts.html2.name + ' HTML</a></li>\n';
 	page += '</ul></body>';
 	page += '</html>';
 
@@ -102,18 +105,8 @@ app.get(/^\/diff\/([^/]*)\/(.*)/, function(req, res) {
 		// Everything found on disk .. send them along!
 		sendResponse(res, opts);
 	} else {
-		VisualDiffer.genVisualDiff(opts, logger,
-			function(err, diffData) {
-				if (err) {
-					console.error('ERROR for ' + wiki + ':' + title + ': ' + err);
-					res.status(500).send('Encountered error [' + err + '] for ' + wiki + ':' + title);
-					return;
-				}
-
-				// Send HTML
-				sendResponse(res, opts);
-			}
-		);
+		res.setHeader('Content-Type', 'text/html; charset=UTF-8');
+		res.status(200).send("On-demand visual diff generation is disabled.");
 	}
 });
 
