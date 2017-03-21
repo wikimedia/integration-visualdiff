@@ -1,5 +1,12 @@
 # ------------------------ These styles apply to all wikis ------------------------
 all: |
+
+    /* override for better diffs */
+    figure[typeof*="mw:Image"] > figcaption {
+        padding: 0px 6px 6px 6px;
+        font-size: 88.5%;
+    }
+
     /* No background for plainlinks */
     .plainlinks a[rel="mw:ExtLink"],
     .plainlinks a[href^="http"] {
