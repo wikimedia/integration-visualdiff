@@ -18,13 +18,13 @@ module.exports = {
 	port: 3306,
 
 	// Database to use.
-	database: "parsoid",
+	database: "testreduce",
 
 	// User for MySQL login.
-	user: "parsoid",
+	user: "testreduce",
 
 	// Password.
-	password: "parsoid",
+	password: "testreduce",
 
 	// Output MySQL debug data.
 	debug: false,
