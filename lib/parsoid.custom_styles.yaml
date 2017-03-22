@@ -4,7 +4,7 @@ all: |
     /* override for better diffs */
     figure[typeof*="mw:Image"] > figcaption {
         padding: 0px 6px 6px 6px;
-        font-size: 88.5%;
+        font-size: 88.4%;
     }
 
     /* No background for plainlinks */
