@@ -77,7 +77,7 @@ function sendResponse(res, opts) {
 	page += '<h2>Parsoid & PHP HTML</h2>\n';
 	page += 'The diffs above are generated after the PHP-parser HTML and Parsoid HTML are post-processed to strip the skin, expand all collapsed elements, and missing CSS is applied to Parsoid HTML.';
 
-	var domain = Util.getWikiBaseURL(opts.wiki).replace(/https?:\/\/(.*)\/wiki\//, '$1');
+	var domain = Util.getWikiDomain(opts.wiki);
 	page += '<ul>\n';
 	page += '<li><a target="_blank" href="https://' + domain + "/wiki/" + encodeURIComponent(opts.title) + '">' + opts.html1.name + ' HTML</a></li>\n';
 	page += '<li><a target="_blank" href="https://parsoid-rt-tests.wikimedia.org/parsoid/' + domain + "/v3/page/html/" + encodeURIComponent(opts.title) + '">' + opts.html2.name + ' HTML</a></li>\n';
