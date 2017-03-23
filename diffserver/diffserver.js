@@ -70,9 +70,9 @@ function sendResponse(res, opts) {
 	page += '<body>';
 	page += '<h1>' + pageTitle + '</h1>';
 	page += '<ul>';
-	page += '<li><a href="' + getLink(opts.html1.screenShot, baseDir, 'visualdiff/pngs') + '">' + opts.html1.name + ' Screenshot</a></li>';
-	page += '<li><a href="' + getLink(opts.html2.screenShot, baseDir, 'visualdiff/pngs') + '">' + opts.html2.name + ' Screenshot</a></li>';
-	page += '<li><a href="' + getLink(opts.diffFile, baseDir, 'visualdiff/pngs') + '">Visual Diff</a></li>';
+	page += '<li><a target="_blank" href="' + getLink(opts.html1.screenShot, baseDir, 'visualdiff/pngs') + '">' + opts.html1.name + ' Screenshot</a></li>';
+	page += '<li><a target="_blank" href="' + getLink(opts.html2.screenShot, baseDir, 'visualdiff/pngs') + '">' + opts.html2.name + ' Screenshot</a></li>';
+	page += '<li><a target="_blank" href="' + getLink(opts.diffFile, baseDir, 'visualdiff/pngs') + '">Visual Diff</a></li>';
 	page += '</ul>\n';
 	page += '<h2>Parsoid & PHP HTML</h2>\n';
 	page += 'The diffs above are generated after the PHP-parser HTML and Parsoid HTML are post-processed to strip the skin, expand all collapsed elements, and missing CSS is applied to Parsoid HTML.';
