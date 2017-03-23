@@ -73,9 +73,9 @@ function sendResponse(res, opts) {
 	page += '<body>';
 	page += '<h1>' + pageTitle + '</h1>';
 	page += '<ul>';
-	page += '<li><a href="' + getLink(opts.html1.screenShot, baseDir, 'images') + '">' + opts.html1.name + ' Screenshot</a></li>';
-	page += '<li><a href="' + getLink(opts.html2.screenShot, baseDir, 'images') + '">' + opts.html2.name + ' Screenshot</a></li>';
-	page += '<li><a href="' + getLink(opts.diffFile, baseDir, 'images') + '">Visual Diff</a></li>';
+	page += '<li><a target="_blank" href="' + getLink(opts.html1.screenShot, baseDir, 'images') + '">' + opts.html1.name + ' Screenshot</a></li>';
+	page += '<li><a target="_blank" href="' + getLink(opts.html2.screenShot, baseDir, 'images') + '">' + opts.html2.name + ' Screenshot</a></li>';
+	page += '<li><a target="_blank" href="' + getLink(opts.diffFile, baseDir, 'images') + '">Visual Diff</a></li>';
 	page += '</ul></body>';
 	page += '</html>';
 
