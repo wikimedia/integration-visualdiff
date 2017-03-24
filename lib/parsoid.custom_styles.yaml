@@ -111,3 +111,40 @@ it.wikipedia.org: |
     span[rel="mw:referencedBy"] a::after {
         content: ' ';
     }
+
+fr.wikipedia.org: |
+   ol.mw-references {
+       font-size: 85%;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       font-style: italic;
+       font-size: 80%;
+   }
+
+   span.mw-ref a::after {
+       content: counter(mw-Ref,decimal);
+       vertical-align: super;
+       font-size: 1.0em;
+   }
+
+es.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       font-style: italic;
+       font-weight: bold;
+       font-size: 80%;
+   }
+
+   span.mw-ref a::after {
+       content: counter(mw-Ref,decimal);
+   }
