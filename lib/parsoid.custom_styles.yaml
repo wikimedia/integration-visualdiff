@@ -52,7 +52,8 @@ en.wikipedia.org: |
     body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
 
     [rel="mw:referencedBy"]::before {
-        content: "^ ";
+        content: "^";
+        font-weight: bold;
     }
 
     [rel="mw:referencedBy"] {
@@ -64,7 +65,7 @@ en.wikipedia.org: |
     }
 
     span[rel="mw:referencedBy"] a::before {
-        content: counter(mw-ref-linkback, lower-alpha);
+        content: ' ' counter(mw-ref-linkback, lower-alpha);
         font-style: italic;
         font-weight: bold;
         font-size: 80%;
@@ -90,12 +91,13 @@ it.wikipedia.org: |
     sup,sub { line-height:1; }
     body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
 
-    [rel="mw:referencedBy"]::before {
-        content: "^ ";
-    }
-
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
+    }
+
+    [rel="mw:referencedBy"]::before {
+        content: "^";
+        font-weight: bold;
     }
 
     ol[data-mw-group="lower-alpha"].mw-references li {
@@ -103,7 +105,7 @@ it.wikipedia.org: |
     }
 
     span[rel="mw:referencedBy"] a::before {
-        content: counter(mw-ref-linkback, lower-alpha);
+        content: ' ' counter(mw-ref-linkback, lower-alpha);
         font-style: italic;
         font-size: 80%;
     }
@@ -148,3 +150,18 @@ es.wikipedia.org: |
    span.mw-ref a::after {
        content: counter(mw-Ref,decimal);
    }
+
+no.wikipedia.org: |
+    [rel="mw:referencedBy"]::before {
+        content: "^";
+        font-weight: bold;
+    }
+
+    [rel="mw:referencedBy"] {
+        counter-reset: mw-ref-linkback 0;
+    }
+
+    span[rel="mw:referencedBy"] a::before {
+        content: ' ' counter(mw-ref-linkback, lower-alpha);
+        font-size: 80%;
+    }
