@@ -2,9 +2,23 @@
 all: |
 
     /* override for better diffs */
+    figure[typeof~="mw:Image/Thumb"] > :first-child > img,
+    figure[typeof~="mw:Image/Frame"] > :first-child > img,
+    .mw-image-border > :first-child > img {
+        border-color: #c8ccd1;
+    }
+
+    figure[typeof*="mw:Frame"], figure[typeof*="mw:Image"] {
+        background-color: #f8f9fa;
+        border-color: #c8ccd1;
+    }
+
+    figure[typeof*="mw:Frame"] > figcaption,
     figure[typeof*="mw:Image"] > figcaption {
         padding: 0px 6px 6px 6px;
         font-size: 88.4%;
+        background-color: #f8f9fa;
+        border-color: #c8ccd1;
     }
 
     /* No background for plainlinks */
@@ -52,7 +66,8 @@ en.wikipedia.org: |
     body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
 
     [rel="mw:referencedBy"]::before {
-        content: "^ ";
+        content: "^";
+        font-weight: bold;
     }
 
     [rel="mw:referencedBy"] {
@@ -64,7 +79,7 @@ en.wikipedia.org: |
     }
 
     span[rel="mw:referencedBy"] a::before {
-        content: counter(mw-ref-linkback, lower-alpha);
+        content: ' ' counter(mw-ref-linkback, lower-alpha);
         font-style: italic;
         font-weight: bold;
         font-size: 80%;
@@ -90,12 +105,13 @@ it.wikipedia.org: |
     sup,sub { line-height:1; }
     body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
 
-    [rel="mw:referencedBy"]::before {
-        content: "^ ";
-    }
-
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
+    }
+
+    [rel="mw:referencedBy"]::before {
+        content: "^";
+        font-weight: bold;
     }
 
     ol[data-mw-group="lower-alpha"].mw-references li {
@@ -103,11 +119,63 @@ it.wikipedia.org: |
     }
 
     span[rel="mw:referencedBy"] a::before {
-        content: counter(mw-ref-linkback, lower-alpha);
+        content: ' ' counter(mw-ref-linkback, lower-alpha);
         font-style: italic;
         font-size: 80%;
     }
 
     span[rel="mw:referencedBy"] a::after {
         content: ' ';
+    }
+
+fr.wikipedia.org: |
+   ol.mw-references {
+       font-size: 85%;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       font-style: italic;
+       font-size: 80%;
+   }
+
+   span.mw-ref a::after {
+       content: counter(mw-Ref,decimal);
+       vertical-align: super;
+       font-size: 1.0em;
+   }
+
+es.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       font-style: italic;
+       font-weight: bold;
+       font-size: 80%;
+   }
+
+   span.mw-ref a::after {
+       content: counter(mw-Ref,decimal);
+   }
+
+no.wikipedia.org: |
+    [rel="mw:referencedBy"]::before {
+        content: "^";
+        font-weight: bold;
+    }
+
+    [rel="mw:referencedBy"] {
+        counter-reset: mw-ref-linkback 0;
+    }
+
+    span[rel="mw:referencedBy"] a::before {
+        content: ' ' counter(mw-ref-linkback, lower-alpha);
+        font-size: 80%;
     }
