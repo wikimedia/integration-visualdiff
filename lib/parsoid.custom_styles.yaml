@@ -65,17 +65,21 @@ en.wikipedia.org: |
     sup,sub { line-height:1; }
     body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
 
-    [rel="mw:referencedBy"]::before {
-        content: "^";
-        font-weight: bold;
+    ol[data-mw-group="lower-alpha"].mw-references li {
+        list-style-type: lower-alpha;
     }
 
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
     }
 
-    ol[data-mw-group="lower-alpha"].mw-references li {
-        list-style-type: lower-alpha;
+    a[rel="mw:referencedBy"]::before {
+        content: "^";
+        font-weight: bold;
+    }
+
+    span[rel="mw:referencedBy"]::before {
+        content: "^ ";
     }
 
     span[rel="mw:referencedBy"] a::before {
@@ -91,9 +95,13 @@ en.wikipedia.org: |
 
 # ------------------------ These styles apply to itwiki only ------------------------
 it.wikipedia.org: |
-   ol.mw-references {
+    ol.mw-references {
        font-size: 90%;
-   }
+    }
+
+    ol[data-mw-group="lower-alpha"].mw-references li {
+        list-style-type: lower-alpha;
+    }
 
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
@@ -109,25 +117,25 @@ it.wikipedia.org: |
         counter-reset: mw-ref-linkback 0;
     }
 
-    [rel="mw:referencedBy"]::before {
+    a[rel="mw:referencedBy"]::before {
         content: "^";
         font-weight: bold;
     }
 
-    ol[data-mw-group="lower-alpha"].mw-references li {
-        list-style-type: lower-alpha;
+    span[rel="mw:referencedBy"]::before {
+        content: "^ ";
     }
 
     span[rel="mw:referencedBy"] a::before {
         content: ' ' counter(mw-ref-linkback, lower-alpha);
         font-style: italic;
-        font-size: 80%;
     }
 
     span[rel="mw:referencedBy"] a::after {
         content: ' ';
     }
 
+# ------------------------ These styles apply to frwiki only ------------------------
 fr.wikipedia.org: |
    ol.mw-references {
        font-size: 85%;
@@ -138,8 +146,7 @@ fr.wikipedia.org: |
    }
 
    span[rel="mw:referencedBy"] a::before {
-       content: counter(mw-ref-linkback, lower-alpha);
-       font-style: italic;
+       content: counter(mw-ref-linkback, lower-alpha) ', ';
        font-size: 80%;
    }
 
@@ -149,6 +156,7 @@ fr.wikipedia.org: |
        font-size: 1.0em;
    }
 
+# ------------------------ These styles apply to eswiki only ------------------------
 es.wikipedia.org: |
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
@@ -158,24 +166,29 @@ es.wikipedia.org: |
        content: counter(mw-ref-linkback, lower-alpha);
        font-style: italic;
        font-weight: bold;
-       font-size: 80%;
    }
 
    span.mw-ref a::after {
        content: counter(mw-Ref,decimal);
    }
 
+# ------------------------ These styles apply to nowiki only ------------------------
 no.wikipedia.org: |
-    [rel="mw:referencedBy"]::before {
-        content: "^";
-        font-weight: bold;
-    }
-
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
     }
 
+    a[rel="mw:referencedBy"]::before {
+        content: "^";
+        font-weight: bold;
+    }
+
+    // This is actually supposed to be bold but removing the bold
+    // eliminates all other diffs but on this caret
+    span[rel="mw:referencedBy"]::before {
+        content: "^ ";
+    }
+
     span[rel="mw:referencedBy"] a::before {
         content: ' ' counter(mw-ref-linkback, lower-alpha);
-        font-size: 80%;
     }
