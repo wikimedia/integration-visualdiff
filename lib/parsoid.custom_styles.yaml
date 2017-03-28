@@ -53,6 +53,11 @@ all: |
         padding-right: 18px;
     }
 
+    /* applies to all wikis! */
+    ol[data-mw-group="lower-alpha"].mw-references li {
+        list-style-type: lower-alpha;
+    }
+
 # ------------------------ These styles apply to enwiki only ------------------------
 en.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
@@ -64,10 +69,6 @@ en.wikipedia.org: |
 
     sup,sub { line-height:1; }
     body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
-
-    ol[data-mw-group="lower-alpha"].mw-references li {
-        list-style-type: lower-alpha;
-    }
 
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
@@ -192,3 +193,133 @@ no.wikipedia.org: |
     span[rel="mw:referencedBy"] a::before {
         content: ' ' counter(mw-ref-linkback, lower-alpha);
     }
+
+# ------------------------ These styles apply to huwiki only ------------------------
+hu.wikipedia.org: |
+   ol.mw-references {
+       font-size: 85%;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"]::before    {
+       content: "^ ";
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       font-style: italic;
+       font-weight: bold;
+   }
+
+# ------------------------ These styles apply to svwiki only ------------------------
+sv.wikipedia.org: |
+   ol.mw-references {
+       font-size: 95%;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   a[rel="mw:referencedBy"]::before {
+       content: "^";
+   }
+
+   span[rel="mw:referencedBy"]::before    {
+       content: "^ [";
+   }
+
+   span[rel="mw:referencedBy"]::after    {
+       content: "]";
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       vertical-align: middle;
+       font-size: 80%;
+   }
+
+# ------------------------ These styles apply to ruwiki only ------------------------
+ru.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   a[rel="mw:referencedBy"]::before {
+       content: "↑";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-size: 80%;
+       font-style: italic;
+       font-weight: bold;
+       content: counter(mw-ref-linkback, decimal);
+   }
+
+   span.mw-ref a::after {
+       font-size: 90%;
+   }
+
+# ------------------------ These styles apply to arwiki only ------------------------
+ar.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   [rel="mw:referencedBy"]::before {
+       content: "^ ";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-size: 100%;
+       font-style: italic;
+       font-weight: bold;
+       vertical-align: super;
+       content: counter(mw-ref-linkback, arabic-indic);
+   }
+
+   span.mw-ref a::after {
+       font-size: 90%;
+   }
+
+# ------------------------ These styles apply to cebwiki only ------------------------
+ceb.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
+   }
+
+# ------------------------ These styles apply to viwiki only ------------------------
+vi.wikipedia.org: |
+   [rel="mw:referencedBy"]::before {
+       content: "^ ";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-weight: bold;
+       font-style: italic;
+   }
+
+# ------------------------ These styles apply to zhwiki only ------------------------
+zh.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
+   }
+
+   a[rel="mw:referencedBy"]::before {
+       content: "^ ";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"]::before {
+       content: "^ ";
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-weight: bold;
+   }
