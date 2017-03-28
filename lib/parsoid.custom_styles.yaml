@@ -240,3 +240,25 @@ sv.wikipedia.org: |
        vertical-align: middle;
        font-size: 80%;
    }
+
+# ------------------------ These styles apply to ruwiki only ------------------------
+ru.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   a[rel="mw:referencedBy"]::before {
+       content: "↑";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-size: 80%;
+       font-style: italic;
+       font-weight: bold;
+       content: counter(mw-ref-linkback, decimal);
+   }
+
+   span.mw-ref a::after {
+       font-size: 90%;
+   }
