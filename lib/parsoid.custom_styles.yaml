@@ -192,3 +192,51 @@ no.wikipedia.org: |
     span[rel="mw:referencedBy"] a::before {
         content: ' ' counter(mw-ref-linkback, lower-alpha);
     }
+
+# ------------------------ These styles apply to huwiki only ------------------------
+hu.wikipedia.org: |
+   ol.mw-references {
+       font-size: 85%;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"]::before    {
+       content: "^ ";
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       font-style: italic;
+       font-weight: bold;
+   }
+
+# ------------------------ These styles apply to svwiki only ------------------------
+sv.wikipedia.org: |
+   ol.mw-references {
+       font-size: 95%;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   a[rel="mw:referencedBy"]::before {
+       content: "^";
+   }
+
+   span[rel="mw:referencedBy"]::before    {
+       content: "^ [";
+   }
+
+   span[rel="mw:referencedBy"]::after    {
+       content: "]";
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       vertical-align: middle;
+       font-size: 80%;
+   }
