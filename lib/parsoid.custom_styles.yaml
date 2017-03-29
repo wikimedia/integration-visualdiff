@@ -412,3 +412,67 @@ mzn.wikipedia.org: |
    span.mw-ref a::after {
        content: '[' counter(mw-Ref, persian) ']';
    }
+
+# ------------------------ These styles apply to jawiki only ------------------------
+ja.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   [rel="mw:referencedBy"]::before {
+       content: "^ ";
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       font-weight: bold;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to ptwiki only ------------------------
+pt.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       font-weight: bold;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to plwiki only ------------------------
+pl.wikipedia.org: |
+   ol.mw-references {
+       font-size: 85%;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to trwiki only ------------------------
+tr.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   a[rel="mw:referencedBy"]::before {
+       content: "^";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"]::before {
+       content: "^ ";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       font-weight: bold;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
