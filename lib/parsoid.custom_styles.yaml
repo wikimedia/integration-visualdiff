@@ -396,7 +396,7 @@ mzn.wikipedia.org: |
       counter-reset: mw-references 0;
    }
 
-   ol.mw-references li {
+   ol.mw-references > li {
       counter-increment: mw-references;
    }
 
@@ -411,6 +411,10 @@ mzn.wikipedia.org: |
 
    span.mw-ref a::after {
        content: '[' counter(mw-Ref, persian) ']';
+   }
+
+   .mw-body-content a[rel~='mw:ExtLink']:empty:after {
+      content: '[' counter(mw-numbered-ext-link, persian) ']';
    }
 
 # ------------------------ These styles apply to jawiki only ------------------------
@@ -474,5 +478,54 @@ tr.wikipedia.org: |
    span[rel="mw:referencedBy"] a::before {
        font-style: italic;
        font-weight: bold;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to knwiki only ------------------------
+kn.wikipedia.org: |
+   ol.mw-references {
+      list-style-type: kannada;
+      counter-reset: mw-references 0;
+   }
+
+   ol.mw-references > li {
+      counter-increment: mw-references;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback -1;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-references, kannada) '.' counter(mw-ref-linkback, kannada);
+   }
+
+   span.mw-ref a::after {
+       content: '[' counter(mw-Ref,kannada) ']';
+   }
+
+   .mw-body-content a[rel~='mw:ExtLink']:empty:after {
+      content: '[' counter(mw-numbered-ext-link, kannada) ']';
+   }
+
+# ------------------------ These styles apply to elwiki only ------------------------
+el.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
+   }
+
+
+# ------------------------ These styles apply to fiwiki only ------------------------
+fi.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
        content: counter(mw-ref-linkback, lower-alpha);
    }
