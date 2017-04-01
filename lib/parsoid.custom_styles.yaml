@@ -529,3 +529,27 @@ fi.wikipedia.org: |
        font-style: italic;
        content: counter(mw-ref-linkback, lower-alpha);
    }
+
+# ------------------------ These styles apply to bnwiki only ------------------------
+bn.wikipedia.org: |
+   #@counter-style alphabet-bengali {
+   #    system: alphabetic;
+   #}
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+   #    content: counter(mw-ref-linkback, alphabet-bengali);
+   }
+
+   span.mw-ref a::after {
+       content: '[' counter(mw-Ref, bengali) ']';
+   }
+
+# ------------------------ These styles apply to warwiki only ------------------------
+war.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
+   }
