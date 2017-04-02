@@ -3,9 +3,13 @@ all: |
 
     /* override for better diffs */
     figure[typeof~="mw:Image/Thumb"] > :first-child > img,
-    figure[typeof~="mw:Image/Frame"] > :first-child > img,
-    .mw-image-border > :first-child > img {
+    figure[typeof~="mw:Image/Frame"] > :first-child > img {
         border-color: #c8ccd1;
+    }
+
+    .mw-image-border > :first-child > img {
+        border: 1px solid #eaecf0;
+        margin: inherit;
     }
 
     figure[typeof*="mw:Frame"], figure[typeof*="mw:Image"] {
