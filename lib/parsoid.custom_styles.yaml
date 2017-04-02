@@ -557,3 +557,9 @@ war.wikipedia.org: |
    ol.mw-references {
        font-size: 90%;
    }
+
+# ------------------------ These styles apply to iswiki only ------------------------
+is.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
+   }
