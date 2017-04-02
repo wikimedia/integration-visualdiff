@@ -3,9 +3,13 @@ all: |
 
     /* override for better diffs */
     figure[typeof~="mw:Image/Thumb"] > :first-child > img,
-    figure[typeof~="mw:Image/Frame"] > :first-child > img,
-    .mw-image-border > :first-child > img {
+    figure[typeof~="mw:Image/Frame"] > :first-child > img {
         border-color: #c8ccd1;
+    }
+
+    .mw-image-border > :first-child > img {
+        border: 1px solid #eaecf0;
+        margin: inherit;
     }
 
     figure[typeof*="mw:Frame"], figure[typeof*="mw:Image"] {
@@ -396,7 +400,7 @@ mzn.wikipedia.org: |
       counter-reset: mw-references 0;
    }
 
-   ol.mw-references li {
+   ol.mw-references > li {
       counter-increment: mw-references;
    }
 
@@ -411,6 +415,10 @@ mzn.wikipedia.org: |
 
    span.mw-ref a::after {
        content: '[' counter(mw-Ref, persian) ']';
+   }
+
+   .mw-body-content a[rel~='mw:ExtLink']:empty:after {
+      content: '[' counter(mw-numbered-ext-link, persian) ']';
    }
 
 # ------------------------ These styles apply to jawiki only ------------------------
@@ -475,4 +483,83 @@ tr.wikipedia.org: |
        font-style: italic;
        font-weight: bold;
        content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to knwiki only ------------------------
+kn.wikipedia.org: |
+   ol.mw-references {
+      list-style-type: kannada;
+      counter-reset: mw-references 0;
+   }
+
+   ol.mw-references > li {
+      counter-increment: mw-references;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback -1;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-references, kannada) '.' counter(mw-ref-linkback, kannada);
+   }
+
+   span.mw-ref a::after {
+       content: '[' counter(mw-Ref,kannada) ']';
+   }
+
+   .mw-body-content a[rel~='mw:ExtLink']:empty:after {
+      content: '[' counter(mw-numbered-ext-link, kannada) ']';
+   }
+
+# ------------------------ These styles apply to elwiki only ------------------------
+el.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
+   }
+
+
+# ------------------------ These styles apply to fiwiki only ------------------------
+fi.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to bnwiki only ------------------------
+bn.wikipedia.org: |
+   #@counter-style alphabet-bengali {
+   #    system: alphabetic;
+   #}
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+   #    content: counter(mw-ref-linkback, alphabet-bengali);
+   }
+
+   span.mw-ref a::after {
+       content: '[' counter(mw-Ref, bengali) ']';
+   }
+
+# ------------------------ These styles apply to warwiki only ------------------------
+war.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
+   }
+
+# ------------------------ These styles apply to iswiki only ------------------------
+is.wikipedia.org: |
+   ol.mw-references {
+       font-size: 90%;
    }
