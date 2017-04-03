@@ -161,6 +161,12 @@ fr.wikipedia.org: |
        font-size: 1.0em;
    }
 
+   span.mw-ref a[data-mw-group]::after {
+       content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
+       vertical-align: super;
+       font-size: 1.0em;
+   }
+
 # ------------------------ These styles apply to eswiki only ------------------------
 es.wikipedia.org: |
    [rel="mw:referencedBy"] {
@@ -175,6 +181,10 @@ es.wikipedia.org: |
 
    span.mw-ref a::after {
        content: counter(mw-Ref,decimal);
+   }
+
+   span.mw-ref a[data-mw-group]::after {
+       content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
    }
 
 # ------------------------ These styles apply to nowiki only ------------------------
@@ -264,7 +274,7 @@ ru.wikipedia.org: |
        content: counter(mw-ref-linkback, decimal);
    }
 
-   span.mw-ref a::after {
+   span.mw-ref a::after, span.mw-ref a[data-mw-group]::after {
        font-size: 90%;
    }
 
@@ -293,7 +303,7 @@ ar.wikipedia.org: |
    #   content: counter(mw-ref-linkback, persian-alphabetic);
    }
 
-   span.mw-ref a::after {
+   span.mw-ref a::after, span.mw-ref a[data-mw-group]::after {
        font-size: 90%;
    }
 
@@ -306,13 +316,17 @@ ceb.wikipedia.org: |
 # ------------------------ These styles apply to viwiki only ------------------------
 vi.wikipedia.org: |
    [rel="mw:referencedBy"]::before {
-       content: "^ ";
+       content: "^";
        font-weight: bold;
    }
 
    span[rel="mw:referencedBy"] a::before {
        font-weight: bold;
        font-style: italic;
+   }
+
+   span.mw-ref a::after {
+       font-size: 90%;
    }
 
 # ------------------------ These styles apply to zhwiki only ------------------------
@@ -417,6 +431,10 @@ mzn.wikipedia.org: |
        content: '[' counter(mw-Ref, persian) ']';
    }
 
+   span.mw-ref a[data-mw-group]::after {
+       content: '[' attr(data-mw-group) ' ' counter(mw-Ref, persian) ']';
+   }
+
    .mw-body-content a[rel~='mw:ExtLink']:empty:after {
       content: '[' counter(mw-numbered-ext-link, persian) ']';
    }
@@ -508,16 +526,13 @@ kn.wikipedia.org: |
        content: '[' counter(mw-Ref,kannada) ']';
    }
 
+   span.mw-ref a[data-mw-group]::after {
+       content: '[' attr(data-mw-group) ' ' counter(mw-Ref, kannada) ']';
+   }
+
    .mw-body-content a[rel~='mw:ExtLink']:empty:after {
       content: '[' counter(mw-numbered-ext-link, kannada) ']';
    }
-
-# ------------------------ These styles apply to elwiki only ------------------------
-el.wikipedia.org: |
-   ol.mw-references {
-       font-size: 90%;
-   }
-
 
 # ------------------------ These styles apply to fiwiki only ------------------------
 fi.wikipedia.org: |
@@ -550,6 +565,10 @@ bn.wikipedia.org: |
 
    span.mw-ref a::after {
        content: '[' counter(mw-Ref, bengali) ']';
+   }
+
+   span.mw-ref a[data-mw-group]::after {
+       content: '[' attr(data-mw-group) ' ' counter(mw-Ref, bengali) ']';
    }
 
 # ------------------------ These styles apply to warwiki only ------------------------
