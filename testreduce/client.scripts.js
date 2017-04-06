@@ -55,8 +55,9 @@ function generateVisualDiff(opts, test) {
 
 // Read ids from a file and return the first line of the file
 var fs = require('fs');
+var testRunIdFile = require('path').resolve(__dirname, './testrun.ids');
 function getTestRunId(opts) {
-	return fs.readFileSync(opts.testRunIdFile || './testrun.ids', 'utf-8').split('\n')[0];
+	return fs.readFileSync(opts.testRunIdFile || testRunIdFile, 'utf-8').split('\n')[0];
 }
 
 if (typeof module === 'object') {
