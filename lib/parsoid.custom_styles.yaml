@@ -267,7 +267,6 @@ sv.wikipedia.org: |
    span[rel="mw:referencedBy"] a:last-child::after {
        content: '';
    }
-}
 
 # ------------------------ These styles apply to ruwiki only ------------------------
 ru.wikipedia.org: |
