@@ -153,6 +153,16 @@ fr.wikipedia.org: |
        font-size: 80%;
    }
 
+   span[rel="mw:referencedBy"] a:last-child::before {
+       content: ' et ' counter(mw-ref-linkback, lower-alpha;
+       font-size: 80%;
+   }
+
+   span[rel="mw:referencedBy"] a:nth-last-child(2)::before {
+       content: counter(mw-ref-linkback, lower-alpha) ' ';
+       font-size: 80%;
+   }
+
    span.mw-ref a::after {
        content: counter(mw-Ref,decimal);
        vertical-align: super;
@@ -240,11 +250,11 @@ sv.wikipedia.org: |
        content: "^";
    }
 
-   span[rel="mw:referencedBy"]::before    {
+   span[rel="mw:referencedBy"]::before {
        content: "^ [";
    }
 
-   span[rel="mw:referencedBy"]::after    {
+   span[rel="mw:referencedBy"]::after {
        content: "]";
    }
 
@@ -253,6 +263,11 @@ sv.wikipedia.org: |
        vertical-align: middle;
        font-size: 80%;
    }
+
+   span[rel="mw:referencedBy"] a:last-child::after {
+       content: '';
+   }
+}
 
 # ------------------------ These styles apply to ruwiki only ------------------------
 ru.wikipedia.org: |
