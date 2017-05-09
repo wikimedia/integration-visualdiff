@@ -32,27 +32,27 @@ all: |
         padding:0 !important
     }
 
-    .mw-body a[rel="mw:ExtLink"],
-    .mw-body a[href^="http"] {
+    .mw-body-content a[rel="mw:ExtLink"],
+    .mw-body-content a[href^="http"] {
         background: url("https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png") no-repeat right;
         padding-right: 13px;
         color: #36b;
     }
     /* Change the external link icon to an Adobe icon for all PDF files
        in browsers that support these CSS selectors, like Mozilla and Opera */
-    .mw-body a[href$=".pdf"].external,
-    .mw-body a[href*=".pdf?"].external,
-    .mw-body a[href*=".pdf#"].external,
-    .mw-body a[href$=".PDF"].external,
-    .mw-body a[href*=".PDF?"].external,
-    .mw-body a[href*=".PDF#"].external {
+    .mw-body-content a[href$=".pdf"].external,
+    .mw-body-content a[href*=".pdf?"].external,
+    .mw-body-content a[href*=".pdf#"].external,
+    .mw-body-content a[href$=".PDF"].external,
+    .mw-body-content a[href*=".PDF?"].external,
+    .mw-body-content a[href*=".PDF#"].external {
         background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
         padding-right: 18px;
     }
 
     /* Change the external link icon to an Adobe icon anywhere the PDFlink class
     is used (notably Template:PDFlink). This works in IE, unlike the above. */
-    .mw-body span.PDFlink a {
+    .mw-body-content span.PDFlink a {
         background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
         padding-right: 18px;
     }
@@ -72,7 +72,6 @@ en.wikipedia.org: |
     }
 
     sup,sub { line-height:1; }
-    body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
 
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
@@ -116,7 +115,6 @@ it.wikipedia.org: |
     }
 
     sup,sub { line-height:1; }
-    body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
 
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
