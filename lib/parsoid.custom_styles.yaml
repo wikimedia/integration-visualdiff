@@ -154,7 +154,7 @@ fr.wikipedia.org: |
    }
 
    span[rel="mw:referencedBy"] a:last-child::before {
-       content: ' et ' counter(mw-ref-linkback, lower-alpha;
+       content: ' et ' counter(mw-ref-linkback, lower-alpha);
        font-size: 80%;
    }
 
