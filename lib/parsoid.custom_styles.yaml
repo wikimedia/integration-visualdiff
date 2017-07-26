@@ -16,6 +16,7 @@ all: |
     figure[typeof~='mw:Audio/Frame'] {
         width: 1px;
         padding: 3px;
+        border-collapse: separate;
         border-bottom: 1px solid #c8ccd1;
     }
 
