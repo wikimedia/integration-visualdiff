@@ -1,30 +1,6 @@
 # ------------------------ These styles apply to all wikis ------------------------
 all: |
 
-    /* override for better diffs */
-    figure[typeof~="mw:Image/Thumb"] > :first-child > img,
-    figure[typeof~="mw:Image/Frame"] > :first-child > img {
-        border-color: #c8ccd1;
-    }
-
-    .mw-image-border > :first-child > img {
-        border: 1px solid #eaecf0;
-        margin: inherit;
-    }
-
-    figure[typeof*="mw:Frame"], figure[typeof*="mw:Image"] {
-        background-color: #f8f9fa;
-        border-color: #c8ccd1;
-    }
-
-    figure[typeof*="mw:Frame"] > figcaption,
-    figure[typeof*="mw:Image"] > figcaption {
-        padding: 0px 6px 6px 6px;
-        font-size: 88.4%;
-        background-color: #f8f9fa;
-        border-color: #c8ccd1;
-    }
-
     /* No background for plainlinks */
     .plainlinks a[rel="mw:ExtLink"],
     .plainlinks a[href^="http"] {
@@ -32,27 +8,27 @@ all: |
         padding:0 !important
     }
 
-    .mw-body a[rel="mw:ExtLink"],
-    .mw-body a[href^="http"] {
+    .mw-body-content a[rel="mw:ExtLink"],
+    .mw-body-content a[href^="http"] {
         background: url("https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png") no-repeat right;
         padding-right: 13px;
         color: #36b;
     }
     /* Change the external link icon to an Adobe icon for all PDF files
        in browsers that support these CSS selectors, like Mozilla and Opera */
-    .mw-body a[href$=".pdf"].external,
-    .mw-body a[href*=".pdf?"].external,
-    .mw-body a[href*=".pdf#"].external,
-    .mw-body a[href$=".PDF"].external,
-    .mw-body a[href*=".PDF?"].external,
-    .mw-body a[href*=".PDF#"].external {
+    .mw-body-content a[href$=".pdf"].external,
+    .mw-body-content a[href*=".pdf?"].external,
+    .mw-body-content a[href*=".pdf#"].external,
+    .mw-body-content a[href$=".PDF"].external,
+    .mw-body-content a[href*=".PDF?"].external,
+    .mw-body-content a[href*=".PDF#"].external {
         background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
         padding-right: 18px;
     }
 
     /* Change the external link icon to an Adobe icon anywhere the PDFlink class
     is used (notably Template:PDFlink). This works in IE, unlike the above. */
-    .mw-body span.PDFlink a {
+    .mw-body-content span.PDFlink a {
         background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
         padding-right: 18px;
     }
@@ -72,7 +48,6 @@ en.wikipedia.org: |
     }
 
     sup,sub { line-height:1; }
-    body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
 
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
@@ -116,7 +91,6 @@ it.wikipedia.org: |
     }
 
     sup,sub { line-height:1; }
-    body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
 
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
@@ -152,6 +126,16 @@ fr.wikipedia.org: |
 
    span[rel="mw:referencedBy"] a::before {
        content: counter(mw-ref-linkback, lower-alpha) ', ';
+       font-size: 80%;
+   }
+
+   span[rel="mw:referencedBy"] a:last-child::before {
+       content: ' et ' counter(mw-ref-linkback, lower-alpha);
+       font-size: 80%;
+   }
+
+   span[rel="mw:referencedBy"] a:nth-last-child(2)::before {
+       content: counter(mw-ref-linkback, lower-alpha) ' ';
        font-size: 80%;
    }
 
@@ -242,11 +226,11 @@ sv.wikipedia.org: |
        content: "^";
    }
 
-   span[rel="mw:referencedBy"]::before    {
+   span[rel="mw:referencedBy"]::before {
        content: "^ [";
    }
 
-   span[rel="mw:referencedBy"]::after    {
+   span[rel="mw:referencedBy"]::after {
        content: "]";
    }
 
@@ -254,6 +238,10 @@ sv.wikipedia.org: |
        content: counter(mw-ref-linkback, lower-alpha);
        vertical-align: middle;
        font-size: 80%;
+   }
+
+   span[rel="mw:referencedBy"] a:last-child::after {
+       content: '';
    }
 
 # ------------------------ These styles apply to ruwiki only ------------------------
