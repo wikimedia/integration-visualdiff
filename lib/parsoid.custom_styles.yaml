@@ -1,6 +1,40 @@
 # ------------------------ These styles apply to all wikis ------------------------
 all: |
 
+    /* Try to mimic I2ff8e41d3cb973f56f6571d84fb662aed23b1f10 */
+    figure[typeof*='mw:Image'],
+    figure[typeof*='mw:Video'],
+    figure[typeof*='mw:Audio'] {
+        > figcaption {
+            display: none;
+        }
+    }
+
+    figure[typeof~='mw:Image/Thumb'],
+    figure[typeof~='mw:Video/Thumb'],
+    figure[typeof~='mw:Audio/Thumb'],
+    figure[typeof~='mw:Image/Frame'],
+    figure[typeof~='mw:Video/Frame'],
+    figure[typeof~='mw:Audio/Frame'] {
+        width: 1px;
+        padding: 3px;
+        border-bottom: 1px solid #c8ccd1;
+
+        > *:first-child {
+            > img,
+            > video {
+                margin: 0;
+            }
+        }
+
+        > figcaption {
+            display: block;
+            border: 0;
+            padding: 3px;
+        }
+    }
+    /* End mimicry */
+
     /* No background for plainlinks */
     .plainlinks a[rel="mw:ExtLink"],
     .plainlinks a[href^="http"] {
