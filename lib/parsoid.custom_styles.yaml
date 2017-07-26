@@ -35,6 +35,37 @@ all: |
     }
     /* End mimicry */
 
+    /* Add magnify links from Id66f09c54103854ccbaa54a03e7c62890b67cba9 */
+    figure[typeof*='mw:Video/Thumb'],
+    figure[typeof*='mw:Audio/Thumb'] {
+        > a:after {
+            content: '';
+            width: 15px;
+            height: 11px;
+            margin: 3px;
+            margin-bottom: 0;
+
+            .mw-content-ltr & {
+                /* @noflip */
+                float: right;
+                /* @noflip */
+                background-image: url( images/magnify-clip-ltr.png );
+                /* @noflip */
+                background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
+            }
+
+            .mw-content-rtl & {
+                /* @noflip */
+                float: left;
+                /* @noflip */
+                background-image: url( images/magnify-clip-rtl.png );
+                /* @noflip */
+                background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-rtl.svg );
+            }
+        }
+    }
+    /* End magnify */
+
     /* No background for plainlinks */
     .plainlinks a[rel="mw:ExtLink"],
     .plainlinks a[href^="http"] {
