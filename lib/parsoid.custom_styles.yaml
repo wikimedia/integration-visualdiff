@@ -336,6 +336,22 @@ zh.wikipedia.org: |
        font-weight: bold;
    }
 
+   /* Match `div.thumb div a img` in Common.css */
+   figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
+   figure[typeof~='mw:Video/Thumb'] > *:first-child > img,
+   figure[typeof~='mw:Audio/Thumb'] > *:first-child > img,
+   figure[typeof~='mw:Image/Frame'] > *:first-child > img,
+   figure[typeof~='mw:Video/Frame'] > *:first-child > img,
+   figure[typeof~='mw:Audio/Frame'] > *:first-child > img,
+   figure[typeof~='mw:Image/Thumb'] > *:first-child > video,
+   figure[typeof~='mw:Video/Thumb'] > *:first-child > video,
+   figure[typeof~='mw:Audio/Thumb'] > *:first-child > video,
+   figure[typeof~='mw:Image/Frame'] > *:first-child > video,
+   figure[typeof~='mw:Video/Frame'] > *:first-child > video,
+   figure[typeof~='mw:Audio/Frame'] > *:first-child > video {
+      background-color: #f8f9fa;
+   }
+
 # ------------------------ These styles apply to thwiki only ------------------------
 th.wikipedia.org: |
    p {
