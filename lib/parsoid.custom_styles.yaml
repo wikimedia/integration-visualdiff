@@ -16,7 +16,7 @@ all: |
     figure[typeof~='mw:Audio/Frame'] {
         width: 1px;
         border-spacing: 3px;
-        border-collapse: separate;
+        border-collapse: separate !important;
         border-bottom: 1px solid #c8ccd1;
     }
 
@@ -44,6 +44,12 @@ all: |
         display: block;
         border: 0;
         padding: 3px;
+    }
+
+    figure[typeof*='mw:Image'].mw-halign-center,
+    figure[typeof*='mw:Video'].mw-halign-center,
+    figure[typeof*='mw:Audio'].mw-halign-center {
+      border-collapse: collapse;
     }
     /* End mimicry */
 
