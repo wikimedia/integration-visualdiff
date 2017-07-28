@@ -650,3 +650,13 @@ is.wikipedia.org: |
    ol.mw-references {
        font-size: 90%;
    }
+
+   /* Match .thumbinner in Common.css (+ padding) */
+   figure[typeof~='mw:Image/Thumb'],
+   figure[typeof~='mw:Video/Thumb'],
+   figure[typeof~='mw:Audio/Thumb'],
+   figure[typeof~='mw:Image/Frame'],
+   figure[typeof~='mw:Video/Frame'],
+   figure[typeof~='mw:Audio/Frame'] {
+      min-width: 106px;
+   }
