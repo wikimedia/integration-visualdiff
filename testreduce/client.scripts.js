@@ -3,25 +3,30 @@
 var Util = require('../lib/differ.utils.js').Util;
 var VisualDiffer = require('../lib/differ.js').VisualDiffer;
 var Promise = require('prfun/wrap')(require('babybird'));
-var request = require('request');
+var request = Promise.promisify(require('request'), true);
 
-function retryingHTTPRequest(retries, requestOptions, cb) {
-	var delay = 100; // start with 100ms
-	var errHandler = function (error, response, body) {
-		if (error) {
-			if (retries--) {
-				console.error('HTTP ' + requestOptions.method + ' to \n' +
-					(requestOptions.uri || requestOptions.url) + ' failed: ' + error +
-					'\nRetrying in ' + (delay / 1000) + ' seconds.');
-				setTimeout(function() { request(requestOptions, errHandler); }, delay);
-				// exponential back-off
-				delay = delay * 2;
-				return;
-			}
-		}
-		cb(error, response, body);
-	};
-	request(requestOptions, errHandler);
+function retryingHTTPRequest(retries, requestOptions, delay) {
+    delay = delay || 100;  // start with 100ms
+    return request(requestOptions)
+    .catch(function(error) {
+        if (retries--) {
+            console.error('HTTP ' + requestOptions.method + ' to \n' +
+                    (requestOptions.uri || requestOptions.url) + ' failed: ' + error +
+                    '\nRetrying in ' + (delay / 1000) + ' seconds.');
+            return Promise.delay(delay).then(function() {
+                return retryingHTTPRequest(retries, requestOptions, delay * 2);
+            });
+        } else {
+            return Promise.reject(error);
+        }
+    })
+    .spread(function(res, body) {
+        if (res.statusCode !== 200) {
+            throw new Error('Got status code: ' + res.statusCode +
+                '; body: ' + body);
+        }
+        return Array.from(arguments);
+    });
 }
 
 function generateVisualDiff(opts, test) {
