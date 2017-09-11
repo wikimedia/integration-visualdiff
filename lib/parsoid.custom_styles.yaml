@@ -161,14 +161,6 @@ en.wikipedia.org: |
 
 # ------------------------ These styles apply to itwiki only ------------------------
 it.wikipedia.org: |
-    ol.mw-references {
-       font-size: 90%;
-    }
-
-    ol[data-mw-group="lower-alpha"].mw-references li {
-        list-style-type: lower-alpha;
-    }
-
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
     span.mw-ref {
@@ -202,10 +194,6 @@ it.wikipedia.org: |
 
 # ------------------------ These styles apply to frwiki only ------------------------
 fr.wikipedia.org: |
-   ol.mw-references {
-       font-size: 85%;
-   }
-
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
    }
@@ -280,10 +268,6 @@ no.wikipedia.org: |
 
 # ------------------------ These styles apply to huwiki only ------------------------
 hu.wikipedia.org: |
-   ol.mw-references {
-       font-size: 85%;
-   }
-
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
    }
@@ -300,10 +284,6 @@ hu.wikipedia.org: |
 
 # ------------------------ These styles apply to svwiki only ------------------------
 sv.wikipedia.org: |
-   ol.mw-references {
-       font-size: 95%;
-   }
-
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
    }
@@ -381,12 +361,6 @@ ar.wikipedia.org: |
        font-size: 90%;
    }
 
-# ------------------------ These styles apply to cebwiki only ------------------------
-ceb.wikipedia.org: |
-   ol.mw-references {
-       font-size: 90%;
-   }
-
 # ------------------------ These styles apply to viwiki only ------------------------
 vi.wikipedia.org: |
    [rel="mw:referencedBy"]::before {
@@ -405,10 +379,6 @@ vi.wikipedia.org: |
 
 # ------------------------ These styles apply to zhwiki only ------------------------
 zh.wikipedia.org: |
-   ol.mw-references {
-       font-size: 90%;
-   }
-
    a[rel="mw:referencedBy"]::before {
        content: "^ ";
        font-weight: bold;
@@ -488,10 +458,6 @@ nl.wikipedia.org: |
 
 # ------------------------ These styles apply to hewiki only ------------------------
 he.wikipedia.org: |
-   ol.mw-references {
-       font-size: 90%;
-   }
-
    [rel="mw:referencedBy"]::before {
        content: "^ ";
        font-weight: bold;
@@ -559,10 +525,6 @@ pt.wikipedia.org: |
 
 # ------------------------ These styles apply to plwiki only ------------------------
 pl.wikipedia.org: |
-   ol.mw-references {
-       font-size: 85%;
-   }
-
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
    }
@@ -626,10 +588,6 @@ kn.wikipedia.org: |
 
 # ------------------------ These styles apply to fiwiki only ------------------------
 fi.wikipedia.org: |
-   ol.mw-references {
-       font-size: 90%;
-   }
-
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
    }
@@ -661,18 +619,8 @@ bn.wikipedia.org: |
        content: '[' attr(data-mw-group) ' ' counter(mw-Ref, bengali) ']';
    }
 
-# ------------------------ These styles apply to warwiki only ------------------------
-war.wikipedia.org: |
-   ol.mw-references {
-       font-size: 90%;
-   }
-
 # ------------------------ These styles apply to iswiki only ------------------------
 is.wikipedia.org: |
-   ol.mw-references {
-       font-size: 90%;
-   }
-
    /* Match .thumbinner in Common.css (+ padding) */
    figure[typeof~='mw:Image/Thumb'],
    figure[typeof~='mw:Video/Thumb'],
