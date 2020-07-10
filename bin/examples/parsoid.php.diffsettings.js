@@ -1,15 +1,20 @@
+const Util = require('../../lib/differ.utils.js').Util;
+const path = require('path');
+
 module.exports = {
   // Production wikipedia PHP parser output
   html1: {
     name: 'php',
-    postprocessorScript: '../lib/php_parser.postprocess.js',
-    injectJQuery: false,
+    postprocessorScript: path.resolve(__dirname, '../../lib/php_parser.postprocess.js'),
+    injectJQuery: true,
     // suppress default base url computation code
     // since we are providing the full wiki domain
     // on the commandline
     server: 'https://',
-    computeURL: function(server, domain, title) {
-      return server + domain + '/wiki/' + encodeURIComponent(title);
+    computeURL: function(server, wiki, title) {
+	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title) + '?action=render';
+      // console.log("LURL: " + url);
+      return url;
     },
 	// dumpHTML: true,
   },
@@ -17,12 +22,14 @@ module.exports = {
   // Production/local-dev Parsoid HTML output
   html2: {
     name: 'parsoid',
-    stylesYamlFile: '../lib/parsoid.custom_styles.yaml',
-    postprocessorScript: '../lib/parsoid.postprocess.js',
+    stylesYamlFile: path.resolve(__dirname, '../../lib/parsoid.custom_styles.yaml'),
+    postprocessorScript: path.resolve(__dirname, '../../lib/parsoid.postprocess.js'),
     injectJQuery: true,
-    server: 'http://localhost:8000/',
-    computeURL: function(server, domain, title) {
-      return server + domain + '/v3/page/html/' + encodeURIComponent(title);
+    server: 'https://',
+    computeURL: function(server, wiki, title) {
+	  const url = server + Util.getWikiDomain(wiki) + '/api/rest_v1/page/html/' + encodeURIComponent(title);
+      // console.log("PURL: " + url);
+      return url;
     },
 	// dumpHTML: true,
   },
@@ -33,6 +40,6 @@ module.exports = {
   // UprightDiff options
   uprightDiffSettings: {
     // Path to your local uprightdiff install
-    binary: '/usr/local/bin/uprightdiff',
+    binary: '/usr/bin/uprightdiff',
   },
 };
