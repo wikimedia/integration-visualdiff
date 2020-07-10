@@ -1,37 +1,37 @@
 # ------------------------ These styles apply to all wikis ------------------------
 all: |
 
-    /* No background for plainlinks */
-    .plainlinks a[rel="mw:ExtLink"],
-    .plainlinks a[href^="http"] {
-        background:none !important;
-        padding:0 !important
-    }
+    # /* No background for plainlinks */
+    # .plainlinks a[rel="mw:ExtLink"],
+    # .plainlinks a[href^="http"] {
+    #     background:none !important;
+    #     padding:0 !important
+    # }
 
-    .mw-body-content a[rel="mw:ExtLink"],
-    .mw-body-content a[href^="http"] {
-        background: url("https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png") no-repeat right;
-        padding-right: 13px;
-        color: #36b;
-    }
-    /* Change the external link icon to an Adobe icon for all PDF files
-       in browsers that support these CSS selectors, like Mozilla and Opera */
-    .mw-body-content a[href$=".pdf"].external,
-    .mw-body-content a[href*=".pdf?"].external,
-    .mw-body-content a[href*=".pdf#"].external,
-    .mw-body-content a[href$=".PDF"].external,
-    .mw-body-content a[href*=".PDF?"].external,
-    .mw-body-content a[href*=".PDF#"].external {
-        background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
-        padding-right: 18px;
-    }
+    # .mw-body-content a[rel="mw:ExtLink"],
+    # .mw-body-content a[href^="http"] {
+    #     background: url("https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png") no-repeat right;
+    #     padding-right: 13px;
+    #     color: #36b;
+    # }
+    # /* Change the external link icon to an Adobe icon for all PDF files
+    #    in browsers that support these CSS selectors, like Mozilla and Opera */
+    # .mw-body-content a[href$=".pdf"].external,
+    # .mw-body-content a[href*=".pdf?"].external,
+    # .mw-body-content a[href*=".pdf#"].external,
+    # .mw-body-content a[href$=".PDF"].external,
+    # .mw-body-content a[href*=".PDF?"].external,
+    # .mw-body-content a[href*=".PDF#"].external {
+    #     background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
+    #     padding-right: 18px;
+    # }
 
-    /* Change the external link icon to an Adobe icon anywhere the PDFlink class
-    is used (notably Template:PDFlink). This works in IE, unlike the above. */
-    .mw-body-content span.PDFlink a {
-        background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
-        padding-right: 18px;
-    }
+    # /* Change the external link icon to an Adobe icon anywhere the PDFlink class
+    # is used (notably Template:PDFlink). This works in IE, unlike the above. */
+    # .mw-body-content span.PDFlink a {
+    #     background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
+    #     padding-right: 18px;
+    # }
 
     /* applies to all wikis! */
     ol[data-mw-group="lower-alpha"].mw-references li {
@@ -307,20 +307,20 @@ zh.wikipedia.org: |
    }
 
    /* Match `div.thumb div a img` in Common.css */
-   figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
-   figure[typeof~='mw:Video/Thumb'] > *:first-child > img,
-   figure[typeof~='mw:Audio/Thumb'] > *:first-child > img,
-   figure[typeof~='mw:Image/Frame'] > *:first-child > img,
-   figure[typeof~='mw:Video/Frame'] > *:first-child > img,
-   figure[typeof~='mw:Audio/Frame'] > *:first-child > img,
-   figure[typeof~='mw:Image/Thumb'] > *:first-child > video,
-   figure[typeof~='mw:Video/Thumb'] > *:first-child > video,
-   figure[typeof~='mw:Audio/Thumb'] > *:first-child > video,
-   figure[typeof~='mw:Image/Frame'] > *:first-child > video,
-   figure[typeof~='mw:Video/Frame'] > *:first-child > video,
-   figure[typeof~='mw:Audio/Frame'] > *:first-child > video {
-      background-color: #f8f9fa;
-   }
+   # figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
+   # figure[typeof~='mw:Video/Thumb'] > *:first-child > img,
+   # figure[typeof~='mw:Audio/Thumb'] > *:first-child > img,
+   # figure[typeof~='mw:Image/Frame'] > *:first-child > img,
+   # figure[typeof~='mw:Video/Frame'] > *:first-child > img,
+   # figure[typeof~='mw:Audio/Frame'] > *:first-child > img,
+   # figure[typeof~='mw:Image/Thumb'] > *:first-child > video,
+   # figure[typeof~='mw:Video/Thumb'] > *:first-child > video,
+   # figure[typeof~='mw:Audio/Thumb'] > *:first-child > video,
+   # figure[typeof~='mw:Image/Frame'] > *:first-child > video,
+   # figure[typeof~='mw:Video/Frame'] > *:first-child > video,
+   # figure[typeof~='mw:Audio/Frame'] > *:first-child > video {
+   #    background-color: #f8f9fa;
+   # }
 
 # ------------------------ These styles apply to thwiki only ------------------------
 th.wikipedia.org: |
@@ -536,11 +536,11 @@ bn.wikipedia.org: |
 # ------------------------ These styles apply to iswiki only ------------------------
 is.wikipedia.org: |
    /* Match .thumbinner in Common.css (+ padding) */
-   figure[typeof~='mw:Image/Thumb'],
-   figure[typeof~='mw:Video/Thumb'],
-   figure[typeof~='mw:Audio/Thumb'],
-   figure[typeof~='mw:Image/Frame'],
-   figure[typeof~='mw:Video/Frame'],
-   figure[typeof~='mw:Audio/Frame'] {
-      min-width: 106px;
-   }
+   # figure[typeof~='mw:Image/Thumb'],
+   # figure[typeof~='mw:Video/Thumb'],
+   # figure[typeof~='mw:Audio/Thumb'],
+   # figure[typeof~='mw:Image/Frame'],
+   # figure[typeof~='mw:Video/Frame'],
+   # figure[typeof~='mw:Audio/Frame'] {
+   #    min-width: 106px;
+   # }
