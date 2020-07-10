@@ -3,25 +3,30 @@
 var Util = require('../lib/differ.utils.js').Util;
 var VisualDiffer = require('../lib/differ.js').VisualDiffer;
 var Promise = require('prfun/wrap')(require('babybird'));
-var request = require('request');
+var request = Promise.promisify(require('request'), true);
 
-function retryingHTTPRequest(retries, requestOptions, cb) {
-	var delay = 100; // start with 100ms
-	var errHandler = function (error, response, body) {
-		if (error) {
-			if (retries--) {
-				console.error('HTTP ' + requestOptions.method + ' to \n' +
-					(requestOptions.uri || requestOptions.url) + ' failed: ' + error +
-					'\nRetrying in ' + (delay / 1000) + ' seconds.');
-				setTimeout(function() { request(requestOptions, errHandler); }, delay);
-				// exponential back-off
-				delay = delay * 2;
-				return;
-			}
-		}
-		cb(error, response, body);
-	};
-	request(requestOptions, errHandler);
+function retryingHTTPRequest(retries, requestOptions, delay) {
+    delay = delay || 100;  // start with 100ms
+    return request(requestOptions)
+    .catch(function(error) {
+        if (retries--) {
+            console.error('HTTP ' + requestOptions.method + ' to \n' +
+                    (requestOptions.uri || requestOptions.url) + ' failed: ' + error +
+                    '\nRetrying in ' + (delay / 1000) + ' seconds.');
+            return Promise.delay(delay).then(function() {
+                return retryingHTTPRequest(retries, requestOptions, delay * 2);
+            });
+        } else {
+            return Promise.reject(error);
+        }
+    })
+    .spread(function(res, body) {
+        if (res.statusCode !== 200) {
+            throw new Error('Got status code: ' + res.statusCode +
+                '; body: ' + body);
+        }
+        return Array.from(arguments);
+    });
 }
 
 function generateVisualDiff(opts, test) {
@@ -38,7 +43,8 @@ function generateVisualDiff(opts, test) {
 			var pidPrefix = '[' + process.pid + ']: ';
 			var logger = opts.quiet ? function(){} : function(msg) { console.log(pidPrefix + msg); };
 			logger('Diffing ' + test.prefix + ':' + test.title);
-			return VisualDiffer.genVisualDiff(opts, logger).then(function(diffData) {
+			return VisualDiffer.genVisualDiff(opts, logger)
+			.then(function(diffData) {
 				logger('DIFF: ' + JSON.stringify(diffData));
 				resolve(diffData);
 			}).catch(function(err) {
@@ -53,45 +59,14 @@ function generateVisualDiff(opts, test) {
 	});
 }
 
-function gitCommitFetch(opts) {
-	// Make a copy since we are going to modify it
-	opts = Util.clone(opts);
-	var parsoidServer = Util.getNonCLIOpts(opts).html2.server;
-	var requestOptions = {
-		uri: parsoidServer + '_version',
-		proxy: process.env.HTTP_PROXY_AND_PORT || '',
-		method: 'GET'
-	};
-
-	return new Promise(function(resolve, reject) {
-		retryingHTTPRequest(10, requestOptions, function(error, response, body) {
-			var err;
-			if (error || !response) {
-				err = 'Error could not find the current commit from ' + parsoidServer;
-				console.error(err);
-				reject(err);
-			} else if (response.statusCode === 200) {
-				try {
-					var resp = JSON.parse(body);
-					var lastCommit = resp.sha;
-					var lastCommitTime = (new Date()).toISOString();
-					resolve([lastCommit, lastCommitTime]);
-				} catch (e) {
-					err = 'Got response: ' + body + ' from ' + requestOptions.uri;
-					err = err + '\nError extracing commit SHA from it: ' + e;
-					console.error(err);
-					reject(err);
-				}
-			} else {
-				err = requestOptions.uri + ' responded with a HTTP status ' + response.statusCode;
-				console.error(err);
-				reject(err);
-			}
-		});
-	});
+// Read ids from a file and return the first line of the file
+var fs = require('fs');
+var testRunIdFile = require('path').resolve(__dirname, './testrun.ids');
+function getTestRunId(opts) {
+	return fs.readFileSync(opts.testRunIdFile || testRunIdFile, 'utf-8').split('\n')[0];
 }
 
 if (typeof module === 'object') {
-	module.exports.gitCommitFetch = gitCommitFetch;
+	module.exports.getTestRunId = getTestRunId;
 	module.exports.generateVisualDiff = generateVisualDiff;
 }

@@ -31,7 +31,7 @@ var clientScripts = require('/home/subbu/work/wmf/visualdiff/testreduce/client.s
 
 				html1: {
 					name: 'php',
-					dumpHTML: false,
+					dumpHTML: true,
 					postprocessorScript: '../lib/php_parser.postprocess.js',
 					injectJQuery: false,
 				},
@@ -39,21 +39,21 @@ var clientScripts = require('/home/subbu/work/wmf/visualdiff/testreduce/client.s
 				html2: {
 					name: 'parsoid',
 					server: 'http://localhost:8000',
-					dumpHTML: false,
+					dumpHTML: true,
 					postprocessorScript: '../lib/parsoid.postprocess.js',
 					stylesYamlFile: '../lib/parsoid.custom_styles.yaml',
 					injectJQuery: true,
 				},
-				// resemblejs options
-				outputSettings: {
-					errorType: 'flat',
-					largeImageThreshold: 1000,
-				},
 
-				// Assign random port between 37370 and 42370
-				assignRandomPort: true,
-				minPort: 37370,
-				range: 500,
+				// Engine for image diffs, may be resemble or uprightdiff
+				diffEngine: 'uprightdiff',
+
+				// UprightDiff options
+				uprightDiffSettings: {
+					// Path to your local uprightdiff install
+					// binary: '/usr/local/bin/uprightdiff',
+					binary: '/home/subbu/work/wmf/software/uprightdiff/uprightdiff',
+				},
 
 				// Wait 1.5 sec before diffing screenshots
 				diffDelay: 1500, // 1.5 sec

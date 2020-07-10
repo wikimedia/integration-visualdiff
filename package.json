@@ -5,6 +5,7 @@
   "dependencies": {
     "babybird": "^0.0.1",
     "crypto": "^0.0.3",
+    "domino": "^1.0.28",
     "express": "4.14.0",
     "js-yaml": "^3.6.1",
     "phantom": "~2.x.x",

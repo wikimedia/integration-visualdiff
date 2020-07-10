@@ -1,35 +1,40 @@
 # ------------------------ These styles apply to all wikis ------------------------
 all: |
-    /* No background for plainlinks */
-    .plainlinks a[rel="mw:ExtLink"],
-    .plainlinks a[href^="http"] {
-        background:none !important;
-        padding:0 !important
-    }
+    # /* No background for plainlinks */
+    # .plainlinks a[rel="mw:ExtLink"],
+    # .plainlinks a[href^="http"] {
+    #     background:none !important;
+    #     padding:0 !important
+    # }
 
-    .mw-body a[rel="mw:ExtLink"],
-    .mw-body a[href^="http"] {
-        background: url("https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png") no-repeat right;
-        padding-right: 13px;
-        color: #36b;
-    }
-    /* Change the external link icon to an Adobe icon for all PDF files
-       in browsers that support these CSS selectors, like Mozilla and Opera */
-    .mw-body a[href$=".pdf"].external,
-    .mw-body a[href*=".pdf?"].external,
-    .mw-body a[href*=".pdf#"].external,
-    .mw-body a[href$=".PDF"].external,
-    .mw-body a[href*=".PDF?"].external,
-    .mw-body a[href*=".PDF#"].external {
-        background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
-        padding-right: 18px;
-    }
+    # .mw-body-content a[rel="mw:ExtLink"],
+    # .mw-body-content a[href^="http"] {
+    #     background: url("https://en.wikipedia.org/w/skins/Vector/images/external-link-ltr-icon.png") no-repeat right;
+    #     padding-right: 13px;
+    #     color: #36b;
+    # }
+    # /* Change the external link icon to an Adobe icon for all PDF files
+    #    in browsers that support these CSS selectors, like Mozilla and Opera */
+    # .mw-body-content a[href$=".pdf"].external,
+    # .mw-body-content a[href*=".pdf?"].external,
+    # .mw-body-content a[href*=".pdf#"].external,
+    # .mw-body-content a[href$=".PDF"].external,
+    # .mw-body-content a[href*=".PDF?"].external,
+    # .mw-body-content a[href*=".PDF#"].external {
+    #     background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
+    #     padding-right: 18px;
+    # }
 
-    /* Change the external link icon to an Adobe icon anywhere the PDFlink class
-    is used (notably Template:PDFlink). This works in IE, unlike the above. */
-    .mw-body span.PDFlink a {
-        background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
-        padding-right: 18px;
+    # /* Change the external link icon to an Adobe icon anywhere the PDFlink class
+    # is used (notably Template:PDFlink). This works in IE, unlike the above. */
+    # .mw-body-content span.PDFlink a {
+    #     background: url("https://upload.wikimedia.org/wikipedia/commons/2/23/Icons-mini-file_acrobat.gif") no-repeat right;
+    #     padding-right: 18px;
+    # }
+
+    /* applies to all wikis! */
+    ol[data-mw-group="lower-alpha"].mw-references li {
+        list-style-type: lower-alpha;
     }
 
 # ------------------------ These styles apply to enwiki only ------------------------
@@ -42,22 +47,22 @@ en.wikipedia.org: |
     }
 
     sup,sub { line-height:1; }
-    body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
-
-    [rel="mw:referencedBy"]::before {
-        content: "^ ";
-    }
 
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
     }
 
-    ol[data-mw-group="lower-alpha"].mw-references li {
-        list-style-type: lower-alpha;
+    a[rel="mw:referencedBy"]::before {
+        content: "^";
+        font-weight: bold;
+    }
+
+    span[rel="mw:referencedBy"]::before {
+        content: "^ ";
     }
 
     span[rel="mw:referencedBy"] a::before {
-        content: counter(mw-ref-linkback, lower-alpha);
+        content: ' ' counter(mw-ref-linkback, lower-alpha);
         font-style: italic;
         font-weight: bold;
         font-size: 80%;
@@ -69,10 +74,6 @@ en.wikipedia.org: |
 
 # ------------------------ These styles apply to itwiki only ------------------------
 it.wikipedia.org: |
-   ol.mw-references {
-       font-size: 90%;
-   }
-
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
     span.mw-ref {
@@ -81,26 +82,464 @@ it.wikipedia.org: |
     }
 
     sup,sub { line-height:1; }
-    body.mw-body { padding: 1.25em 1.5em 1.5em 1.5em; }
-
-    [rel="mw:referencedBy"]::before {
-        content: "^ ";
-    }
 
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
     }
 
-    ol[data-mw-group="lower-alpha"].mw-references li {
-        list-style-type: lower-alpha;
+    a[rel="mw:referencedBy"]::before {
+        content: "^";
+        font-weight: bold;
+    }
+
+    span[rel="mw:referencedBy"]::before {
+        content: "^ ";
     }
 
     span[rel="mw:referencedBy"] a::before {
-        content: counter(mw-ref-linkback, lower-alpha);
+        content: ' ' counter(mw-ref-linkback, lower-alpha);
         font-style: italic;
-        font-size: 80%;
     }
 
     span[rel="mw:referencedBy"] a::after {
         content: ' ';
     }
+
+# ------------------------ These styles apply to frwiki only ------------------------
+fr.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha) ', ';
+       font-size: 80%;
+   }
+
+   span[rel="mw:referencedBy"] a:last-child::before {
+       content: ' et ' counter(mw-ref-linkback, lower-alpha);
+       font-size: 80%;
+   }
+
+   span[rel="mw:referencedBy"] a:nth-last-child(2)::before {
+       content: counter(mw-ref-linkback, lower-alpha) ' ';
+       font-size: 80%;
+   }
+
+   span.mw-ref a::after {
+       content: counter(mw-Ref,decimal);
+       vertical-align: super;
+       font-size: 1.0em;
+   }
+
+   span.mw-ref a[data-mw-group]::after {
+       content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
+       vertical-align: super;
+       font-size: 1.0em;
+   }
+
+# ------------------------ These styles apply to eswiki only ------------------------
+es.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       font-style: italic;
+       font-weight: bold;
+   }
+
+   span.mw-ref a::after {
+       content: counter(mw-Ref,decimal);
+   }
+
+   span.mw-ref a[data-mw-group]::after {
+       content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
+   }
+
+# ------------------------ These styles apply to nowiki only ------------------------
+no.wikipedia.org: |
+    [rel="mw:referencedBy"] {
+        counter-reset: mw-ref-linkback 0;
+    }
+
+    a[rel="mw:referencedBy"]::before {
+        content: "^";
+        font-weight: bold;
+    }
+
+    // This is actually supposed to be bold but removing the bold
+    // eliminates all other diffs but on this caret
+    span[rel="mw:referencedBy"]::before {
+        content: "^ ";
+    }
+
+    span[rel="mw:referencedBy"] a::before {
+        content: ' ' counter(mw-ref-linkback, lower-alpha);
+    }
+
+# ------------------------ These styles apply to huwiki only ------------------------
+hu.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"]::before    {
+       content: "^ ";
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       font-style: italic;
+       font-weight: bold;
+   }
+
+# ------------------------ These styles apply to svwiki only ------------------------
+sv.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   a[rel="mw:referencedBy"]::before {
+       content: "^";
+   }
+
+   span[rel="mw:referencedBy"]::before {
+       content: "^ [";
+   }
+
+   span[rel="mw:referencedBy"]::after {
+       content: "]";
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+       vertical-align: middle;
+       font-size: 80%;
+   }
+
+   span[rel="mw:referencedBy"] a:last-child::after {
+       content: '';
+   }
+
+# ------------------------ These styles apply to ruwiki only ------------------------
+ru.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   a[rel="mw:referencedBy"]::before {
+       content: "↑";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-size: 80%;
+       font-style: italic;
+       font-weight: bold;
+       content: counter(mw-ref-linkback, decimal);
+   }
+
+   span.mw-ref a::after, span.mw-ref a[data-mw-group]::after {
+       font-size: 90%;
+   }
+
+# ------------------------ These styles apply to arwiki only ------------------------
+ar.wikipedia.org: |
+   #@counter-style persian-alphabetic {
+   #    system: fixed;
+   #    symbols: '\627' '\628' '\67E' '\62A' '\62B' '\62C' '\686' '\62D' '\62E' '\62F' '\630' '\631' '\632' '\698' '\633' '\634' '\635' '\636' '\637' '\638' '\639' '\63A' '\641' '\642' '\6A9' '\6AF' '\644' '\645' '\646' '\648' '\647\200D' '\6CC';
+   #    /* symbols: 'ا' 'ب' 'پ' 'ت' 'ث' 'ج' 'چ' 'ح' 'خ' 'د' 'ذ' 'ر' 'ز' 'ژ' 'س' 'ش' 'ص' 'ض' 'ط' 'ظ' 'ع' 'غ' 'ف' 'ق' 'ک' 'گ' 'ل' 'م' 'ن' 'و' 'ه‍' 'ی' */;
+   #}
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   [rel="mw:referencedBy"]::before {
+       content: "^ ";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-size: 100%;
+       font-style: italic;
+       font-weight: bold;
+       vertical-align: super;
+   #   content: counter(mw-ref-linkback, persian-alphabetic);
+   }
+
+   span.mw-ref a::after, span.mw-ref a[data-mw-group]::after {
+       font-size: 90%;
+   }
+
+# ------------------------ These styles apply to viwiki only ------------------------
+vi.wikipedia.org: |
+   [rel="mw:referencedBy"]::before {
+       content: "^";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-weight: bold;
+       font-style: italic;
+   }
+
+   span.mw-ref a::after {
+       font-size: 90%;
+   }
+
+# ------------------------ These styles apply to zhwiki only ------------------------
+zh.wikipedia.org: |
+   a[rel="mw:referencedBy"]::before {
+       content: "^ ";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"]::before {
+       content: "^ ";
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-weight: bold;
+   }
+
+   /* Match `div.thumb div a img` in Common.css */
+   # figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
+   # figure[typeof~='mw:Video/Thumb'] > *:first-child > img,
+   # figure[typeof~='mw:Audio/Thumb'] > *:first-child > img,
+   # figure[typeof~='mw:Image/Frame'] > *:first-child > img,
+   # figure[typeof~='mw:Video/Frame'] > *:first-child > img,
+   # figure[typeof~='mw:Audio/Frame'] > *:first-child > img,
+   # figure[typeof~='mw:Image/Thumb'] > *:first-child > video,
+   # figure[typeof~='mw:Video/Thumb'] > *:first-child > video,
+   # figure[typeof~='mw:Audio/Thumb'] > *:first-child > video,
+   # figure[typeof~='mw:Image/Frame'] > *:first-child > video,
+   # figure[typeof~='mw:Video/Frame'] > *:first-child > video,
+   # figure[typeof~='mw:Audio/Frame'] > *:first-child > video {
+   #    background-color: #f8f9fa;
+   # }
+
+# ------------------------ These styles apply to thwiki only ------------------------
+th.wikipedia.org: |
+   p {
+       text-indent: 2.5em;
+   }
+
+# ------------------------ These styles apply to ukwiki only ------------------------
+uk.wikipedia.org: |
+   #@counter-style lower-ukrainian {
+   #    system: alphabetic;
+   #    symbols: '\430' '\431' '\432' '\433' '\434' '\435' '\454' '\436' '\437' '\438' '\456' '\43A' '\43B' '\43C' '\43D' '\43E' '\43F' '\440' '\441' '\442' '\443' '\444' '\445' '\446' '\447' '\448' '\44E' '\44F';
+   #    /* symbols: 'а' 'б' 'в' 'г' 'д' 'е' 'є' 'ж' 'з' 'и' 'і' 'к' 'л' 'м' 'н' 'о' 'п' 'р' 'с' 'т' 'у' 'ф' 'х' 'ц' 'ч' 'ш' 'ю' 'я'; */
+   #    suffix: ') ';
+   #}
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       font-weight: bold;
+   #    content: counter(mw-ref-linkback, lower-ukrainian);
+   }
+
+# ------------------------ These styles apply to dewiki only ------------------------
+de.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to nlwiki only ------------------------
+nl.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       font-weight: bold;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to hewiki only ------------------------
+he.wikipedia.org: |
+   [rel="mw:referencedBy"]::before {
+       content: "^ ";
+       font-weight: bold;
+   }
+
+# ------------------------ These styles apply to mznwiki only ------------------------
+mzn.wikipedia.org: |
+   ol.mw-references {
+      list-style-type: persian;
+      counter-reset: mw-references 0;
+   }
+
+   ol.mw-references > li {
+      counter-increment: mw-references;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback -1;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       vertical-align: super;
+       content: counter(mw-references, persian) '٫' counter(mw-ref-linkback, persian);
+   }
+
+   span.mw-ref a::after {
+       content: '[' counter(mw-Ref, persian) ']';
+   }
+
+   span.mw-ref a[data-mw-group]::after {
+       content: '[' attr(data-mw-group) ' ' counter(mw-Ref, persian) ']';
+   }
+
+   .mw-body-content a[rel~='mw:ExtLink']:empty:after {
+      content: '[' counter(mw-numbered-ext-link, persian) ']';
+   }
+
+# ------------------------ These styles apply to jawiki only ------------------------
+ja.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   [rel="mw:referencedBy"]::before {
+       content: "^ ";
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       font-weight: bold;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to ptwiki only ------------------------
+pt.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       font-weight: bold;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to plwiki only ------------------------
+pl.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to trwiki only ------------------------
+tr.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   a[rel="mw:referencedBy"]::before {
+       content: "^";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"]::before {
+       content: "^ ";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       font-weight: bold;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to knwiki only ------------------------
+kn.wikipedia.org: |
+   ol.mw-references {
+      list-style-type: kannada;
+      counter-reset: mw-references 0;
+   }
+
+   ol.mw-references > li {
+      counter-increment: mw-references;
+   }
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback -1;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: counter(mw-references, kannada) '.' counter(mw-ref-linkback, kannada);
+   }
+
+   span.mw-ref a::after {
+       content: '[' counter(mw-Ref,kannada) ']';
+   }
+
+   span.mw-ref a[data-mw-group]::after {
+       content: '[' attr(data-mw-group) ' ' counter(mw-Ref, kannada) ']';
+   }
+
+   .mw-body-content a[rel~='mw:ExtLink']:empty:after {
+      content: '[' counter(mw-numbered-ext-link, kannada) ']';
+   }
+
+# ------------------------ These styles apply to fiwiki only ------------------------
+fi.wikipedia.org: |
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       font-style: italic;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+# ------------------------ These styles apply to bnwiki only ------------------------
+bn.wikipedia.org: |
+   #@counter-style alphabet-bengali {
+   #    system: alphabetic;
+   #}
+
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+   #    content: counter(mw-ref-linkback, alphabet-bengali);
+   }
+
+   span.mw-ref a::after {
+       content: '[' counter(mw-Ref, bengali) ']';
+   }
+
+   span.mw-ref a[data-mw-group]::after {
+       content: '[' attr(data-mw-group) ' ' counter(mw-Ref, bengali) ']';
+   }
+
+# ------------------------ These styles apply to iswiki only ------------------------
+is.wikipedia.org: |
+   /* Match .thumbinner in Common.css (+ padding) */
+   # figure[typeof~='mw:Image/Thumb'],
+   # figure[typeof~='mw:Video/Thumb'],
+   # figure[typeof~='mw:Audio/Thumb'],
+   # figure[typeof~='mw:Image/Frame'],
+   # figure[typeof~='mw:Video/Frame'],
+   # figure[typeof~='mw:Audio/Frame'] {
+   #    min-width: 106px;
+   # }

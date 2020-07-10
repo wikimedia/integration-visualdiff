@@ -47,9 +47,6 @@ var baseDir = settings.outdir.slice().replace('\/$', '');
 // Make an app
 var app = express();
 
-// Declare static directory
-app.use('/images', express.static(baseDir));
-
 // robots.txt: no indexing.
 app.get(/^\/robots.txt$/, function (req, res) {
 	res.end('User-agent: *\nDisallow: /\n');
@@ -71,13 +68,14 @@ function getWikiTitle(wiki, title, vm) {
 }
 
 function sendResponse(res, opts) {
-	var pageTitle = 'Visual diff for ' + opts.wiki + ':' + opts.title;
-	var page = '<html>';
+	const pageTitle = 'Visual diff for ' + opts.wiki + ':' + opts.title;
+	let page = '<html>';
 	page += '<head><title>' + pageTitle + '</title></head>\n';
 	page += '<body>\n';
 	page += '<h1>' + pageTitle + '</h1>\n';
 	page += '<h2>Screenshots</h2>\n';
 	page += '<ul>\n';
+/**
 	page += '<li><a target="_blank" href="' + getLink(opts.html1.screenShot, baseDir, 'images') + '">' + opts.html1.name + ' Screenshot</a></li>\n';
 	page += '<li><a target="_blank" href="' + getLink(opts.html2.screenShot, baseDir, 'images') + '">' + opts.html2.name + ' Screenshot</a></li>\n';
 	page += '<li><a target="_blank" href="' + getLink(opts.diffFile, baseDir, 'images') + '">Visual Diff</a></li>\n';
@@ -86,7 +84,20 @@ function sendResponse(res, opts) {
 	page += '<ul>\n';
 	page += '<li><a target="_blank" href="' + getWikiTitle(opts.wiki, opts.title, 'base') + '">' + opts.html1.name + ' HTML</a></li>\n';
 	page += '<li><a target="_blank" href="' + getWikiTitle(opts.wiki, opts.title, 'expt') + '">' + opts.html2.name + ' HTML</a></li>\n';
+**/
+	page += '<li><a target="_blank" href="' + getLink(opts.html1.screenShot, baseDir, 'visualdiff/pngs') + '">' + opts.html1.name + ' Screenshot</a></li>';
+	page += '<li><a target="_blank" href="' + getLink(opts.html2.screenShot, baseDir, 'visualdiff/pngs') + '">' + opts.html2.name + ' Screenshot</a></li>';
+	page += '<li><a target="_blank" href="' + getLink(opts.diffFile, baseDir, 'visualdiff/pngs') + '">Visual Diff</a></li>';
 	page += '</ul>\n';
+	page += '<h2>Parsoid & PHP HTML</h2>\n';
+	page += 'The diffs above are generated after the PHP-parser HTML and Parsoid HTML are post-processed to strip the skin, expand all collapsed elements, and missing CSS is applied to Parsoid HTML.';
+
+	var domain = Util.getWikiDomain(opts.wiki);
+	page += '<ul>\n';
+	page += '<li><a target="_blank" href="https://' + domain + "/wiki/" + encodeURIComponent(opts.title) + '?action=render">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="https://' + domain + "/api/rest_v1/page/html/" + encodeURIComponent(opts.title) + '">' + opts.html2.name + ' HTML</a></li>\n';
+
+	page += '</ul>';
 	page += '</body></html>';
 
 	// Send response
@@ -112,18 +123,8 @@ app.get(/^\/diff\/([^/]*)\/(.*)/, function(req, res) {
 		// Everything found on disk .. send them along!
 		sendResponse(res, opts);
 	} else {
-		VisualDiffer.genVisualDiff(opts, logger,
-			function(err, diffData) {
-				if (err) {
-					console.error('ERROR for ' + wiki + ':' + title + ': ' + err);
-					res.status(500).send('Encountered error [' + err + '] for ' + wiki + ':' + title);
-					return;
-				}
-
-				// Send HTML
-				sendResponse(res, opts);
-			}
-		);
+		res.setHeader('Content-Type', 'text/html; charset=UTF-8');
+		res.status(200).send("On-demand visual diff generation is disabled.");
 	}
 });
 
