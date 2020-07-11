@@ -1,5 +1,9 @@
 # ------------------------ These styles apply to all wikis ------------------------
 all: |
+    .mw-empty-elt {
+        display: none;
+    }
+
     /* applies to all wikis! */
     ol[data-mw-group="lower-alpha"].mw-references li {
         list-style-type: lower-alpha;
@@ -9,7 +13,7 @@ all: |
 en.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
-    span.mw-ref {
+    sup.mw-ref {
         line-height: 1;
         font-size: 80%;
     }
@@ -44,7 +48,7 @@ en.wikipedia.org: |
 it.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
-    span.mw-ref {
+    sup.mw-ref {
         line-height: 1;
         font-size: 80%;
     }
@@ -94,13 +98,13 @@ fr.wikipedia.org: |
        font-size: 80%;
    }
 
-   span.mw-ref a::after {
+   sup.mw-ref a::after {
        content: counter(mw-Ref,decimal);
        vertical-align: super;
        font-size: 1.0em;
    }
 
-   span.mw-ref a[data-mw-group]::after {
+   sup.mw-ref a[data-mw-group]::after {
        content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
        vertical-align: super;
        font-size: 1.0em;
@@ -118,11 +122,11 @@ es.wikipedia.org: |
        font-weight: bold;
    }
 
-   span.mw-ref a::after {
+   sup.mw-ref a::after {
        content: counter(mw-Ref,decimal);
    }
 
-   span.mw-ref a[data-mw-group]::after {
+   sup.mw-ref a[data-mw-group]::after {
        content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
    }
 
@@ -209,7 +213,7 @@ ru.wikipedia.org: |
        content: counter(mw-ref-linkback, decimal);
    }
 
-   span.mw-ref a::after, span.mw-ref a[data-mw-group]::after {
+   sup.mw-ref a::after, sup.mw-ref a[data-mw-group]::after {
        font-size: 90%;
    }
 
@@ -238,7 +242,7 @@ ar.wikipedia.org: |
    #   content: counter(mw-ref-linkback, persian-alphabetic);
    }
 
-   span.mw-ref a::after, span.mw-ref a[data-mw-group]::after {
+   sup.mw-ref a::after, sup.mw-ref a[data-mw-group]::after {
        font-size: 90%;
    }
 
@@ -254,7 +258,7 @@ vi.wikipedia.org: |
        font-style: italic;
    }
 
-   span.mw-ref a::after {
+   sup.mw-ref a::after {
        font-size: 90%;
    }
 
@@ -364,11 +368,11 @@ mzn.wikipedia.org: |
        content: counter(mw-references, persian) '٫' counter(mw-ref-linkback, persian);
    }
 
-   span.mw-ref a::after {
+   sup.mw-ref a::after {
        content: '[' counter(mw-Ref, persian) ']';
    }
 
-   span.mw-ref a[data-mw-group]::after {
+   sup.mw-ref a[data-mw-group]::after {
        content: '[' attr(data-mw-group) ' ' counter(mw-Ref, persian) ']';
    }
 
@@ -455,11 +459,11 @@ kn.wikipedia.org: |
        content: counter(mw-references, kannada) '.' counter(mw-ref-linkback, kannada);
    }
 
-   span.mw-ref a::after {
+   sup.mw-ref a::after {
        content: '[' counter(mw-Ref,kannada) ']';
    }
 
-   span.mw-ref a[data-mw-group]::after {
+   sup.mw-ref a[data-mw-group]::after {
        content: '[' attr(data-mw-group) ' ' counter(mw-Ref, kannada) ']';
    }
 
@@ -492,11 +496,11 @@ bn.wikipedia.org: |
    #    content: counter(mw-ref-linkback, alphabet-bengali);
    }
 
-   span.mw-ref a::after {
+   sup.mw-ref a::after {
        content: '[' counter(mw-Ref, bengali) ']';
    }
 
-   span.mw-ref a[data-mw-group]::after {
+   sup.mw-ref a[data-mw-group]::after {
        content: '[' attr(data-mw-group) ' ' counter(mw-Ref, bengali) ']';
    }
 
