@@ -94,7 +94,7 @@ function sendResponse(res, opts) {
 
 	var domain = Util.getWikiDomain(opts.wiki);
 	page += '<ul>\n';
-	page += '<li><a target="_blank" href="https://' + domain + "/wiki/" + encodeURIComponent(opts.title) + '?action=render">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="https://' + domain + "/wiki/" + encodeURIComponent(opts.title) + '?useskin=vector">' + opts.html1.name + ' HTML</a></li>\n';
 	page += '<li><a target="_blank" href="https://' + domain + "/api/rest_v1/page/html/" + encodeURIComponent(opts.title) + '">' + opts.html2.name + ' HTML</a></li>\n';
 
 	page += '</ul>';

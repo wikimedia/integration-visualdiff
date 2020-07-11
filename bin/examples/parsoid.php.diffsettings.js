@@ -6,13 +6,13 @@ module.exports = {
   html1: {
     name: 'php',
     postprocessorScript: path.resolve(__dirname, '../../lib/php_parser.postprocess.js'),
-    injectJQuery: true,
+    injectJQuery: false,
     // suppress default base url computation code
     // since we are providing the full wiki domain
     // on the commandline
     server: 'https://',
     computeURL: function(server, wiki, title) {
-	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title) + '?action=render';
+	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title) + "?useskin=vector";
       // console.log("LURL: " + url);
       return url;
     },
