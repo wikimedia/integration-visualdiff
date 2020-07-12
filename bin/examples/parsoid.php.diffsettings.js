@@ -16,7 +16,7 @@ module.exports = {
       // console.log("LURL: " + url);
       return url;
     },
-	dumpHTML: true,
+	// dumpHTML: true,
   },
 
   // Production/local-dev Parsoid HTML output
@@ -31,7 +31,7 @@ module.exports = {
       // console.log("PURL: " + url);
       return url;
     },
-	dumpHTML: true,
+	// dumpHTML: true,
   },
 
   // Engine for image diffs, may be resemble or uprightdiff
