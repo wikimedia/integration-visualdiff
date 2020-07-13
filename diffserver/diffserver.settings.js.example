@@ -1,5 +1,8 @@
 'use strict';
 
+const Util = require('../lib/differ.utils.js').Util;
+const path = require('path');
+
 if (typeof module === 'object') {
 	module.exports = {
 		viewportWidth: 1920,
@@ -9,33 +12,34 @@ if (typeof module === 'object') {
 		title: 'Main_Page',
 		filePrefix: null,
 		quiet: true,
-		outdir: 'pngs',
+		outdir: 'pngs/',
 
 		// HTML1 generator options
 		html1: {
 			name: 'php',
 			dumpHTML: false,
-			postprocessorScript: '../lib/php_parser.postprocess.js',
+			postprocessorScript: path.resolve(__dirname, '../lib/php_parser.postprocess.js'),
 			injectJQuery: false,
 		},
 		// HTML2 generator options
 		html2: {
 			name: 'parsoid',
-			server: 'http://localhost:8000',
 			dumpHTML: false,
-			postprocessorScript: '../lib/parsoid.postprocess.js',
-			stylesYamlFile: '../lib/parsoid.custom_styles.yaml',
+			stylesYamlFile: path.resolve(__dirname, '../lib/parsoid.custom_styles.yaml'),
+			postprocessorScript: path.resolve(__dirname, '../lib/parsoid.postprocess.js'),
 			injectJQuery: true,
+			// Default opts computation still assumes a localhost:8000 Parsoid/JS server
+			// Can fix that in the future
+			server: 'https://',
+			computeURL: function(server, wiki, title) {
+			  const url = server + Util.getWikiDomain(wiki) + '/api/rest_v1/page/html/' + encodeURIComponent(title);
+			  // console.log("PURL: " + url);
+			  return url;
+			},
 		},
 
 		// Engine for image diffs, may be resemble or uprightdiff
-		diffEngine: 'resemble',
-
-		// resemblejs options
-		resembleSettings: {
-			errorType: 'movement', // Better error display for making sense of diffs
-			largeImageThreshold: 0 // Cleaner diff without the skipped pixels grid
-		},
+		diffEngine: 'uprightdiff',
 
 		// UprightDiff options
 		uprightDiffSettings: {
