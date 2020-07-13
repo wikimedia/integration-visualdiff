@@ -8,8 +8,7 @@
     "domino": "^1.0.28",
     "express": "4.14.0",
     "js-yaml": "^3.6.1",
-    "phantom": "~2.x.x",
-    "phantomjs-prebuilt": "~2.1.14",
+    "puppeteer": "^5.1.0",
     "prfun": "^2.1.4",
     "request": "^2.79.0",
     "yargs": "^5.0.0"
