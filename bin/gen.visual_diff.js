@@ -1,10 +1,9 @@
 "use strict";
 
-var fs = require('fs');
-var Util = require('../lib/differ.utils.js').Util;
-var Differ = require('../lib/differ.js').VisualDiffer;
+const Util = require('../lib/differ.utils.js').Util;
+const VisualDiffer = require('../lib/differ.js').VisualDiffer;
 
-var customOpts = {
+const customOpts = {
 	'viewportWidth': {
 		description: "Viewport width",
 		'boolean': false,
@@ -22,9 +21,9 @@ var customOpts = {
 	}
 };
 
-var opts = Util.getCLIOpts(customOpts);
+const opts = Util.getCLIOpts(customOpts);
 if (opts !== null) {
-	Differ.genVisualDiff(opts, function(msg) { console.log(msg); })
+	VisualDiffer.genVisualDiff(opts, function(msg) { console.log(msg); })
 	.then(function(data) {
 		// analysis stats
 		console.error("STATS: " + JSON.stringify(data));

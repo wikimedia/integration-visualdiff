@@ -2,14 +2,14 @@
 
 'use strict';
 
-var express = require('express');
-var yargs = require('yargs');
-var fs = require('fs');
-var Util = require('../lib/differ.utils.js').Util;
-var VisualDiffer = require('../lib/differ.js').VisualDiffer;
+const express = require('express');
+const yargs = require('yargs');
+const fs = require('fs');
+const Util = require('../lib/differ.utils.js').Util;
+const VisualDiffer = require('../lib/differ.js').VisualDiffer;
 
 // Command line options
-var opts = yargs.usage('Usage: $0 [connection parameters]')
+const opts = yargs.usage('Usage: $0 [connection parameters]')
 	.options('help', {
 		'boolean': true,
 		'default': false,
@@ -25,7 +25,7 @@ var opts = yargs.usage('Usage: $0 [connection parameters]')
 		describe: 'Port number to use for connection.'
 	});
 
-var argv = opts.argv;
+const argv = opts.argv;
 
 if (argv.help) {
 	opts.showHelp();
@@ -33,7 +33,7 @@ if (argv.help) {
 }
 
 // Settings file
-var settings;
+let settings;
 try {
 	settings = require(argv.config);
 } catch (e) {
@@ -42,10 +42,10 @@ try {
 	return;
 }
 
-var baseDir = settings.outdir.slice().replace('\/$', '');
+const baseDir = settings.outdir.slice().replace(/\/$/, '');
 
 // Make an app
-var app = express();
+const app = express();
 
 // robots.txt: no indexing.
 app.get(/^\/robots.txt$/, function (req, res) {
@@ -64,8 +64,8 @@ function getLink(screenShot, baseDir, targetDir) {
 }
 
 function sendResponse(res, opts) {
-	var pageTitle = 'Visual diff for ' + opts.wiki + ':' + opts.title;
-	var page = '<html>';
+	const pageTitle = 'Visual diff for ' + opts.wiki + ':' + opts.title;
+	let page = '<html>';
 	page += '<head><title>' + pageTitle + '</title></head>';
 	page += '<body>';
 	page += '<h1>' + pageTitle + '</h1>';
@@ -89,11 +89,11 @@ function sendResponse(res, opts) {
 	res.status(200).send(page);
 }
 
-app.get(/^\/diff\/([^/]*)\/(.*)/, function(req, res) {
-	var wiki = req.params[0];
-	var title = req.params[1];
-	var oldId = req.query.oldId;
-	var logger = settings.quiet ? function(){} : function(msg) { console.log(msg); };
+app.get(/^\/diff\/([^/]*)\/(.*)/, async function(req, res) {
+	const wiki = req.params[0];
+	const title = req.params[1];
+	const oldId = req.query.oldId;
+	const logger = settings.quiet ? function(){} : function(msg) { console.log(msg); };
 
 	// Clone before modifying it!
 	var opts = Util.clone(settings);
@@ -107,8 +107,17 @@ app.get(/^\/diff\/([^/]*)\/(.*)/, function(req, res) {
 		// Everything found on disk .. send them along!
 		sendResponse(res, opts);
 	} else {
-		res.setHeader('Content-Type', 'text/html; charset=UTF-8');
-		res.status(200).send("On-demand visual diff generation is disabled.");
+		try {
+			const diffData = await VisualDiffer.genVisualDiff(opts, logger);
+			if (diffData) {
+				sendResponse(res, opts);
+			} else {
+				res.status(500).send('Encountered diffing error for ' + wiki + ':' + title);
+			}
+		} catch (err) {
+			console.error('ERROR for ' + wiki + ':' + title + ': ' + err);
+			res.status(500).send('Encountered error [' + err + '] for ' + wiki + ':' + title);
+		}
 	}
 });
 
