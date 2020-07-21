@@ -26,6 +26,9 @@ module.exports = {
     postprocessorScript: path.resolve(__dirname, '../../lib/parsoid.postprocess.js'),
     injectJQuery: true,
     server: 'https://',
+	additionalStyleTags: [
+		'/w/load.php?modules=skins.vector.styles.legacy&only=styles&skin=vector'
+	],
     computeURL: function(server, wiki, title) {
 	  const url = server + Util.getWikiDomain(wiki) + '/api/rest_v1/page/html/' + encodeURIComponent(title);
       // console.log("PURL: " + url);
@@ -33,6 +36,9 @@ module.exports = {
     },
 	// dumpHTML: true,
   },
+
+  postInjectionDelay: 1000, // 1 sec (needed because of custom style tags)
+  screenShotDelay: 1000, // 1 sec (needed because of potentially exposed images/icons)
 
   // Engine for image diffs, may be resemble or uprightdiff
   diffEngine: 'uprightdiff',
