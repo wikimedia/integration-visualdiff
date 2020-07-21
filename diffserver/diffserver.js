@@ -47,9 +47,6 @@ const baseDir = settings.outdir.slice().replace(/\/$/, '');
 // Make an app
 const app = express();
 
-// Declare static directory
-app.use('/images', express.static(baseDir));
-
 // robots.txt: no indexing.
 app.get(/^\/robots.txt$/, function (req, res) {
 	res.end('User-agent: *\nDisallow: /\n');
@@ -72,12 +69,17 @@ function sendResponse(res, opts) {
 	page += '<head><title>' + pageTitle + '</title></head>';
 	page += '<body>';
 	page += '<h1>' + pageTitle + '</h1>';
+	page += '<h2>Screenshots</h2>\n';
 	page += '<ul>';
 	page += '<li><a target="_blank" href="' + getLink(opts.html1.screenShot, baseDir, 'images') + '">' + opts.html1.name + ' Screenshot</a></li>';
 	page += '<li><a target="_blank" href="' + getLink(opts.html2.screenShot, baseDir, 'images') + '">' + opts.html2.name + ' Screenshot</a></li>';
 	page += '<li><a target="_blank" href="' + getLink(opts.diffFile, baseDir, 'images') + '">Visual Diff</a></li>';
-	page += '</ul></body>';
-	page += '</html>';
+	page += '</ul>\n';
+	page += '<h2>Page on the target wikis</h2>\n';
+	page += '<ul>\n';
+	page += '<li><a target="_blank" href="' + opts.html1.computeURL(opts.html1.server, opts.wiki, opts.title) + '">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + opts.html2.computeURL(opts.html2.server, opts.wiki, opts.title) + '">' + opts.html2.name + ' HTML</a></li>\n';
+	page += '</body></html>';
 
 	// Send response
 	res.setHeader('Content-Type', 'text/html; charset=UTF-8');
