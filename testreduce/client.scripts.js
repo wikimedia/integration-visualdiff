@@ -43,7 +43,7 @@ function generateVisualDiff(opts, test) {
 			var pidPrefix = '[' + process.pid + ']: ';
 			var logger = opts.quiet ? function(){} : function(msg) { console.log(pidPrefix + msg); };
 			logger('Diffing ' + test.prefix + ':' + test.title);
-			return VisualDiffer.genVisualDiff(opts, logger)
+			return (new VisualDiffer()).genVisualDiff(opts, logger)
 			.then(function(diffData) {
 				logger('DIFF: ' + JSON.stringify(diffData));
 				resolve(diffData);

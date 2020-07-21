@@ -23,7 +23,8 @@ const customOpts = {
 
 const opts = Util.getCLIOpts(customOpts);
 if (opts !== null) {
-	VisualDiffer.takeScreenshots(opts, function(msg) { console.log(msg); })
+	const vd = new VisualDiffer();
+	vd.takeScreenshots(opts, function(msg) { console.log(msg); })
 	.then(function(){
 		console.warn("--all done--");
 	}).catch(function(err) {

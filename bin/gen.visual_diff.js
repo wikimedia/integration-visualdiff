@@ -23,7 +23,8 @@ const customOpts = {
 
 const opts = Util.getCLIOpts(customOpts);
 if (opts !== null) {
-	VisualDiffer.genVisualDiff(opts, function(msg) { console.log(msg); })
+	const vd = new VisualDiffer;
+	vd.genVisualDiff(opts, function(msg) { console.log(msg); })
 	.then(function(data) {
 		// analysis stats
 		console.error("STATS: " + JSON.stringify(data));

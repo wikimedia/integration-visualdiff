@@ -103,7 +103,7 @@ app.get(/^\/diff\/([^/]*)\/(.*)/, async function(req, res) {
 		sendResponse(res, opts);
 	} else {
 		try {
-			const diffData = await VisualDiffer.genVisualDiff(opts, logger);
+			const diffData = await (new VisualDiffer()).genVisualDiff(opts, logger);
 			if (diffData) {
 				sendResponse(res, opts);
 			} else {
