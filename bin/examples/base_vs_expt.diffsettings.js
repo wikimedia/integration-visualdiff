@@ -8,8 +8,6 @@ module.exports = {
 	viewportWidth: 1920,
 	viewportHeight: 1080,
 
-	wiki: 'enwiki',
-	title: 'Main_Page',
 	filePrefix: null,
 	quiet: true,
 	outdir: '.', // Share with clients

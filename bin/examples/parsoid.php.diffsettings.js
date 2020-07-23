@@ -2,6 +2,7 @@ const Util = require('../../lib/differ.utils.js').Util;
 const path = require('path');
 
 module.exports = {
+  outdir: 'images',
   // Production wikipedia PHP parser output
   html1: {
     name: 'php',
