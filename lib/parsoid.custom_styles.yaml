@@ -123,7 +123,7 @@ es.wikipedia.org: |
    }
 
    sup.mw-ref a::after {
-       content: counter(mw-Ref,decimal);
+       content: counter(mw-Ref,decimal) ' ';
    }
 
    sup.mw-ref a[data-mw-group]::after {
