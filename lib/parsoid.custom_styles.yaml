@@ -139,7 +139,7 @@ es.wikipedia.org: |
    }
 
    sup.mw-ref a::after {
-       content: counter(mw-Ref,decimal) ' ';
+       content: counter(mw-Ref,decimal) '\00a0';
    }
 
    sup.mw-ref a[data-mw-group]::after {
