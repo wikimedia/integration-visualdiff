@@ -228,7 +228,6 @@ ru.wikipedia.org: |
 
    a[rel="mw:referencedBy"]::before {
        content: "↑";
-       font-weight: bold;
    }
 
    span[rel="mw:referencedBy"] a::before {
@@ -236,10 +235,6 @@ ru.wikipedia.org: |
        font-style: italic;
        font-weight: bold;
        content: counter(mw-ref-linkback, decimal);
-   }
-
-   sup.mw-ref a::after, sup.mw-ref a[data-mw-group]::after {
-       font-size: 90%;
    }
 
 # ------------------------ These styles apply to arwiki only ------------------------
@@ -435,6 +430,10 @@ pt.wikipedia.org: |
 
 # ------------------------ These styles apply to plwiki only ------------------------
 pl.wikipedia.org: |
+   ol.references {
+       font-size: 85%;
+   }
+
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
    }
