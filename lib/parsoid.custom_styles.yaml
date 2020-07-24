@@ -194,6 +194,10 @@ hu.wikipedia.org: |
 
 # ------------------------ These styles apply to svwiki only ------------------------
 sv.wikipedia.org: |
+   sup.mw-ref a {
+       font-size: 90%;
+   }
+
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
    }
