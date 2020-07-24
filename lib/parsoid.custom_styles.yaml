@@ -99,31 +99,40 @@ fr.wikipedia.org: |
        counter-reset: mw-ref-linkback 0;
    }
 
+   span.mw-reference-text sup {
+       vertical-align: text-top;
+       position: relative;
+       top: -0.1em;
+       font-size: 0.75em;
+   }
+
    span[rel="mw:referencedBy"] a::before {
-       content: counter(mw-ref-linkback, lower-alpha) ', ';
-       font-size: 80%;
+       content: counter(mw-ref-linkback, lower-alpha) ' ';
    }
 
    span[rel="mw:referencedBy"] a:last-child::before {
        content: ' et ' counter(mw-ref-linkback, lower-alpha);
-       font-size: 80%;
    }
 
    span[rel="mw:referencedBy"] a:nth-last-child(2)::before {
        content: counter(mw-ref-linkback, lower-alpha) ' ';
-       font-size: 80%;
+   }
+
+   sup.mw-ref {
+      line-height: 1;
+      vertical-align: text-top;
+      font-size: 0.8em;
+      padding-left: 1px;
+      position: relative;
+      top: -5px;
    }
 
    sup.mw-ref a::after {
        content: counter(mw-Ref,decimal);
-       vertical-align: super;
-       font-size: 1.0em;
    }
 
    sup.mw-ref a[data-mw-group]::after {
        content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
-       vertical-align: super;
-       font-size: 1.0em;
    }
 
 # ------------------------ These styles apply to eswiki only ------------------------
