@@ -13,7 +13,7 @@ module.exports = {
     // on the commandline
     server: 'https://',
     computeURL: function(server, wiki, title) {
-	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title) + "?useskin=vector";
+	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title) + "?useskin=vector&useskinversion=1";
       // console.log("LURL: " + url);
       return url;
     },
@@ -28,7 +28,10 @@ module.exports = {
     injectJQuery: true,
     server: 'https://',
 	additionalStyleTags: [
-		'/w/load.php?modules=skins.vector.styles.legacy&only=styles&skin=vector'
+		'/w/load.php?modules=skins.vector.styles.legacy&only=styles&skin=vector&useskinversion=1',
+		// This duplicates what has already been loaded via Parsoid, but this stylesheet
+		// should come after the legacy vector styles above for the right styles to be applied!
+		'/w/load.php?modules=site.styles&only=styles&skin=vector'
 	],
     computeURL: function(server, wiki, title) {
 	  const url = server + Util.getWikiDomain(wiki) + '/api/rest_v1/page/html/' + encodeURIComponent(title);

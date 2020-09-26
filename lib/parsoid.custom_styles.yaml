@@ -270,6 +270,12 @@ ar.wikipedia.org: |
        font-size: 90%;
    }
 
+   div.reflist + ol + ul {
+      font-size: 13px;
+      margin-bottom: 0.5em;
+      clear: right;
+   }
+
 # ------------------------ These styles apply to viwiki only ------------------------
 vi.wikipedia.org: |
    [rel="mw:referencedBy"]::before {
