@@ -1,7 +1,12 @@
 const Util = require('../../lib/differ.utils.js').Util;
 const path = require('path');
+const adaptor1 = require('../../lib/cache_purge.adaptor.js');
+const adaptor2 = require('../../lib/parsoid_vs_core.adaptor.js');
 
 module.exports = {
+  preLoadHandler: [ adaptor1.purgeCache, adaptor2.pre ],
+  postRenderHandler: adaptor2.post,
+
   outdir: 'images',
   // Production wikipedia PHP parser output
   html1: {
@@ -17,7 +22,7 @@ module.exports = {
       // console.log("LURL: " + url);
       return url;
     },
-	// dumpHTML: true,
+	dumpHTML: true,
   },
 
   // Production/local-dev Parsoid HTML output
@@ -27,18 +32,12 @@ module.exports = {
     postprocessorScript: path.resolve(__dirname, '../../lib/parsoid.postprocess.js'),
     injectJQuery: true,
     server: 'https://',
-	additionalStyleTags: [
-		'/w/load.php?modules=skins.vector.styles.legacy&only=styles&skin=vector&useskinversion=1',
-		// This duplicates what has already been loaded via Parsoid, but this stylesheet
-		// should come after the legacy vector styles above for the right styles to be applied!
-		'/w/load.php?modules=site.styles&only=styles&skin=vector'
-	],
     computeURL: function(server, wiki, title) {
 	  const url = server + Util.getWikiDomain(wiki) + '/api/rest_v1/page/html/' + encodeURIComponent(title);
       // console.log("PURL: " + url);
       return url;
     },
-	// dumpHTML: true,
+	dumpHTML: true,
   },
 
   postInjectionDelay: 1000, // 1 sec (needed because of custom style tags)
