@@ -4,6 +4,15 @@ all: |
         display: none;
     }
 
+    /* Needed in the resource-modules hack scenario where
+     * it appears core sets width:100% and height:100% which
+     * then seems cause the width & height attributes on the
+     * video tag to be ignored */
+    video {
+        width:auto;
+        height: auto;
+    }
+
     /* applies to all wikis! */
     ol[data-mw-group="lower-alpha"].mw-references li {
         list-style-type: lower-alpha;
@@ -344,6 +353,13 @@ vi.wikipedia.org: |
 
 # ------------------------ These styles apply to zhwiki only ------------------------
 zh.wikipedia.org: |
+   /* Needed in the resource-modules hack scenario where
+    * it appears some JS module is not hidiing this in the
+    * Parsoid case unlike the core case */
+   div#bluedeck_ding, div#bluedeck_ding_history {
+       display: none;
+   }
+
    a[rel="mw:referencedBy"]::before {
        content: "^ ";
        font-weight: bold;
