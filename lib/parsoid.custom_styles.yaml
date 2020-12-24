@@ -5,9 +5,9 @@ all: |
     }
 
     /* Needed in the resource-modules hack scenario where
-     * it appears core sets width:100% and height:100% which
-     * then seems cause the width & height attributes on the
-     * video tag to be ignored */
+     * it appears core sets width:100% and height:100%.
+     * It appears this causes the width & height attributes
+     * on the video tag to be ignored */
     video {
         width:auto;
         height: auto;
@@ -32,6 +32,11 @@ all: |
         float: left;
         background-image: url( /w/resources/src/mediawiki.skinning/images/magnify-clip-rtl.png );
         background-image: linear-gradient( transparent, transparent ), url( /w/resources/src/mediawiki.skinning/images/magnify-clip-rtl.svg );
+    }
+
+    /* Found via arwiki but looks like a generic issue */
+    figure[typeof*="mw:Image"].mw-halign-center {
+        margin:auto;
     }
 
 # ------------------------ These styles apply to enwiki only ------------------------
@@ -326,6 +331,38 @@ ar.wikipedia.org: |
        font-size: 13px;
        margin-bottom: 0.5em;
        clear: right;
+   }
+
+   /** To match Mediawiki:Common.css on arwiki */
+   figure[typeof~='mw:Image/Thumb'],
+   figure[typeof~='mw:Video/Thumb'],
+   figure[typeof~='mw:Audio/Thumb'],
+   figure[typeof~='mw:Image/Frame'],
+   figure[typeof~='mw:Video/Frame'],
+   figure[typeof~='mw:Audio/Frame'] {
+      border: solid 1px #C0C0C0;
+      border-spacing: 2px;
+   }
+
+   /** To match Mediawiki:Common.css on arwiki */
+   figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
+   figure[typeof~='mw:Video/Thumb'] > *:first-child > img,
+   figure[typeof~='mw:Audio/Thumb'] > *:first-child > img,
+   figure[typeof~='mw:Image/Frame'] > *:first-child > img,
+   figure[typeof~='mw:Video/Frame'] > *:first-child > img,
+   figure[typeof~='mw:Audio/Frame'] > *:first-child > img,
+   figure[typeof~='mw:Image/Thumb'] > *:first-child > video,
+   figure[typeof~='mw:Video/Thumb'] > *:first-child > video,
+   figure[typeof~='mw:Audio/Thumb'] > *:first-child > video,
+   figure[typeof~='mw:Image/Frame'] > *:first-child > video,
+   figure[typeof~='mw:Video/Frame'] > *:first-child > video,
+   figure[typeof~='mw:Audio/Frame'] > *:first-child > video {
+       border:none;
+   }
+
+   /* Loks like an arwiki-specific problem */
+   figure[typeof~='mw:Image/Thumb'] figcaption {
+       margin: 0px -1px;
    }
 
 # ------------------------ These styles apply to viwiki only ------------------------
