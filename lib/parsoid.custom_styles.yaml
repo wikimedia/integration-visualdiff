@@ -43,10 +43,6 @@ all: |
 en.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
-    sup.mw-ref {
-        line-height: 1;
-        font-size: 80%;
-    }
 
     sup,sub { line-height:1; }
 
@@ -78,10 +74,6 @@ en.wikipedia.org: |
 it.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
-    sup.mw-ref {
-        line-height: 1;
-        font-size: 80%;
-    }
 
     sup,sub { line-height:1; }
 
@@ -132,19 +124,6 @@ fr.wikipedia.org: |
        content: counter(mw-ref-linkback, lower-alpha) ' ';
    }
 
-   sup.mw-ref {
-       line-height: 1;
-       vertical-align: text-top;
-       font-size: 0.8em;
-       padding-left: 1px;
-       position: relative;
-       top: -5px;
-   }
-
-   .infobox_v2 .mw-ref {
-       top: -2px;
-   }
-
    sup.mw-ref a::after {
        content: counter(mw-Ref,decimal);
    }
@@ -165,12 +144,6 @@ es.wikipedia.org: |
        font-weight: bold;
    }
 
-   sup.mw-ref {
-       margin-right: 0.6ch;
-       font-weight: normal;
-       font-style: normal;
-   }
-
    sup.mw-ref:not(.separada) {
         margin-left: -0.6ch;
    }
@@ -189,6 +162,7 @@ es.wikipedia.org: |
    }
 
 # ------------------------ These styles apply to nowiki only ------------------------
+
 no.wikipedia.org: |
     [rel="mw:referencedBy"] {
         counter-reset: mw-ref-linkback 0;
@@ -209,16 +183,6 @@ no.wikipedia.org: |
         content: ' ' counter(mw-ref-linkback, lower-alpha);
     }
 
-    sup.mw-ref {
-        line-height:1em;
-        font-style:normal;
-    }
-
-    table.wikitable th sup.mw-ref,
-    table.prettytable th sup.mw-ref {
-        font-weight:normal;
-    }
-
 # ------------------------ These styles apply to huwiki only ------------------------
 hu.wikipedia.org: |
    [rel="mw:referencedBy"] {
@@ -235,20 +199,8 @@ hu.wikipedia.org: |
        font-weight: bold;
    }
 
-   sup.mw-ref  {
-       vertical-align: baseline;
-       position: relative;
-       bottom: 1ex;
-       font-style:normal;
-       font-weight:normal;
-   }
-
 # ------------------------ These styles apply to svwiki only ------------------------
 sv.wikipedia.org: |
-   sup.mw-ref a {
-       font-size: 90%;
-   }
-
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
    }
@@ -317,16 +269,6 @@ ar.wikipedia.org: |
    #   content: counter(mw-ref-linkback, persian-alphabetic);
    }
 
-   sup.mw-ref {
-       font-weight: 400;
-       font-style: normal;
-       font-size: 11px;
-   }
-
-   sup.mw-ref a {
-       white-space: nowrap;
-   }
-
    div.reflist + ol + ul {
        font-size: 13px;
        margin-bottom: 0.5em;
@@ -375,17 +317,6 @@ vi.wikipedia.org: |
    span[rel="mw:referencedBy"] a::before {
        font-weight: bold;
        font-style: italic;
-   }
-
-   sup.mw-ref {
-       font-size: 80%;
-       white-space: nowrap;
-       font-weight: normal;
-       font-style: normal;
-   }
-
-   sup.mw-ref a {
-       white-space: nowrap;
    }
 
 # ------------------------ These styles apply to zhwiki only ------------------------
@@ -451,11 +382,6 @@ uk.wikipedia.org: |
    #    content: counter(mw-ref-linkback, lower-ukrainian);
    }
 
-   sup.mw-ref {
-       font-weight: normal;
-       font-style: normal;
-   }
-
 # ------------------------ These styles apply to dewiki only ------------------------
 de.wikipedia.org: |
    [rel="mw:referencedBy"] {
@@ -465,11 +391,6 @@ de.wikipedia.org: |
    span[rel="mw:referencedBy"] a::before {
        font-style: italic;
        content: counter(mw-ref-linkback, lower-alpha);
-   }
-
-   sup.mw-ref {
-       font-weight: normal;
-       font-style: normal;
    }
 
 # ------------------------ These styles apply to nlwiki only ------------------------
@@ -491,10 +412,6 @@ he.wikipedia.org: |
        font-weight: bold;
    }
 
-   sup.mw-ref {
-       display: inline-block;
-   }
-
 # ------------------------ These styles apply to mznwiki only ------------------------
 mzn.wikipedia.org: |
    ol.mw-references {
@@ -513,10 +430,6 @@ mzn.wikipedia.org: |
    span[rel="mw:referencedBy"] a::before {
        vertical-align: super;
        content: counter(mw-references, persian) '٫' counter(mw-ref-linkback, persian);
-   }
-
-   sup.mw-ref a {
-       white-space: nowrap;
    }
 
    sup.mw-ref a::after {
@@ -547,11 +460,6 @@ ja.wikipedia.org: |
        content: counter(mw-ref-linkback, lower-alpha);
    }
 
-   sup.mw-ref a {
-       white-space: nowrap;
-       font-weight: normal;
-   }
-
 # ------------------------ These styles apply to ptwiki only ------------------------
 pt.wikipedia.org: |
    [rel="mw:referencedBy"] {
@@ -562,10 +470,6 @@ pt.wikipedia.org: |
        font-style: italic;
        font-weight: bold;
        content: counter(mw-ref-linkback, lower-alpha);
-   }
-
-   sup.mw-ref a {
-       white-space: nowrap;
    }
 
 # ------------------------ These styles apply to plwiki only ------------------------
@@ -580,10 +484,6 @@ pl.wikipedia.org: |
 
    span[rel="mw:referencedBy"] a::before {
        content: counter(mw-ref-linkback, lower-alpha);
-   }
-
-   sup.mw-ref, sup.mw-ref a {
-       white-space: nowrap;
    }
 
 # ------------------------ These styles apply to trwiki only ------------------------
@@ -682,20 +582,4 @@ is.wikipedia.org: |
    figure[typeof~='mw:Video/Frame'],
    figure[typeof~='mw:Audio/Frame'] {
       min-width: 106px;
-   }
-
-   sup.mw-ref {
-       font-weight: normal;
-       font-style: normal;
-   }
-
-# ------------------------ These styles apply to kowiki only ------------------------
-ko.wikipedia.org: |
-   sup.mw-ref {
-       font-style: normal;
-       font-weight: normal;
-   }
-
-   sup.mw-ref a {
-       white-space: nowrap;
    }
