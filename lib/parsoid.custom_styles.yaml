@@ -18,22 +18,6 @@ all: |
         list-style-type: lower-alpha;
     }
 
-    .ltr figure[ typeof*='mw:Image' ] > a::after,
-    .ltr figure[ typeof*='mw:Video' ] > a::after,
-    .ltr figure[ typeof*='mw:Audio' ] > a::after {
-        float: right;
-        background-image: url( /w/resources/src/mediawiki.skinning/images/magnify-clip-ltr.png );
-        background-image: linear-gradient( transparent, transparent ), url( /w/resources/src/mediawiki.skinning/images/magnify-clip-ltr.svg );
-    }
-
-    .rtl figure[ typeof*='mw:Image' ] > a::after,
-    .rtl figure[ typeof*='mw:Video' ] > a::after,
-    .rtl figure[ typeof*='mw:Audio' ] > a::after {
-        float: left;
-        background-image: url( /w/resources/src/mediawiki.skinning/images/magnify-clip-rtl.png );
-        background-image: linear-gradient( transparent, transparent ), url( /w/resources/src/mediawiki.skinning/images/magnify-clip-rtl.svg );
-    }
-
     /* Found via arwiki but looks like a generic issue */
     figure[typeof*="mw:Image"].mw-halign-center {
         margin:auto;
