@@ -18,11 +18,6 @@ all: |
         list-style-type: lower-alpha;
     }
 
-    /* Found via arwiki but looks like a generic issue */
-    figure[typeof*="mw:Image"].mw-halign-center {
-        margin:auto;
-    }
-
 # ------------------------ These styles apply to enwiki only ------------------------
 en.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
@@ -257,38 +252,6 @@ ar.wikipedia.org: |
        font-size: 13px;
        margin-bottom: 0.5em;
        clear: right;
-   }
-
-   /** To match Mediawiki:Common.css on arwiki */
-   figure[typeof~='mw:Image/Thumb'],
-   figure[typeof~='mw:Video/Thumb'],
-   figure[typeof~='mw:Audio/Thumb'],
-   figure[typeof~='mw:Image/Frame'],
-   figure[typeof~='mw:Video/Frame'],
-   figure[typeof~='mw:Audio/Frame'] {
-      border: solid 1px #C0C0C0;
-      border-spacing: 2px;
-   }
-
-   /** To match Mediawiki:Common.css on arwiki */
-   figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
-   figure[typeof~='mw:Video/Thumb'] > *:first-child > img,
-   figure[typeof~='mw:Audio/Thumb'] > *:first-child > img,
-   figure[typeof~='mw:Image/Frame'] > *:first-child > img,
-   figure[typeof~='mw:Video/Frame'] > *:first-child > img,
-   figure[typeof~='mw:Audio/Frame'] > *:first-child > img,
-   figure[typeof~='mw:Image/Thumb'] > *:first-child > video,
-   figure[typeof~='mw:Video/Thumb'] > *:first-child > video,
-   figure[typeof~='mw:Audio/Thumb'] > *:first-child > video,
-   figure[typeof~='mw:Image/Frame'] > *:first-child > video,
-   figure[typeof~='mw:Video/Frame'] > *:first-child > video,
-   figure[typeof~='mw:Audio/Frame'] > *:first-child > video {
-       border:none;
-   }
-
-   /* Loks like an arwiki-specific problem */
-   figure[typeof~='mw:Image/Thumb'] figcaption {
-       margin: 0px -1px;
    }
 
 # ------------------------ These styles apply to viwiki only ------------------------
