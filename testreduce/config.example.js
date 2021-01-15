@@ -51,8 +51,7 @@ var clientScripts = require('FULL_PATH_TO_VISUALDIFF_REPO/client.scripts.js');
 				// UprightDiff options
 				uprightDiffSettings: {
 					// Path to your local uprightdiff install
-					// binary: '/usr/local/bin/uprightdiff',
-					binary: '/home/subbu/work/wmf/software/uprightdiff/uprightdiff',
+					binary: '/usr/local/bin/uprightdiff',
 				},
 
 				// Wait 1.5 sec before diffing screenshots

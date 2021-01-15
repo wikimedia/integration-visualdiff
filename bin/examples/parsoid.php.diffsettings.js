@@ -49,6 +49,6 @@ module.exports = {
   // UprightDiff options
   uprightDiffSettings: {
     // Path to your local uprightdiff install
-    binary: '/usr/bin/uprightdiff',
+    binary: '/usr/local/bin/uprightdiff',
   },
 };

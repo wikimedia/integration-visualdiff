@@ -43,7 +43,7 @@ if (typeof module === 'object') {
 
 		// UprightDiff options
 		uprightDiffSettings: {
-			binary: '/usr/bin/uprightdiff'
+			binary: '/usr/local/bin/uprightdiff'
 		},
 	};
 }
