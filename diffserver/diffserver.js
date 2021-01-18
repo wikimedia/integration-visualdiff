@@ -23,6 +23,11 @@ const opts = yargs.usage('Usage: $0 [connection parameters]')
 		alias: 'port',
 		'default': 8002,
 		describe: 'Port number to use for connection.'
+	})
+	.options('onDemandDiffs', {
+		'boolean': true,
+		'default': false,
+		describe: 'Generate diffs if not available'
 	});
 
 const argv = opts.argv;
@@ -103,7 +108,7 @@ app.get(/^\/diff\/([^/]*)\/(.*)/, async function(req, res) {
 		fs.existsSync(opts.html2.screenShot)) {
 		// Everything found on disk .. send them along!
 		sendResponse(res, opts);
-	} else {
+	} else if (opts.onDemandDiffs) {
 		try {
 			const diffData = await (new VisualDiffer()).genVisualDiff(opts, logger);
 			if (diffData) {
@@ -115,6 +120,14 @@ app.get(/^\/diff\/([^/]*)\/(.*)/, async function(req, res) {
 			console.error('ERROR for ' + wiki + ':' + title + ': ' + err);
 			res.status(500).send('Encountered error [' + err + '] for ' + wiki + ':' + title);
 		}
+	} else {
+		res.status(404).send(`Cannot display diff! Some of these image files are missing:
+			<ul>
+			<li>${opts.html1.name}: ${opts.html1.screenShot}</li>
+			<li>${opts.html2.name}: ${opts.html2.screenShot}</li>
+			<li>diff: ${opts.diffFile}</li>
+			</ul>
+			<b>On demand diffing suppressed.</b><br/>`);
 	}
 });
 
