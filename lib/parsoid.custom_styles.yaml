@@ -4,15 +4,6 @@ all: |
         display: none;
     }
 
-    /* Needed in the resource-modules hack scenario where
-     * it appears core sets width:100% and height:100%.
-     * It appears this causes the width & height attributes
-     * on the video tag to be ignored */
-    video {
-        width:auto;
-        height: auto;
-    }
-
     /* applies to all wikis! */
     ol[data-mw-group="lower-alpha"].mw-references li {
         list-style-type: lower-alpha;
