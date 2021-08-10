@@ -30,7 +30,7 @@ module.exports = {
     name: 'parsoid',
     stylesYamlFile: path.resolve(__dirname, '../../lib/parsoid.custom_styles.yaml'),
     postprocessorScript: path.resolve(__dirname, '../../lib/parsoid.postprocess.js'),
-    injectJQuery: false,
+    injectJQuery: true,
     server: 'https://',
     computeURL: function(server, wiki, title) {
 	  const url = server + Util.getWikiDomain(wiki) + '/api/rest_v1/page/html/' + encodeURIComponent(title);
