@@ -224,10 +224,11 @@ ar.wikipedia.org: |
 
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
+       margin-right: -2px;
    }
 
    [rel="mw:referencedBy"]::before {
-       content: "^ ";
+       content: "^";
        font-weight: bold;
    }
 
@@ -412,9 +413,11 @@ pt.wikipedia.org: |
 
 # ------------------------ These styles apply to plwiki only ------------------------
 pl.wikipedia.org: |
-   ol.references {
-       font-size: 85%;
-   }
+   # This comes from a gadget module and we are now suppressing all gadget modules
+   # in visual diff testing.
+   # ol.references {
+   #     font-size: 85%;
+   # }
 
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
