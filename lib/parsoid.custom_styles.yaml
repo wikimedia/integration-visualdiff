@@ -197,6 +197,10 @@ sv.wikipedia.org: |
        content: '';
    }
 
+   .mw-ref {
+       line-height: 0;
+   }
+
 # ------------------------ These styles apply to ruwiki only ------------------------
 ru.wikipedia.org: |
    [rel="mw:referencedBy"] {
