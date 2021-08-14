@@ -3,31 +3,6 @@
 var Util = require('../lib/differ.utils.js').Util;
 var VisualDiffer = require('../lib/differ.js').VisualDiffer;
 var Promise = require('prfun/wrap')(require('babybird'));
-var request = Promise.promisify(require('request'), true);
-
-function retryingHTTPRequest(retries, requestOptions, delay) {
-    delay = delay || 100;  // start with 100ms
-    return request(requestOptions)
-    .catch(function(error) {
-        if (retries--) {
-            console.error('HTTP ' + requestOptions.method + ' to \n' +
-                    (requestOptions.uri || requestOptions.url) + ' failed: ' + error +
-                    '\nRetrying in ' + (delay / 1000) + ' seconds.');
-            return Promise.delay(delay).then(function() {
-                return retryingHTTPRequest(retries, requestOptions, delay * 2);
-            });
-        } else {
-            return Promise.reject(error);
-        }
-    })
-    .spread(function(res, body) {
-        if (res.statusCode !== 200) {
-            throw new Error('Got status code: ' + res.statusCode +
-                '; body: ' + body);
-        }
-        return Array.from(arguments);
-    });
-}
 
 function generateVisualDiff(opts, test) {
 	return new Promise(function(resolve, reject) {
@@ -70,7 +45,7 @@ function gitCommitFetch(opts) {
 	};
 
 	return new Promise(function(resolve, reject) {
-		retryingHTTPRequest(10, requestOptions, function(error, response, body) {
+		Util.retryingHTTPRequest(10, requestOptions, function(error, response, body) {
 			var err;
 			if (error || !response) {
 				err = 'Error could not find the current commit from ' + parsoidServer;
