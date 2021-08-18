@@ -352,7 +352,6 @@ nl.wikipedia.org: |
 he.wikipedia.org: |
    [rel="mw:referencedBy"]::before {
        content: "^ ";
-       font-weight: bold;
    }
 
 # ------------------------ These styles apply to mznwiki only ------------------------
