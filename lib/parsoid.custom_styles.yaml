@@ -201,6 +201,10 @@ sv.wikipedia.org: |
        line-height: 0;
    }
 
+   sup.mw-ref a[data-mw-group=not]::after {
+       content: "[" counter(mw-Ref,lower-alpha) "]";
+   }
+
 # ------------------------ These styles apply to ruwiki only ------------------------
 ru.wikipedia.org: |
    [rel="mw:referencedBy"] {
