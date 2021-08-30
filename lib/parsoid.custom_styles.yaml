@@ -434,6 +434,22 @@ pl.wikipedia.org: |
        content: counter(mw-ref-linkback, lower-alpha);
    }
 
+   sup.mw-ref a[data-mw-group=uwaga]::after {
+       content: "[" counter(mw-Ref,lower-alpha) "]";
+   }
+
+   sup.mw-ref a[data-mw-group=infobox]::after {
+       content: "[" counter(mw-Ref,lower-alpha) "]";
+   }
+
+   sup.mw-ref a[data-mw-group=nav]::after {
+       content: "[" counter(mw-Ref,upper-alpha) "]";
+   }
+
+   sup.mw-ref a[data-mw-group=mini]::after {
+       content: "[" counter(mw-Ref,lower-roman) "]";
+   }
+
 # ------------------------ These styles apply to trwiki only ------------------------
 tr.wikipedia.org: |
    [rel="mw:referencedBy"] {
