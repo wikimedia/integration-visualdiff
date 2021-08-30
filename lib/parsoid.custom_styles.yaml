@@ -224,28 +224,31 @@ ru.wikipedia.org: |
 
 # ------------------------ These styles apply to arwiki only ------------------------
 ar.wikipedia.org: |
-   #@counter-style persian-alphabetic {
-   #    system: fixed;
-   #    symbols: '\627' '\628' '\67E' '\62A' '\62B' '\62C' '\686' '\62D' '\62E' '\62F' '\630' '\631' '\632' '\698' '\633' '\634' '\635' '\636' '\637' '\638' '\639' '\63A' '\641' '\642' '\6A9' '\6AF' '\644' '\645' '\646' '\648' '\647\200D' '\6CC';
-   #    /* symbols: 'ا' 'ب' 'پ' 'ت' 'ث' 'ج' 'چ' 'ح' 'خ' 'د' 'ذ' 'ر' 'ز' 'ژ' 'س' 'ش' 'ص' 'ض' 'ط' 'ظ' 'ع' 'غ' 'ف' 'ق' 'ک' 'گ' 'ل' 'م' 'ن' 'و' 'ه‍' 'ی' */;
-   #}
+   @counter-style old-magrebi { # see https://www.w3.org/TR/predefined-counter-styles/#arabic-styles
+       system: fixed;
+       symbols: 'أ' 'ﺏ' 'ﺕ' 'ﺙ' 'ﺝ' 'ﺡ' 'ﺥ' 'ﺩ' 'ﺫ' 'ﺭ' 'ﺯ' 'ﻁ' 'ﻅ' 'ﻙ' 'ﻝ' 'ﻡ' 'ﻥ' 'ﺹ' 'ﺽ' 'ﻉ' 'ﻍ' 'ﻑ' 'ﻕ' 'ﺱ' 'ﺵ' 'ﻩ' 'ﻭ';
+   }
 
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
        margin-right: -2px;
    }
 
-   [rel="mw:referencedBy"]::before {
+   a[rel="mw:referencedBy"]::before {
        content: "^";
        font-weight: bold;
    }
 
+   span[rel="mw:referencedBy"]::before {
+       content: '↑ ';
+   }
+
    span[rel="mw:referencedBy"] a::before {
-       font-size: 100%;
        font-style: italic;
        font-weight: bold;
        vertical-align: super;
-   #   content: counter(mw-ref-linkback, persian-alphabetic);
+       content: counter(mw-ref-linkback, old-magrebi);
+       line-height: 1.3em;
    }
 
    div.reflist + ol + ul {
@@ -256,14 +259,28 @@ ar.wikipedia.org: |
 
 # ------------------------ These styles apply to viwiki only ------------------------
 vi.wikipedia.org: |
-   [rel="mw:referencedBy"]::before {
-       content: "^";
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback 0;
+   }
+
+   a[rel="mw:referencedBy"]::before {
+       content: "^ ";
        font-weight: bold;
    }
 
+   span[rel="mw:referencedBy"]::before {
+       content: "^ ";
+   }
+
    span[rel="mw:referencedBy"] a::before {
+       font-size: 80%;
        font-weight: bold;
        font-style: italic;
+       content: counter(mw-ref-linkback, lower-alpha);
+   }
+
+   span[rel="mw:referencedBy"] a::after {
+       content: ' ';
    }
 
 # ------------------------ These styles apply to zhwiki only ------------------------
