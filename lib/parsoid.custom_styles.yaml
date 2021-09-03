@@ -264,7 +264,7 @@ vi.wikipedia.org: |
    }
 
    a[rel="mw:referencedBy"]::before {
-       content: "^ ";
+       content: "^";
        font-weight: bold;
    }
 
