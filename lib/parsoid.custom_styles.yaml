@@ -413,7 +413,12 @@ ja.wikipedia.org: |
        counter-reset: mw-ref-linkback 0;
    }
 
-   [rel="mw:referencedBy"]::before {
+   a[rel="mw:referencedBy"]::before {
+       content: "^ ";
+       font-weight: bold;
+   }
+
+   span[rel="mw:referencedBy"]::before {
        content: "^ ";
    }
 
