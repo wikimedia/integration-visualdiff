@@ -2,6 +2,9 @@
   "name": "visual_diffs",
   "description": "Visual diffing code",
   "version": "0.0.1",
+  "scripts": {
+    "test": ""
+  },
   "dependencies": {
     "babybird": "^0.0.1",
     "crypto": "^0.0.3",
