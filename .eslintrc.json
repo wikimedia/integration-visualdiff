@@ -1,6 +1,7 @@
 {
 	"extends": "wikimedia/client-es6",
 	"rules": {
+		"computed-property-spacing": "off",
 		"array-bracket-spacing": "off",
 		"block-scoped-var": "off",
 		"comma-dangle": "off",
