@@ -7,6 +7,7 @@ const yargs = require('yargs');
 const fs = require('fs');
 const Util = require('../lib/differ.utils.js').Util;
 const VisualDiffer = require('../lib/differ.js').VisualDiffer;
+const { exit } = require('process');
 
 // Command line options
 const opts = yargs.usage('Usage: $0 [connection parameters]')
@@ -44,7 +45,7 @@ try {
 } catch (e) {
 	console.error('Aborting! Got exception processing diffserver.settings.js: ' + e);
 	console.error(e.stack);
-	return;
+	process.exit(1);
 }
 
 const baseDir = settings.outdir.slice().replace(/\/$/, '');

@@ -3,7 +3,7 @@
   "description": "Visual diffing code",
   "version": "0.0.1",
   "scripts": {
-    "test": ""
+    "test": "eslint . --max-warnings 0"
   },
   "dependencies": {
     "babybird": "^0.0.1",
@@ -16,5 +16,9 @@
     "request": "^2.87.0",
     "semver": "^7.3.5",
     "yargs": "^13.2.4"
+  },
+  "devDependencies": {
+    "eslint-config-wikimedia": "0.20.0",
+    "eslint": "7.32.0"
   }
 }

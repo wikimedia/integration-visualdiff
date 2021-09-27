@@ -1,0 +1,18 @@
+{
+	"extends": "wikimedia/server",
+	"rules": {
+		"comma-dangle": "off",
+		"computed-property-spacing": "off",
+		"max-statements-per-line": "off",
+		"no-multiple-empty-lines": "off",
+		"no-process-exit": "off",
+		"no-shadow": "off",
+		"no-unused-vars": "off",
+		"no-var": "off",
+		"quote-props": "off",
+		"space-before-blocks": "off",
+		"space-before-function-paren": "off",
+		"space-in-parens": "off"
+	}
+}
+
