@@ -352,7 +352,13 @@ de.wikipedia.org: |
        counter-reset: mw-ref-linkback 0;
    }
 
+   a[rel="mw:referencedBy"]::before {
+       content: "↑";
+       font-style: italic;
+   }
+
    span[rel="mw:referencedBy"] a::before {
+       content: "↑";
        font-style: italic;
        content: counter(mw-ref-linkback, lower-alpha);
    }
