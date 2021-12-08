@@ -18,6 +18,11 @@ const customOpts = {
 		description: "YAML file containing custom CSS",
 		'boolean': false,
 		'default': "../styles.yaml"
+	},
+	'noSandBox': {
+		description: "No sandbox",
+		'boolean': true,
+		'default': false
 	}
 };
 
