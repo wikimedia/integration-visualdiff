@@ -245,7 +245,6 @@ ar.wikipedia.org: |
 
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback 0;
-       margin-right: -2px;
    }
 
    a[rel="mw:referencedBy"]::before {
