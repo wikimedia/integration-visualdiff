@@ -131,6 +131,10 @@ es.wikipedia.org: |
        content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
    }
 
+   sup.mw-ref a[data-mw-group="decimal"]::after {
+       content: counter(mw-Ref,decimal);
+   }
+
 # ------------------------ These styles apply to nowiki only ------------------------
 
 no.wikipedia.org: |
