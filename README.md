@@ -1,10 +1,8 @@
 ## Install/setup
 
-* Install dependencies
-  See https://github.com/Automattic/node-canvas/wiki/Installation---Ubuntu-and-other-Debian-based-systems
-
 * npm install
-* Add $PWD/node_modules/phantomjs/bin to $PATH
+* Make sure you have a working `uprightdiff` binary.
+  You may have to compile from source if the Debian-packaged version isn't compatible with your Ubuntu install.
 
 ## Working with proxies
 * Set the HTTP_PROXY_AND_PORT if you have a proxy in between.
@@ -26,18 +24,7 @@ OR this script
 ## Examples
 
 ``` bash
-# Compare rendering of two existing HTML files (on the web)
-$ cd bin; node gen.visual_diff.js --outdir /tmp/ --url1 http://en.wikipedia.org/wiki/Hampi --url2 http://en.wikipedia.org/wiki/Hospet
-
-# Compare rendering of two existing HTML files
-$ cd bin; node gen.visual_diff.js --outdir /tmp/ --url1 enwiki/Hampi.php.html --url2 enwiki/Hampi.parsoid.html
-
-# Fetch PHP parser and Parsoid HTML output from their servers and compare them (read config from a config file)
-$ cd bin; node gen.visual_diff.js --wiki en.wikipedia.org --title Hospet --config examples/parsoid.php.diffsettings.js
-
-# Fetch PHP parser and Parsoid HTML output from their servers and compare them (config on commandline), and also dump the HTML
-# after suitably postprocessing them
-$ cd bin; node gen.visual_diff.js --wiki en.wikipedia.org --title Hampi --html1PP ../lib/php_parser.postprocess.js --html2PP ../lib/parsoid.postprocess.js --dumpHTML1 --dumpHTML2
+$ cd bin; node gen.visual_diff.js --config <your-config-file> --title Hospet
 ```
 
 The <code>bin/examples</code> directory has a sample enwiki titles list and a bunch of example config files for 3 different use cases
@@ -46,6 +33,7 @@ The <code>bin/examples</code> directory has a sample enwiki titles list and a bu
 * php_output.diffsettings.js sample file (incomplete) for some use case that might compare PHP parser output in 2 different configurations
 
 bin/examples directory also provides a rundiffs.sh script for generating diffs on a bunch of titles (provided in a file as a CLI arg) and run with a CLI-provided config file.
+At the very least, you may have to update the binary property for uprightdiff in the config files.
 
 ## Testreduce client
 
