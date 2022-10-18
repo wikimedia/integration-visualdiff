@@ -4,9 +4,16 @@ all: |
         display: none;
     }
 
-    /* applies to all wikis! */
     ol[data-mw-group="lower-alpha"].mw-references li {
         list-style-type: lower-alpha;
+    }
+
+    [rel="mw:referencedBy"] {
+        counter-reset: mw-ref-linkback 0;
+    }
+
+    span[rel="mw:referencedBy"] a::before {
+        content: counter(mw-ref-linkback, lower-alpha);
     }
 
 # ------------------------ These styles apply to enwiki only ------------------------
@@ -14,12 +21,6 @@ en.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
 
-    sup,sub { line-height:1; }
-
-    [rel="mw:referencedBy"] {
-        counter-reset: mw-ref-linkback 0;
-    }
-
     a[rel="mw:referencedBy"]::before {
         content: "^";
         font-weight: bold;
@@ -30,14 +31,9 @@ en.wikipedia.org: |
     }
 
     span[rel="mw:referencedBy"] a::before {
-        content: ' ' counter(mw-ref-linkback, lower-alpha);
         font-style: italic;
         font-weight: bold;
         font-size: 80%;
-    }
-
-    span[rel="mw:referencedBy"] a::after {
-        content: ' ';
     }
 
 # ------------------------ These styles apply to itwiki only ------------------------
@@ -45,12 +41,6 @@ it.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
        Rest will be specific to enwiki and will be part of enwiki's common.css */
 
-    sup,sub { line-height:1; }
-
-    [rel="mw:referencedBy"] {
-        counter-reset: mw-ref-linkback 0;
-    }
-
     a[rel="mw:referencedBy"]::before {
         content: "^";
         font-weight: bold;
@@ -61,20 +51,11 @@ it.wikipedia.org: |
     }
 
     span[rel="mw:referencedBy"] a::before {
-        content: ' ' counter(mw-ref-linkback, lower-alpha);
         font-style: italic;
-    }
-
-    span[rel="mw:referencedBy"] a::after {
-        content: ' ';
     }
 
 # ------------------------ These styles apply to frwiki only ------------------------
 fr.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    span.mw-reference-text sup {
        vertical-align: text-top;
        position: relative;
@@ -82,6 +63,7 @@ fr.wikipedia.org: |
        font-size: 0.75em;
    }
 
+   /* Override */
    span[rel="mw:referencedBy"] a::before {
        content: counter(mw-ref-linkback, lower-alpha) ' ';
    }
@@ -104,12 +86,7 @@ fr.wikipedia.org: |
 
 # ------------------------ These styles apply to eswiki only ------------------------
 es.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    span[rel="mw:referencedBy"] a::before {
-       content: counter(mw-ref-linkback, lower-alpha);
        font-style: italic;
        font-weight: bold;
    }
@@ -138,10 +115,6 @@ es.wikipedia.org: |
 # ------------------------ These styles apply to nowiki only ------------------------
 
 no.wikipedia.org: |
-    [rel="mw:referencedBy"] {
-        counter-reset: mw-ref-linkback 0;
-    }
-
     a[rel="mw:referencedBy"]::before {
         content: "^";
         font-weight: bold;
@@ -153,32 +126,19 @@ no.wikipedia.org: |
         content: "^ ";
     }
 
-    span[rel="mw:referencedBy"] a::before {
-        content: ' ' counter(mw-ref-linkback, lower-alpha);
-    }
-
 # ------------------------ These styles apply to huwiki only ------------------------
 hu.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    span[rel="mw:referencedBy"]::before    {
        content: "^ ";
    }
 
    span[rel="mw:referencedBy"] a::before {
-       content: counter(mw-ref-linkback, lower-alpha);
        font-style: italic;
        font-weight: bold;
    }
 
 # ------------------------ These styles apply to svwiki only ------------------------
 sv.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    a[rel="mw:referencedBy"]::before {
        content: "^";
    }
@@ -192,7 +152,6 @@ sv.wikipedia.org: |
    }
 
    span[rel="mw:referencedBy"] a::before {
-       content: counter(mw-ref-linkback, lower-alpha);
        vertical-align: middle;
        font-size: 80%;
    }
@@ -211,10 +170,6 @@ sv.wikipedia.org: |
 
 # ------------------------ These styles apply to ruwiki only ------------------------
 ru.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    a[rel="mw:referencedBy"]::before {
        content: "↑";
    }
@@ -233,9 +188,6 @@ ko.wikipedia.org: |
     symbols: '가' '나' '다' '라' '마' '바' '사' '아' '자' '차' '카' '타' '파' '하' '거' '너' '더' '러' '머' '버' '서' '어' '저' '처' '커' '터' '퍼' '허' '고' '노' '도' '로' '모' '보' '소' '오' '조' '초' '코' '토' '포' '호' '구' '누' '두' '루' '무' '부' '수' '우' '주' '>추' '쿠' '투' '푸' '후' '그' '느' '드' '르' '므' '브' '스' '으' '즈' '츠' '크' '트' '프' '흐' '기' '니' '디' '리' '미' '비' '시' '이' '지' '치' '키' '티' '피' '히';
   }
 
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
    span[rel="mw:referencedBy"] a::before {
        content: counter(mw-ref-linkback, kowiki-backlink);
    }
@@ -245,10 +197,6 @@ ar.wikipedia.org: |
    @counter-style old-magrebi { # see https://www.w3.org/TR/predefined-counter-styles/#arabic-styles
        system: fixed;
        symbols: 'أ' 'ﺏ' 'ﺕ' 'ﺙ' 'ﺝ' 'ﺡ' 'ﺥ' 'ﺩ' 'ﺫ' 'ﺭ' 'ﺯ' 'ﻁ' 'ﻅ' 'ﻙ' 'ﻝ' 'ﻡ' 'ﻥ' 'ﺹ' 'ﺽ' 'ﻉ' 'ﻍ' 'ﻑ' 'ﻕ' 'ﺱ' 'ﺵ' 'ﻩ' 'ﻭ';
-   }
-
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
    }
 
    a[rel="mw:referencedBy"]::before {
@@ -276,10 +224,6 @@ ar.wikipedia.org: |
 
 # ------------------------ These styles apply to viwiki only ------------------------
 vi.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    a[rel="mw:referencedBy"]::before {
        content: "^";
        font-weight: bold;
@@ -293,11 +237,6 @@ vi.wikipedia.org: |
        font-size: 80%;
        font-weight: bold;
        font-style: italic;
-       content: counter(mw-ref-linkback, lower-alpha);
-   }
-
-   span[rel="mw:referencedBy"] a::after {
-       content: ' ';
    }
 
 # ------------------------ These styles apply to zhwiki only ------------------------
@@ -320,6 +259,7 @@ zh.wikipedia.org: |
 
    span[rel="mw:referencedBy"] a::before {
        font-weight: bold;
+       content: ' ' counter(mw-ref-linkback);
    }
 
    /* Match `div.thumb div a img` in Common.css */
@@ -344,52 +284,39 @@ th.wikipedia.org: |
        text-indent: 2.5em;
    }
 
+   span[rel="mw:referencedBy"] a::before {
+       content: ' ' counter(mw-ref-linkback);
+   }
+
 # ------------------------ These styles apply to ukwiki only ------------------------
 uk.wikipedia.org: |
-   #@counter-style lower-ukrainian {
-   #    system: alphabetic;
-   #    symbols: '\430' '\431' '\432' '\433' '\434' '\435' '\454' '\436' '\437' '\438' '\456' '\43A' '\43B' '\43C' '\43D' '\43E' '\43F' '\440' '\441' '\442' '\443' '\444' '\445' '\446' '\447' '\448' '\44E' '\44F';
-   #    /* symbols: 'а' 'б' 'в' 'г' 'д' 'е' 'є' 'ж' 'з' 'и' 'і' 'к' 'л' 'м' 'н' 'о' 'п' 'р' 'с' 'т' 'у' 'ф' 'х' 'ц' 'ч' 'ш' 'ю' 'я'; */
-   #    suffix: ') ';
-   #}
-
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
+   @counter-style lower-ukrainian {
+       system: alphabetic;
+       symbols: 'а' 'б' 'в' 'г' 'д' 'е' 'є' 'ж' 'з' 'и' 'і' 'к' 'л' 'м' 'н' 'о' 'п' 'р' 'с' 'т' 'у' 'ф' 'х' 'ц' 'ч' 'ш' 'ю' 'я';
    }
 
    span[rel="mw:referencedBy"] a::before {
        font-style: italic;
        font-weight: bold;
-   #    content: counter(mw-ref-linkback, lower-ukrainian);
+       content: counter(mw-ref-linkback, lower-ukrainian);
    }
 
 # ------------------------ These styles apply to dewiki only ------------------------
 de.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    a[rel="mw:referencedBy"]::before {
        content: "↑";
        font-style: italic;
    }
 
    span[rel="mw:referencedBy"] a::before {
-       content: "↑";
        font-style: italic;
-       content: counter(mw-ref-linkback, lower-alpha);
    }
 
 # ------------------------ These styles apply to nlwiki only ------------------------
 nl.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    span[rel="mw:referencedBy"] a::before {
        font-style: italic;
        font-weight: bold;
-       content: counter(mw-ref-linkback, lower-alpha);
    }
 
 # ------------------------ These styles apply to hewiki only ------------------------
@@ -398,8 +325,17 @@ he.wikipedia.org: |
        content: "^ ";
    }
 
+   span[rel="mw:referencedBy"] a::before {
+       content: ' ' counter(mw-ref-linkback);
+   }
+
 # ------------------------ These styles apply to mznwiki only ------------------------
 mzn.wikipedia.org: |
+   /* Override: starts at -1 !! */
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback -1;
+   }
+
    ol.mw-references {
       list-style-type: persian;
       counter-reset: mw-references 0;
@@ -407,10 +343,6 @@ mzn.wikipedia.org: |
 
    ol.mw-references > li {
       counter-increment: mw-references;
-   }
-
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback -1;
    }
 
    span[rel="mw:referencedBy"] a::before {
@@ -432,10 +364,6 @@ mzn.wikipedia.org: |
 
 # ------------------------ These styles apply to jawiki only ------------------------
 ja.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    a[rel="mw:referencedBy"]::before {
        content: "^ ";
        font-weight: bold;
@@ -448,19 +376,13 @@ ja.wikipedia.org: |
    span[rel="mw:referencedBy"] a::before {
        font-style: italic;
        font-weight: bold;
-       content: counter(mw-ref-linkback, lower-alpha);
    }
 
 # ------------------------ These styles apply to ptwiki only ------------------------
 pt.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    span[rel="mw:referencedBy"] a::before {
        font-style: italic;
        font-weight: bold;
-       content: counter(mw-ref-linkback, lower-alpha);
    }
 
 # ------------------------ These styles apply to plwiki only ------------------------
@@ -470,14 +392,6 @@ pl.wikipedia.org: |
    # ol.references {
    #     font-size: 85%;
    # }
-
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
-   span[rel="mw:referencedBy"] a::before {
-       content: counter(mw-ref-linkback, lower-alpha);
-   }
 
    sup.mw-ref a[data-mw-group=uwaga]::after {
        content: "[" counter(mw-Ref,lower-alpha) "]";
@@ -497,10 +411,6 @@ pl.wikipedia.org: |
 
 # ------------------------ These styles apply to trwiki only ------------------------
 tr.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    a[rel="mw:referencedBy"]::before {
        content: "^";
        font-weight: bold;
@@ -514,11 +424,14 @@ tr.wikipedia.org: |
    span[rel="mw:referencedBy"] a::before {
        font-style: italic;
        font-weight: bold;
-       content: counter(mw-ref-linkback, lower-alpha);
    }
 
 # ------------------------ These styles apply to knwiki only ------------------------
 kn.wikipedia.org: |
+   /* Override: starts at -1 !! */
+   [rel="mw:referencedBy"] {
+       counter-reset: mw-ref-linkback -1;
+   }
    ol.mw-references {
       list-style-type: kannada;
       counter-reset: mw-references 0;
@@ -526,10 +439,6 @@ kn.wikipedia.org: |
 
    ol.mw-references > li {
       counter-increment: mw-references;
-   }
-
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback -1;
    }
 
    span[rel="mw:referencedBy"] a::before {
@@ -550,13 +459,8 @@ kn.wikipedia.org: |
 
 # ------------------------ These styles apply to fiwiki only ------------------------
 fi.wikipedia.org: |
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
-
    span[rel="mw:referencedBy"] a::before {
        font-style: italic;
-       content: counter(mw-ref-linkback, lower-alpha);
    }
 
 # ------------------------ These styles apply to bnwiki only ------------------------
@@ -564,13 +468,13 @@ bn.wikipedia.org: |
    #@counter-style alphabet-bengali {
    #    system: alphabetic;
    #}
-
-   [rel="mw:referencedBy"] {
-       counter-reset: mw-ref-linkback 0;
-   }
+   #
+   #span[rel="mw:referencedBy"] a::before {
+   #    content: counter(mw-ref-linkback, alphabet-bengali);
+   #}
 
    span[rel="mw:referencedBy"] a::before {
-   #    content: counter(mw-ref-linkback, alphabet-bengali);
+       content: ' ' counter(mw-ref-linkback);
    }
 
    sup.mw-ref a::after {
@@ -591,4 +495,8 @@ is.wikipedia.org: |
    figure[typeof~='mw:Video/Frame'],
    figure[typeof~='mw:Audio/Frame'] {
       min-width: 106px;
+   }
+
+   span[rel="mw:referencedBy"] a::before {
+       content: ' ' counter(mw-ref-linkback);
    }
