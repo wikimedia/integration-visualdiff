@@ -115,15 +115,9 @@ es.wikipedia.org: |
 # ------------------------ These styles apply to nowiki only ------------------------
 
 no.wikipedia.org: |
-    a[rel="mw:referencedBy"]::before {
-        content: "^";
-        font-weight: bold;
-    }
-
-    // This is actually supposed to be bold but removing the bold
-    // eliminates all other diffs but on this caret
-    span[rel="mw:referencedBy"]::before {
+    [rel="mw:referencedBy"]::before {
         content: "^ ";
+        font-weight: bold;
     }
 
 # ------------------------ These styles apply to huwiki only ------------------------
@@ -432,9 +426,9 @@ kn.wikipedia.org: |
    [rel="mw:referencedBy"] {
        counter-reset: mw-ref-linkback -1;
    }
+
    ol.mw-references {
-      list-style-type: kannada;
-      counter-reset: mw-references 0;
+      counter-reset: mw-references list-item 0;
    }
 
    ol.mw-references > li {
@@ -442,7 +436,11 @@ kn.wikipedia.org: |
    }
 
    span[rel="mw:referencedBy"] a::before {
-       content: counter(mw-references, kannada) '.' counter(mw-ref-linkback, kannada);
+      content: counter(mw-references, kannada) '.' counter(mw-ref-linkback, kannada);
+      /* knwiki:Common.css has a font-size:80% rule
+       * for sub & sup and this is the equivalent selector
+       * for that in Parsoid */
+      font-size: 80%;
    }
 
    sup.mw-ref a::after {
