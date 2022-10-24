@@ -76,11 +76,11 @@ fr.wikipedia.org: |
        content: counter(mw-ref-linkback, lower-alpha) ' ';
    }
 
-   sup.mw-ref a::after {
+   sup.reference a::after {
        content: counter(mw-Ref,decimal);
    }
 
-   sup.mw-ref a[data-mw-group]::after {
+   sup.reference a[data-mw-group]::after {
        content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
    }
 
@@ -91,24 +91,24 @@ es.wikipedia.org: |
        font-weight: bold;
    }
 
-   sup.mw-ref:not(.separada) {
+   sup.reference:not(.separada) {
         margin-left: -0.6ch;
    }
 
-   sup.mw-ref a {
+   sup.reference a {
        white-space: nowrap;
    }
 
-   sup.mw-ref a::after {
+   sup.reference a::after {
        content: counter(mw-Ref,decimal);
        margin-left: 0.6ch;
    }
 
-   sup.mw-ref a[data-mw-group]::after {
+   sup.reference a[data-mw-group]::after {
        content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
    }
 
-   sup.mw-ref a[data-mw-group="decimal"]::after {
+   sup.reference a[data-mw-group="decimal"]::after {
        content: counter(mw-Ref,decimal);
    }
 
@@ -154,11 +154,11 @@ sv.wikipedia.org: |
        content: '';
    }
 
-   .mw-ref {
+   .reference {
        line-height: 0;
    }
 
-   sup.mw-ref a[data-mw-group=not]::after {
+   sup.reference a[data-mw-group=not]::after {
        content: "[" counter(mw-Ref,lower-alpha) "]";
    }
 
@@ -344,11 +344,11 @@ mzn.wikipedia.org: |
        content: counter(mw-references, persian) '٫' counter(mw-ref-linkback, persian);
    }
 
-   sup.mw-ref a::after {
+   sup.reference a::after {
        content: '[' counter(mw-Ref, persian) ']';
    }
 
-   sup.mw-ref a[data-mw-group]::after {
+   sup.reference a[data-mw-group]::after {
        content: '[' attr(data-mw-group) ' ' counter(mw-Ref, persian) ']';
    }
 
@@ -387,19 +387,19 @@ pl.wikipedia.org: |
    #     font-size: 85%;
    # }
 
-   sup.mw-ref a[data-mw-group=uwaga]::after {
+   sup.reference a[data-mw-group=uwaga]::after {
        content: "[" counter(mw-Ref,lower-alpha) "]";
    }
 
-   sup.mw-ref a[data-mw-group=infobox]::after {
+   sup.reference a[data-mw-group=infobox]::after {
        content: "[" counter(mw-Ref,lower-alpha) "]";
    }
 
-   sup.mw-ref a[data-mw-group=nav]::after {
+   sup.reference a[data-mw-group=nav]::after {
        content: "[" counter(mw-Ref,upper-alpha) "]";
    }
 
-   sup.mw-ref a[data-mw-group=mini]::after {
+   sup.reference a[data-mw-group=mini]::after {
        content: "[" counter(mw-Ref,lower-roman) "]";
    }
 
@@ -443,11 +443,11 @@ kn.wikipedia.org: |
       font-size: 80%;
    }
 
-   sup.mw-ref a::after {
+   sup.reference a::after {
        content: '[' counter(mw-Ref,kannada) ']';
    }
 
-   sup.mw-ref a[data-mw-group]::after {
+   sup.reference a[data-mw-group]::after {
        content: '[' attr(data-mw-group) ' ' counter(mw-Ref, kannada) ']';
    }
 
@@ -475,11 +475,11 @@ bn.wikipedia.org: |
        content: ' ' counter(mw-ref-linkback);
    }
 
-   sup.mw-ref a::after {
+   sup.reference a::after {
        content: '[' counter(mw-Ref, bengali) ']';
    }
 
-   sup.mw-ref a[data-mw-group]::after {
+   sup.reference a[data-mw-group]::after {
        content: '[' attr(data-mw-group) ' ' counter(mw-Ref, bengali) ']';
    }
 
