@@ -16,6 +16,15 @@ all: |
         content: counter(mw-ref-linkback, lower-alpha);
     }
 
+    span[rel="mw:referencedBy"] a:after {
+        content: ' ';
+        line-height: 1;
+    }
+
+    span[rel="mw:referencedBy"] a:last-child:after {
+        content: '';
+    }
+
 # ------------------------ These styles apply to enwiki only ------------------------
 en.wikipedia.org: |
     /* Some of these tweaks will probably be part of ext.cite.style.css
@@ -65,15 +74,22 @@ fr.wikipedia.org: |
 
    /* Override */
    span[rel="mw:referencedBy"] a::before {
-       content: counter(mw-ref-linkback, lower-alpha) ' ';
+       content: counter(mw-ref-linkback, lower-alpha);
    }
 
-   span[rel="mw:referencedBy"] a:last-child::before {
-       content: ' et ' counter(mw-ref-linkback, lower-alpha);
+   /* Because of the <sup> in the _many message */
+   span[rel="mw:referencedBy"] a:after {
+       font-size: smaller;
    }
 
-   span[rel="mw:referencedBy"] a:nth-last-child(2)::before {
-       content: counter(mw-ref-linkback, lower-alpha) ' ';
+   span[rel="mw:referencedBy"] a:nth-last-child(2)::after {
+       content: ' et ';
+       vertical-align: super;
+   }
+
+   /* TEMPORARY till we deploy new CSS from Cite */
+   span[rel="mw:referencedBy"] a:last-child:before {
+       content: counter(mw-ref-linkback, lower-alpha);
    }
 
    sup.reference a::after {
@@ -91,17 +107,13 @@ es.wikipedia.org: |
        font-weight: bold;
    }
 
-   sup.reference:not(.separada) {
-        margin-left: -0.6ch;
-   }
-
    sup.reference a {
        white-space: nowrap;
+       margin-left: 0.6ch;
    }
 
    sup.reference a::after {
        content: counter(mw-Ref,decimal);
-       margin-left: 0.6ch;
    }
 
    sup.reference a[data-mw-group]::after {
@@ -122,10 +134,6 @@ no.wikipedia.org: |
 
 # ------------------------ These styles apply to huwiki only ------------------------
 hu.wikipedia.org: |
-   span[rel="mw:referencedBy"]::before    {
-       content: "^ ";
-   }
-
    span[rel="mw:referencedBy"] a::before {
        font-style: italic;
        font-weight: bold;
