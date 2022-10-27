@@ -8,14 +8,6 @@ all: |
         list-style-type: lower-alpha;
     }
 
-    [rel="mw:referencedBy"] {
-        counter-reset: mw-ref-linkback 0;
-    }
-
-    span[rel="mw:referencedBy"] a::before {
-        content: counter(mw-ref-linkback, lower-alpha);
-    }
-
     span[rel="mw:referencedBy"] a:after {
         content: ' ';
         line-height: 1;
