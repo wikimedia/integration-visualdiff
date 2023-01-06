@@ -33,7 +33,9 @@ module.exports = {
     injectJQuery: false,
     server: 'https://',
     computeURL: function(server, wiki, title) {
-	  const url = server + Util.getWikiDomain(wiki) + '/api/rest_v1/page/html/' + encodeURIComponent(title);
+	  // REST API: https://en.wikipedia.org/w/rest.php/v1/page/Hospet/html
+	  // RESTBase: https://en.wikipedia.org/api/rest_v1/page/html/Hospet
+	  const url = server + Util.getWikiDomain(wiki) + '/w/rest.php/v1/page/' + encodeURIComponent(title) + '/html';
       // console.log("PURL: " + url);
       return url;
     },
