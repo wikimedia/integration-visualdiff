@@ -6,6 +6,7 @@ all: |
 
 # ------------------------ These styles apply to enwiki only ------------------------
 en.wikipedia.org: |
+   /* Not related to Cite localization, but needed to match current Cite rendering */
     span[rel="mw:referencedBy"] > a::before {
         font-size: 80%;
     }
@@ -31,6 +32,7 @@ en.wikipedia.org: |
 # the message isn't really customized. The on-wiki CSS hides the "[" and "]"
 # which isn't something that the script can handle
 fr.wikipedia.org: |
+   /* Not related to Cite localization, but needed to match current Cite rendering */
    span.mw-reference-text sup {
        vertical-align: text-top;
        position: relative;
@@ -38,10 +40,12 @@ fr.wikipedia.org: |
        font-size: 0.75em;
    }
 
+   /* Needed to hide the '[' and ']' as noted above */
    sup.reference > a::after {
        content: counter(mw-Ref,decimal);
    }
 
+   /* Needed to hide the '[' and ']' as noted above */
    sup.reference > a[data-mw-group]::after {
        content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
    }
@@ -72,6 +76,7 @@ fr.wikipedia.org: |
 # NOTE: Patch generated CSS with this
 # The regexes in the script trips up on some stray characters
 es.wikipedia.org: |
+   /* Not related to Cite localization, but needed to match current Cite rendering */
    sup.reference a {
        white-space: nowrap;
        margin-left: 0.6ch;
@@ -131,6 +136,7 @@ sv.wikipedia.org: |
 
 # ------------------------ These styles apply to ruwiki only ------------------------
 ru.wikipedia.org: |
+   /* Not related to Cite localization, but needed to match current Cite rendering */
    span[rel="mw:referencedBy"] > a::before {
        font-size: 80%;
    }
@@ -143,10 +149,12 @@ ru.wikipedia.org: |
 
 # ------------------------ These styles apply to arwiki only ------------------------
 ar.wikipedia.org: |
+   /* Not related to Cite localization, but needed to match current Cite rendering */
    span[rel="mw:referencedBy"] > a::before {
        line-height: 1.3em;
    }
 
+   /* Not related to Cite localization, but needed to match current Cite rendering */
    div.reflist + ol + ul {
        font-size: 13px;
        margin-bottom: 0.5em;
@@ -202,6 +210,7 @@ ar.wikipedia.org: |
 
 # ------------------------ These styles apply to viwiki only ------------------------
 vi.wikipedia.org: |
+   /* Not related to Cite localization, but needed to match current Cite rendering */
    span[rel="mw:referencedBy"] > a::before {
        font-size: 80%;
    }
@@ -224,28 +233,6 @@ vi.wikipedia.org: |
 
 # ------------------------ These styles apply to zhwiki only ------------------------
 zh.wikipedia.org: |
-   /* Needed in the resource-modules hack scenario where
-    * it appears some JS module is not hidiing this in the
-    * Parsoid case unlike the core case */
-   div#bluedeck_ding, div#bluedeck_ding_history {
-       display: none;
-   }
-
-   /* Match `div.thumb div a img` in Common.css */
-   figure[typeof~='mw:Image/Thumb'] > *:first-child > img,
-   figure[typeof~='mw:Video/Thumb'] > *:first-child > img,
-   figure[typeof~='mw:Audio/Thumb'] > *:first-child > img,
-   figure[typeof~='mw:Image/Frame'] > *:first-child > img,
-   figure[typeof~='mw:Video/Frame'] > *:first-child > img,
-   figure[typeof~='mw:Audio/Frame'] > *:first-child > img,
-   figure[typeof~='mw:Image/Thumb'] > *:first-child > video,
-   figure[typeof~='mw:Video/Thumb'] > *:first-child > video,
-   figure[typeof~='mw:Audio/Thumb'] > *:first-child > video,
-   figure[typeof~='mw:Image/Frame'] > *:first-child > video,
-   figure[typeof~='mw:Video/Frame'] > *:first-child > video,
-   figure[typeof~='mw:Audio/Frame'] > *:first-child > video {
-      background-color: #f8f9fa;
-   }
     /* The rest of these rules came from auto-generated output from a script */
     a[ rel="mw:referencedBy" ]:before {
         font-weight: bold;
@@ -261,6 +248,7 @@ zh.wikipedia.org: |
 
 # ------------------------ These styles apply to thwiki only ------------------------
 th.wikipedia.org: |
+   /* Not related to Cite localization, and nned not be copied over */
    p {
        text-indent: 2.5em;
    }
@@ -291,10 +279,12 @@ th.wikipedia.org: |
 # So, CSS rules of the form ol.references li a[href|="#cite_ref"] don't
 # currently apply to Parsoid output.
 de.wikipedia.org: |
+   /* Needed because Parsoid generates fragment hrefs that don't match existing CSS */
    a[rel="mw:referencedBy"]::before {
        font-style: italic;
    }
 
+   /* Needed because Parsoid generates fragment hrefs that don't match existing CSS */
    span[rel="mw:referencedBy"] > a::before {
        font-style: italic;
    }
@@ -335,29 +325,18 @@ mzn.wikipedia.org: |
 
 # ------------------------ These styles apply to knwiki only ------------------------
 kn.wikipedia.org: |
+   /* Not related to Cite localization, but needed to match current Cite rendering */
    span[rel="mw:referencedBy"] > a::before {
-      /* knwiki:Common.css has a font-size:80% rule
-       * for sub & sup and this is the equivalent selector
-       * for that in Parsoid */
       font-size: 80%;
    }
 
+   /* Not related to Cite localization and could be skipped now */
    .mw-body-content a[rel~='mw:ExtLink']:empty:after {
       content: '[' counter(mw-numbered-ext-link, kannada) ']';
    }
 
 # ------------------------ These styles apply to iswiki only ------------------------
 is.wikipedia.org: |
-   /* Match .thumbinner in Common.css (+ padding) */
-   figure[typeof~='mw:Image/Thumb'],
-   figure[typeof~='mw:Video/Thumb'],
-   figure[typeof~='mw:Audio/Thumb'],
-   figure[typeof~='mw:Image/Frame'],
-   figure[typeof~='mw:Video/Frame'],
-   figure[typeof~='mw:Audio/Frame'] {
-      min-width: 106px;
-   }
-
    span[rel="mw:referencedBy"] > a::before {
        content: ' ' counter(mw-ref-linkback);
    }
