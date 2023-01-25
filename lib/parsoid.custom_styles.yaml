@@ -273,7 +273,7 @@ th.wikipedia.org: |
     }
 
 # ------------------------ These styles apply to dewiki only ------------------------
-# FIXME: These CSS rules became necessary for Parsoid HTML because
+# NOTE: These CSS rules became necessary for Parsoid HTML because
 # Parsoid generates <a href="./TITLE#cite_ref-N" ....> but
 # current output is <a href="#cite_ref-N" ... >
 # So, CSS rules of the form ol.references li a[href|="#cite_ref"] don't
@@ -294,10 +294,9 @@ de.wikipedia.org: |
     }
 
 # ------------------------ These styles apply to mznwiki only ------------------------
-# FIXME: This has fa.wikipedia.org fallback. So, the CSS for fawiki should
-# be copied over here.
-# Is there better fallback support we can provide by doing this fallback chaining
-# automatically in the script?
+# NOTE: mznwiki falls back to fa.wikipedia.org. So, the CSS for fawiki has
+# been copied over here. This is in lieu of fixing the CSS generating script
+# to better deal with fallback chains.
 # Example page: https://mzn.wikipedia.org/wiki/%D8%B4%D9%85%D8%A7%D9%84%DB%8C_%D8%A7%DB%8C%D8%B1%D9%84%D9%86%D8%AF
 mzn.wikipedia.org: |
    .mw-body-content a[rel~='mw:ExtLink']:empty:after {
