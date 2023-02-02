@@ -1,9 +1,3 @@
-# ------------------------ These styles apply to all wikis ------------------------
-all: |
-    .mw-empty-elt {
-        display: none;
-    }
-
 # ------------------------ These styles apply to enwiki only ------------------------
 en.wikipedia.org: |
    /* Not related to Cite localization, but needed to match current Cite rendering */
@@ -299,9 +293,6 @@ de.wikipedia.org: |
 # to better deal with fallback chains.
 # Example page: https://mzn.wikipedia.org/wiki/%D8%B4%D9%85%D8%A7%D9%84%DB%8C_%D8%A7%DB%8C%D8%B1%D9%84%D9%86%D8%AF
 mzn.wikipedia.org: |
-   .mw-body-content a[rel~='mw:ExtLink']:empty:after {
-      content: '[' counter(mw-numbered-ext-link, persian) ']';
-   }
     /* These are fa.wikipedia.org fallback rules */
     /* The rest of these rules came from auto-generated output from a script */
     @counter-style custom-backlink {
@@ -327,11 +318,6 @@ kn.wikipedia.org: |
    /* Not related to Cite localization, but needed to match current Cite rendering */
    span[rel="mw:referencedBy"] > a::before {
       font-size: 80%;
-   }
-
-   /* Not related to Cite localization and could be skipped now */
-   .mw-body-content a[rel~='mw:ExtLink']:empty:after {
-      content: '[' counter(mw-numbered-ext-link, kannada) ']';
    }
 
 # ------------------------ These styles apply to iswiki only ------------------------
