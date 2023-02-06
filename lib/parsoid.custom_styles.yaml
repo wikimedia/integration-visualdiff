@@ -267,21 +267,7 @@ th.wikipedia.org: |
     }
 
 # ------------------------ These styles apply to dewiki only ------------------------
-# NOTE: These CSS rules became necessary for Parsoid HTML because
-# Parsoid generates <a href="./TITLE#cite_ref-N" ....> but
-# current output is <a href="#cite_ref-N" ... >
-# So, CSS rules of the form ol.references li a[href|="#cite_ref"] don't
-# currently apply to Parsoid output.
 de.wikipedia.org: |
-   /* Needed because Parsoid generates fragment hrefs that don't match existing CSS */
-   a[rel="mw:referencedBy"]::before {
-       font-style: italic;
-   }
-
-   /* Needed because Parsoid generates fragment hrefs that don't match existing CSS */
-   span[rel="mw:referencedBy"] > a::before {
-       font-style: italic;
-   }
     /* The rest of these rules came from auto-generated output from a script */
     span[ rel="mw:referencedBy" ] > a:before {
         content: counter( mw-ref-linkback, lower-alpha );
