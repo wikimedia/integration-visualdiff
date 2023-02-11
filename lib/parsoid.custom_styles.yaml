@@ -5,6 +5,10 @@ en.wikipedia.org: |
         font-size: 80%;
     }
     /* The rest of these rules came from auto-generated output from a script */
+    @counter-style custom-group-label-error-test {
+        system: fixed;
+        symbols: 'first' 'second' 'last!';
+    }
     span[ rel="mw:referencedBy" ] > a:before {
         font-weight: bold;
         font-style: italic;
@@ -352,6 +356,10 @@ th.wikipedia.org: |
        content: ' ' counter(mw-ref-linkback);
    }
     /* The rest of these rules came from auto-generated output from a script */
+    @counter-style custom-group-label-error-test {
+        system: fixed;
+        symbols: 'first' 'second' 'last!';
+    }
     @counter-style custom-group-label-thai {
         system: alphabetic;
         symbols: 'ก' 'ข' 'ค' 'ง' 'จ' 'ฉ' 'ช' 'ซ' 'ด' 'ต' 'ถ' 'ท' 'น' 'บ' 'ป' 'ผ' 'ฝ' 'พ' 'ฟ' 'ม' 'ย' 'ร' 'ว' 'ส' 'อ' 'ฮ';
@@ -1859,6 +1867,10 @@ zh.wiktionary.org: |
         content: " ";
     }
 fi.wikipedia.org: |
+    @counter-style custom-group-label-error-test {
+        system: fixed;
+        symbols: 'first' 'second' 'last!';
+    }
     span[ rel="mw:referencedBy" ] > a:before {
         font-style: italic;
         content: counter( mw-ref-linkback, lower-alpha );
@@ -2052,6 +2064,10 @@ meta.wikimedia.org: |
         content: counter( mw-ref-linkback, lower-alpha );
     }
 commons.wikimedia.org: |
+    @counter-style custom-group-label-error-test {
+        system: fixed;
+        symbols: 'first' 'second' 'last!';
+    }
     span[ rel="mw:referencedBy" ] > a:before {
         font-weight: bold;
         font-style: italic;
@@ -2211,6 +2227,10 @@ fo.wikipedia.org: |
         content: '[' counter( mw-Ref, upper-alpha ) ']';
     }
 gd.wiktionary.org: |
+    @counter-style custom-group-label-error-test {
+        system: fixed;
+        symbols: 'first' 'second' 'last!';
+    }
     .mw-ref > a[data-mw-group=decimal]:after {
         content: '[' counter( mw-Ref, decimal ) ']';
     }
