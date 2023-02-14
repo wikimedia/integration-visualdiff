@@ -5,10 +5,6 @@ en.wikipedia.org: |
         font-size: 80%;
     }
     /* The rest of these rules came from auto-generated output from a script */
-    @counter-style custom-group-label-error-test {
-        system: fixed;
-        symbols: 'first' 'second' 'last!';
-    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -38,9 +34,6 @@ en.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=lower-greek]::after {
         content: '[' counter( mw-Ref, lower-greek ) ']';
-    }
-    .mw-ref > a[data-mw-group=error-test]::after {
-        content: '[' counter( mw-Ref, error-test ) ']';
     }
 
 # ------------------------ These styles apply to frwiki only ------------------------
@@ -215,10 +208,6 @@ ar.wikipedia.org: |
        clear: right;
    }
     /* The rest of these rules came from auto-generated output from a script */
-    @counter-style custom-group-label-error-test {
-        system: fixed;
-        symbols: 'أول' 'ثان' 'أخير!';
-    }
     @counter-style custom-group-label-arabic-abajed {
         system: alphabetic;
         symbols: 'أ' 'ب' 'ج' 'د' 'ه' 'و' 'ز' 'ح' 'ط' 'ي' 'ك' 'ل' 'م' 'ن' 'س' 'ع' 'ف' 'ص' 'ق' 'ر' 'ش' 'ت' 'ث' 'خ' 'ذ' 'ض' 'ظ' 'غ';
@@ -257,9 +246,6 @@ ar.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=lower-alpha]::after {
         content: '[' counter( mw-Ref, lower-alpha ) ']';
-    }
-    .mw-ref > a[data-mw-group=error-test]::after {
-        content: '[' counter( mw-Ref, custom-group-label-error-test ) ']';
     }
     .mw-ref > a[data-mw-group=arabic-abajed]::after {
         content: '[' counter( mw-Ref, custom-group-label-arabic-abajed ) ']';
@@ -356,10 +342,6 @@ th.wikipedia.org: |
        content: ' ' counter(mw-ref-linkback);
    }
     /* The rest of these rules came from auto-generated output from a script */
-    @counter-style custom-group-label-error-test {
-        system: fixed;
-        symbols: 'first' 'second' 'last!';
-    }
     @counter-style custom-group-label-thai {
         system: alphabetic;
         symbols: 'ก' 'ข' 'ค' 'ง' 'จ' 'ฉ' 'ช' 'ซ' 'ด' 'ต' 'ถ' 'ท' 'น' 'บ' 'ป' 'ผ' 'ฝ' 'พ' 'ฟ' 'ม' 'ย' 'ร' 'ว' 'ส' 'อ' 'ฮ';
@@ -388,9 +370,6 @@ th.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=lower-greek]::after {
         content: '[' counter( mw-Ref, lower-greek ) ']';
-    }
-    .mw-ref > a[data-mw-group=error-test]::after {
-        content: '[' counter( mw-Ref, error-test ) ']';
     }
 
 # ------------------------ These styles apply to dewiki only ------------------------
@@ -540,10 +519,6 @@ ary.wikipedia.org: |
         content: '[' counter( mw-Ref, decimal ) ']';
     }
 arz.wikipedia.org: |
-    @counter-style custom-group-label-error-test {
-        system: fixed;
-        symbols: 'اول' 'تانى' 'اخير!';
-    }
     @counter-style custom-backlink {
         system: alphabetic;
         symbols: 'أ' 'ب' 'ت' 'ث' 'ج' 'ح' 'خ' 'د' 'ذ' 'ر' 'ز' 'س' 'ش' 'ص' 'ض' 'ط' 'ظ' 'ع' 'غ' 'ف' 'ق' 'ك' 'ل' 'م' 'ن' 'ه' 'و' 'ى';
@@ -562,9 +537,6 @@ arz.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=lower-roman]::after {
         content: '[' counter( mw-Ref, lower-roman ) ']';
-    }
-    .mw-ref > a[data-mw-group=error-test]::after {
-        content: '[' counter( mw-Ref, custom-group-label-error-test ) ']';
     }
     .mw-ref > a[data-mw-group=lower-alpha]::after {
         content: '[' counter( mw-Ref, lower-alpha ) ']';
@@ -1154,10 +1126,6 @@ id.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-greek ) ']';
     }
 ilo.wikipedia.org: |
-    @counter-style custom-group-label-error-test {
-        system: fixed;
-        symbols: 'umuna' 'maikadua' 'naudi!';
-    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1187,9 +1155,6 @@ ilo.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=upper-roman]::after {
         content: '[' counter( mw-Ref, upper-roman ) ']';
-    }
-    .mw-ref > a[data-mw-group=error-test]::after {
-        content: '[' counter( mw-Ref, custom-group-label-error-test ) ']';
     }
 it.wikiquote.org: |
     span[ rel="mw:referencedBy" ] > a::before {
@@ -1867,10 +1832,6 @@ zh.wiktionary.org: |
         content: " ";
     }
 fi.wikipedia.org: |
-    @counter-style custom-group-label-error-test {
-        system: fixed;
-        symbols: 'first' 'second' 'last!';
-    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-style: italic;
         content: counter( mw-ref-linkback, lower-alpha );
@@ -1883,9 +1844,6 @@ fi.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=upper-roman]::after {
         content: '[' counter( mw-Ref, upper-roman ) ']';
-    }
-    .mw-ref > a[data-mw-group=error-test]::after {
-        content: '[' counter( mw-Ref, error-test ) ']';
     }
     .mw-ref > a[data-mw-group=decimal]::after {
         content: '[' counter( mw-Ref, decimal ) ']';
@@ -2002,10 +1960,6 @@ pl.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-roman ) ']';
     }
 pt.wikipedia.org: |
-    @counter-style custom-group-label-error-test {
-        system: fixed;
-        symbols: 'primeiro' 'segundo' 'último!';
-    }
     .mw-ref > a[data-mw-group=lower-greek]::after {
         content: '[' counter( mw-Ref, lower-greek ) ']';
     }
@@ -2023,9 +1977,6 @@ pt.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=lower-roman]::after {
         content: '[' counter( mw-Ref, lower-roman ) ']';
-    }
-    .mw-ref > a[data-mw-group=error-test]::after {
-        content: '[' counter( mw-Ref, custom-group-label-error-test ) ']';
     }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
@@ -2064,10 +2015,6 @@ meta.wikimedia.org: |
         content: counter( mw-ref-linkback, lower-alpha );
     }
 commons.wikimedia.org: |
-    @counter-style custom-group-label-error-test {
-        system: fixed;
-        symbols: 'first' 'second' 'last!';
-    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -2081,9 +2028,6 @@ commons.wikimedia.org: |
     }
     .mw-ref > a[data-mw-group=upper-roman]::after {
         content: '[' counter( mw-Ref, upper-roman ) ']';
-    }
-    .mw-ref > a[data-mw-group=error-test]::after {
-        content: '[' counter( mw-Ref, error-test ) ']';
     }
     .mw-ref > a[data-mw-group=lower-alpha]::after {
         content: '[' counter( mw-Ref, lower-alpha ) ']';
@@ -2227,10 +2171,6 @@ fo.wikipedia.org: |
         content: '[' counter( mw-Ref, upper-alpha ) ']';
     }
 gd.wiktionary.org: |
-    @counter-style custom-group-label-error-test {
-        system: fixed;
-        symbols: 'first' 'second' 'last!';
-    }
     .mw-ref > a[data-mw-group=decimal]::after {
         content: '[' counter( mw-Ref, decimal ) ']';
     }
@@ -2248,9 +2188,6 @@ gd.wiktionary.org: |
     }
     .mw-ref > a[data-mw-group=upper-roman]::after {
         content: '[' counter( mw-Ref, upper-roman ) ']';
-    }
-    .mw-ref > a[data-mw-group=error-test]::after {
-        content: '[' counter( mw-Ref, error-test ) ']';
     }
 # Looks like some prefix-type CSS rules could trim this down -- to be investigated
 hy.wikipedia.org: |
@@ -2375,10 +2312,6 @@ ta.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-alpha ) ']';
     }
 tl.wikipedia.org: |
-    @counter-style custom-group-label-error-test {
-        system: fixed;
-        symbols: 'una' 'ikalawa' 'huli!';
-    }
     .mw-ref > a[data-mw-group=lower-greek]::after {
         content: '[' counter( mw-Ref, lower-greek ) ']';
     }
@@ -2396,9 +2329,6 @@ tl.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=upper-roman]::after {
         content: '[' counter( mw-Ref, upper-roman ) ']';
-    }
-    .mw-ref > a[data-mw-group=error-test]::after {
-        content: '[' counter( mw-Ref, custom-group-label-error-test ) ']';
     }
 tr.wikivoyage.org: |
     .mw-ref > a[data-mw-group=lower-alpha]::after {
