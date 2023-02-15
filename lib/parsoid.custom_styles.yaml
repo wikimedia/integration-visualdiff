@@ -79,10 +79,10 @@ fr.wikipedia.org: |
     span[ rel="mw:referencedBy" ] > a::after {
         font-size: smaller;
     }
-    span[ rel="mw:referencedBy" ] > a::nth-last-child(2)::after {
+    span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
         vertical-align: super;
     }
-    span[ rel="mw:referencedBy" ] > a::nth-last-child(2)::after {
+    span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
         content: " et ";
     }
 
@@ -822,7 +822,7 @@ cv.wikipedia.org: |
     span[ rel="mw:referencedBy" ]::before {
         content: "^ ";
     }
-    span[ rel="mw:referencedBy" ] > a::nth-last-child(2)::after {
+    span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
         font-style: italic;
         content: " тата ";
     }
@@ -938,7 +938,7 @@ frp.wikipedia.org: |
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-references, decimal ) ',' counter( mw-ref-linkback, decimal ) ' ';
     }
-    span[ rel="mw:referencedBy" ] > a::nth-last-child(2)::after {
+    span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
         content: " et ";
     }
 fr.wikisource.org: |
@@ -949,7 +949,7 @@ fr.wikisource.org: |
     span[ rel="mw:referencedBy" ] > a::after {
         content: ", ";
     }
-    span[ rel="mw:referencedBy" ] > a::nth-last-child(2)::after {
+    span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
         content: " et ";
     }
     span[ rel="mw:referencedBy" ] > a::before {
@@ -966,7 +966,7 @@ fr.wiktionary.org: |
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, custom-backlink );
     }
-    span[ rel="mw:referencedBy" ] > a::nth-last-child(2)::after {
+    span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
         content: " et ";
     }
 gl.wikipedia.org: |
