@@ -17,6 +17,9 @@ en.wikipedia.org: |
     span[ rel="mw:referencedBy" ]::before {
         content: "^ ";
     }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     .mw-ref > a[data-mw-group=lower-alpha]::after {
         content: '[' counter( mw-Ref, lower-alpha ) ']';
     }
@@ -150,17 +153,17 @@ sv.wikipedia.org: |
    span[rel="mw:referencedBy"]::before {
        content: "^ [";
    }
-
    span[rel="mw:referencedBy"]::after {
        content: "]";
    }
-
+   span[ rel="mw:referencedBy" ] {
+       counter-reset: mw-ref-linkback 0;
+   }
    span[rel="mw:referencedBy"] > a::before {
        vertical-align: middle;
        font-size: 80%;
        content: counter( mw-ref-linkback, lower-alpha );
    }
-
    .reference {
        line-height: 0;
    }
@@ -283,6 +286,9 @@ vi.wikipedia.org: |
         font-weight: bold;
         content: "^";
     }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -376,6 +382,9 @@ th.wikipedia.org: |
 
 # ------------------------ These styles apply to dewiki only ------------------------
 de.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     /* The rest of these rules came from auto-generated output from a script */
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
@@ -389,13 +398,6 @@ de.wikipedia.org: |
 mzn.wikipedia.org: |
     /* These are fa.wikipedia.org fallback rules */
     /* The rest of these rules came from auto-generated output from a script */
-    @counter-style custom-backlink {
-        system: fixed;
-        symbols: 'آ' 'ب' 'پ' 'ت' 'ث' 'ج' 'چ' 'ح' 'خ' 'د' 'ذ' 'ر' 'ز' 'ژ' 'س' 'ش' 'ص' 'ض' 'ط' 'ظ' 'ع' 'ق' 'ف' 'ق' 'ک' 'گ' 'ل' 'م' 'ن' 'و' 'ه' 'ی';
-    }
-    span[ rel="mw:referencedBy" ] {
-        counter-reset: mw-ref-linkback 0;
-    }
     @counter-style custom-group-label-persian-alpha {
         system: fixed;
         symbols: 'الف' 'ب' 'پ' 'ت' 'ث' 'ج' 'چ' 'ح' 'خ' 'د' 'ذ' 'ر' 'ز' 'ژ' 'س' 'ش' 'ص' 'ض' 'ط' 'ظ' 'ع' 'غ' 'ف' 'ق' 'ک' 'گ' 'ل' 'م' 'ن' 'و' 'ه' 'ی' 'اا' 'اب' 'اپ' 'ات' 'اث' 'اج' 'اچ' 'اح' 'اخ' 'اد' 'اذ' 'ار' 'از' 'اژ' 'اس' 'اش' 'اص' 'اض' 'اط' 'اظ' 'اع' 'اغ' 'اف' 'اق' 'اک' 'اگ' 'ال' 'ام' 'ان' 'او' 'اه' 'ای' 'با' 'بب' 'بپ' 'بت' 'بث' 'بج' 'بچ' 'بح' 'بخ' 'بد' 'بذ' 'بر' 'بز' 'بژ' 'بس' 'بش' 'بص' 'بض' 'بط' 'بظ' 'بع' 'بغ' 'بف' 'بق' 'بک' 'بگ' 'بل' 'بم' 'بن' 'بو' 'به' 'بی' 'پا' 'پب' 'پپ' 'پت' 'پث' 'پج' 'پچ' 'پح' 'پخ' 'پد' 'پذ' 'پر' 'پز' 'پژ' 'پس' 'پش' 'پص' 'پض' 'پط' 'پظ' 'پع' 'پغ' 'پف' 'پق' 'پک' 'پگ' 'پل' 'پم' 'پن' 'پو' 'په' 'پی' 'تا' 'تب' 'تپ' 'تت' 'تث' 'تج' 'تچ' 'تح' 'تخ' 'تد' 'تذ' 'تر' 'تز' 'تژ' 'تس' 'تش' 'تص' 'تض' 'تط' 'تظ' 'تع' 'تغ' 'تف' 'تق' 'تک' 'تگ' 'تل' 'تم' 'تن' 'تو' 'ته' 'تی' 'ثا' 'ثب' 'ثپ' 'ثت' 'ثث' 'ثج' 'ثچ' 'ثح' 'ثخ' 'ثد' 'ثذ' 'ثر' 'ثز' 'ثژ' 'ثس' 'ثش' 'ثص' 'ثض' 'ثط' 'ثظ' 'ثع' 'ثغ' 'ثف' 'ثق' 'ثک' 'ثگ' 'ثل' 'ثم' 'ثن' 'ثو' 'ثه' 'ثی' 'جا' 'جب' 'جپ' 'جت' 'جث' 'جج' 'جچ' 'جح' 'جخ' 'جد' 'جذ' 'جر' 'جز' 'جژ' 'جس' 'جش' 'جص' 'جض' 'جط' 'جظ' 'جع' 'جغ' 'جف' 'جق' 'جک' 'جگ' 'جل' 'جم' 'جن' 'جو' 'جه' 'جی' 'چا' 'چب' 'چپ' 'چت' 'چث' 'چج' 'چچ' 'چح' 'چخ' 'چد' 'چذ' 'چر' 'چز' 'چژ' 'چس' 'چش' 'چص' 'چض' 'چط' 'چظ' 'چع' 'چغ' 'چف' 'چق' 'چک' 'چگ' 'چل' 'چم' 'چن' 'چو' 'چه' 'چی' 'حا' 'حب' 'حپ' 'حت' 'حث' 'حج' 'حچ' 'حح' 'حخ' 'حد' 'حذ' 'حر' 'حز' 'حژ' 'حس' 'حش' 'حص' 'حض' 'حط' 'حظ' 'حع' 'حغ' 'حف' 'حق' 'حک' 'حگ' 'حل' 'حم' 'حن' 'حو' 'حه' 'حی' 'خا' 'خب' 'خپ' 'خت' 'خث' 'خج' 'خچ' 'خح' 'خخ' 'خد' 'خذ' 'خر' 'خز' 'خژ' 'خس' 'خش' 'خص' 'خض' 'خط' 'خظ' 'خع' 'خغ' 'خف' 'خق' 'خک' 'خگ' 'خل' 'خم' 'خن' 'خو' 'خه' 'خی' 'دا' 'دب' 'دپ' 'دت' 'دث' 'دج' 'دچ' 'دح' 'دخ' 'دد' 'دذ' 'در' 'دز' 'دژ' 'دس' 'دش' 'دص' 'دض' 'دط' 'دظ' 'دع' 'دغ' 'دف' 'دق' 'دک' 'دگ' 'دل' 'دم' 'دن' 'دو' 'ده' 'دی' 'ذا' 'ذب' 'ذپ' 'ذت' 'ذث' 'ذج' 'ذچ' 'ذح' 'ذخ' 'ذد' 'ذذ' 'ذر' 'ذز' 'ذژ' 'ذس' 'ذش' 'ذص' 'ذض' 'ذط' 'ذظ' 'ذع' 'ذغ' 'ذف' 'ذق' 'ذک' 'ذگ' 'ذل' 'ذم' 'ذن' 'ذو' 'ذه' 'ذی' 'را' 'رب' 'رپ' 'رت' 'رث' 'رج' 'رچ' 'رح' 'رخ' 'رد' 'رذ' 'رر' 'رز' 'رژ' 'رس' 'رش' 'رص' 'رض' 'رط' 'رظ' 'رع' 'رغ' 'رف' 'رق' 'رک' 'رگ' 'رل' 'رم' 'رن' 'رو' 'ره' 'ری' 'زا' 'زب' 'زپ' 'زت' 'زث' 'زج' 'زچ' 'زح' 'زخ' 'زد' 'زذ' 'زر' 'زز' 'زژ' 'زس' 'زش' 'زص' 'زض' 'زط' 'زظ' 'زع' 'زغ' 'زف' 'زق' 'زک' 'زگ' 'زل' 'زم' 'زن' 'زو' 'زه' 'زی' 'ژا' 'ژب' 'ژپ' 'ژت' 'ژث' 'ژج' 'ژچ' 'ژح' 'ژخ' 'ژد' 'ژذ' 'ژر' 'ژز' 'ژژ' 'ژس' 'ژش' 'ژص' 'ژض' 'ژط' 'ژظ' 'ژع' 'ژغ' 'ژف' 'ژق' 'ژک' 'ژگ' 'ژل' 'ژم' 'ژن' 'ژو' 'ژه' 'ژی' 'سا' 'سب' 'سپ' 'ست' 'سث' 'سج' 'سچ' 'سح' 'سخ' 'سد' 'سذ' 'سر' 'سز' 'سژ' 'سس' 'سش' 'سص' 'سض' 'سط' 'سظ' 'سع' 'سغ' 'سف' 'سق' 'سک' 'سگ' 'سل' 'سم' 'سن' 'سو' 'سه' 'سی' 'شا' 'شب' 'شپ' 'شت' 'شث' 'شج' 'شچ' 'شح' 'شخ' 'شد' 'شذ' 'شر' 'شز' 'شژ' 'شس' 'شش' 'شص' 'شض' 'شط' 'شظ' 'شع' 'شغ' 'شف' 'شق' 'شک' 'شگ' 'شل' 'شم' 'شن' 'شو' 'شه' 'شی' 'صا' 'صب' 'صپ' 'صت' 'صث' 'صج' 'صچ' 'صح' 'صخ' 'صد' 'صذ' 'صر' 'صز' 'صژ' 'صس' 'صش' 'صص' 'صض' 'صط' 'صظ' 'صع' 'صغ' 'صف' 'صق' 'صک' 'صگ' 'صل' 'صم' 'صن' 'صو' 'صه' 'صی' 'ضا' 'ضب' 'ضپ' 'ضت' 'ضث' 'ضج' 'ضچ' 'ضح' 'ضخ' 'ضد' 'ضذ' 'ضر' 'ضز' 'ضژ' 'ضس' 'ضش' 'ضص' 'ضض' 'ضط' 'ضظ' 'ضع' 'ضغ' 'ضف' 'ضق' 'ضک' 'ضگ' 'ضل' 'ضم' 'ضن' 'ضو' 'ضه' 'ضی' 'طا' 'طب' 'طپ' 'طت' 'طث' 'طج' 'طچ' 'طح' 'طخ' 'طد' 'طذ' 'طر' 'طز' 'طژ' 'طس' 'طش' 'طص' 'طض' 'طط' 'طظ' 'طع' 'طغ' 'طف' 'طق' 'طک' 'طگ' 'طل' 'طم' 'طن' 'طو' 'طه' 'طی' 'ظا' 'ظب' 'ظپ' 'ظت' 'ظث' 'ظج' 'ظچ' 'ظح' 'ظخ' 'ظد' 'ظذ' 'ظر' 'ظز' 'ظژ' 'ظس' 'ظش' 'ظص' 'ظض' 'ظط' 'ظظ' 'ظع' 'ظغ' 'ظف' 'ظق' 'ظک' 'ظگ' 'ظل' 'ظم' 'ظن' 'ظو' 'ظه' 'ظی' 'عا' 'عب' 'عپ' 'عت' 'عث' 'عج' 'عچ' 'عح' 'عخ' 'عد' 'عذ' 'عر' 'عز' 'عژ' 'عس' 'عش' 'عص' 'عض' 'عط' 'عظ' 'عع' 'عغ' 'عف' 'عق' 'عک' 'عگ' 'عل' 'عم' 'عن' 'عو' 'عه' 'عی' 'غا' 'غب' 'غپ' 'غت' 'غث' 'غج' 'غچ' 'غح' 'غخ' 'غد' 'غذ' 'غر' 'غز' 'غژ' 'غس' 'غش' 'غص' 'غض' 'غط' 'غظ' 'غع' 'غغ' 'غف' 'غق' 'غک' 'غگ' 'غل' 'غم' 'غن' 'غو' 'غه' 'غی' 'فا' 'فب' 'فپ' 'فت' 'فث' 'فج' 'فچ' 'فح' 'فخ' 'فد' 'فذ' 'فر' 'فز' 'فژ' 'فس' 'فش' 'فص' 'فض' 'فط' 'فظ' 'فع' 'فغ' 'فف' 'فق' 'فک' 'فگ' 'فل' 'فم' 'فن' 'فو' 'فه' 'فی' 'قا' 'قب' 'قپ' 'قت' 'قث' 'قج' 'قچ' 'قح' 'قخ' 'قد' 'قذ' 'قر' 'قز' 'قژ' 'قس' 'قش' 'قص' 'قض' 'قط' 'قظ' 'قع' 'قغ' 'قف' 'قق' 'قک' 'قگ' 'قل' 'قم' 'قن' 'قو' 'قه' 'قی' 'کا' 'کب' 'کپ' 'کت' 'کث' 'کج' 'کچ' 'کح' 'کخ' 'کد' 'کذ' 'کر' 'کز' 'کژ' 'کس' 'کش' 'کص' 'کض' 'کط' 'کظ' 'کع' 'کغ' 'کف' 'کق' 'کک' 'کگ' 'کل' 'کم' 'کن' 'کو' 'که' 'کی' 'گا' 'گب' 'گپ' 'گت' 'گث' 'گج' 'گچ' 'گح' 'گخ' 'گد' 'گذ' 'گر' 'گز' 'گژ' 'گس' 'گش' 'گص' 'گض' 'گط' 'گظ' 'گع' 'گغ' 'گف' 'گق' 'گک' 'گگ' 'گل' 'گم' 'گن' 'گو' 'گه' 'گی' 'لا' 'لب' 'لپ' 'لت' 'لث' 'لج' 'لچ' 'لح' 'لخ' 'لد' 'لذ' 'لر' 'لز' 'لژ' 'لس' 'لش' 'لص' 'لض' 'لط' 'لظ' 'لع' 'لغ' 'لف' 'لق' 'لک' 'لگ' 'لل' 'لم' 'لن' 'لو' 'له' 'لی' 'ما' 'مب' 'مپ' 'مت' 'مث' 'مج' 'مچ' 'مح' 'مخ' 'مد' 'مذ' 'مر' 'مز' 'مژ' 'مس' 'مش' 'مص' 'مض' 'مط' 'مظ' 'مع' 'مغ' 'مف' 'مق' 'مک' 'مگ' 'مل' 'مم' 'من' 'مو' 'مه' 'می' 'نا' 'نب' 'نپ' 'نت' 'نث' 'نج' 'نچ' 'نح' 'نخ' 'ند' 'نذ' 'نر' 'نز' 'نژ' 'نس' 'نش' 'نص' 'نض' 'نط' 'نظ' 'نع' 'نغ' 'نف' 'نق' 'نک' 'نگ' 'نل' 'نم' 'نن' 'نو' 'نه' 'نی' 'وا' 'وب' 'وپ' 'وت' 'وث' 'وج' 'وچ' 'وح' 'وخ' 'ود' 'وذ' 'ور' 'وز' 'وژ' 'وس' 'وش' 'وص' 'وض' 'وط' 'وظ' 'وع' 'وغ' 'وف' 'وق' 'وک' 'وگ' 'ول' 'وم' 'ون' 'وو' 'وه' 'وی' 'ها' 'هب' 'هپ' 'هت' 'هث' 'هج' 'هچ' 'هح' 'هخ' 'هد' 'هذ' 'هر' 'هز' 'هژ' 'هس' 'هش' 'هص' 'هض' 'هط' 'هظ' 'هع' 'هغ' 'هف' 'هق' 'هک' 'هگ' 'هل' 'هم' 'هن' 'هو' 'هه' 'هی' 'یا' 'یب' 'یپ' 'یت' 'یث' 'یج' 'یچ' 'یح' 'یخ' 'ید' 'یذ' 'یر' 'یز' 'یژ' 'یس' 'یش' 'یص' 'یض' 'یط' 'یظ' 'یع' 'یغ' 'یف' 'یق' 'یک' 'یگ' 'یل' 'یم' 'ین' 'یو' 'یه' 'یی';
@@ -442,6 +444,9 @@ is.wikipedia.org: |
 
 #--------------- GENERATED FROM HERE ON --------------------------
 ace.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -460,6 +465,9 @@ ace.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-alpha ) ']';
     }
 af.wikiquote.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -662,6 +670,9 @@ bg.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-alpha ) ']';
     }
 bjn.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -741,6 +752,9 @@ bs.wikipedia.org: |
         font-weight: bold;
         content: "^";
     }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -814,10 +828,16 @@ ckb.wikipedia.org: |
         content: '[' counter( mw-Ref, custom-group-label-kurdish-alpha ) ']';
     }
 cs.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
 cs.wikisource.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -845,6 +865,9 @@ cv.wikipedia.org: |
         content: ", ";
     }
 da.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -873,6 +896,9 @@ da.wikipedia.org: |
         content: '[' counter( mw-Ref, upper-roman ) ']';
     }
 de.wikisource.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -882,12 +908,18 @@ de.wiktionary.org: |
         content: "↑";
     }
 en.wikibooks.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
         content: counter( mw-ref-linkback, lower-alpha );
     }
 en.wikiquote.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -900,6 +932,9 @@ es.wiktionary.org: |
         content:  counter( mw-Ref, decimal );
     }
 eu.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         content: counter( mw-ref-linkback, lower-alpha );
@@ -911,13 +946,6 @@ eu.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-alpha ) ']';
     }
 fa.wikipedia.org: |
-    @counter-style custom-backlink {
-        system: fixed;
-        symbols: 'آ' 'ب' 'پ' 'ت' 'ث' 'ج' 'چ' 'ح' 'خ' 'د' 'ذ' 'ر' 'ز' 'ژ' 'س' 'ش' 'ص' 'ض' 'ط' 'ظ' 'ع' 'ق' 'ف' 'ق' 'ک' 'گ' 'ل' 'م' 'ن' 'و' 'ه' 'ی';
-    }
-    span[ rel="mw:referencedBy" ] {
-        counter-reset: mw-ref-linkback 0;
-    }
     @counter-style custom-group-label-persian-alpha {
         system: fixed;
         symbols: 'الف' 'ب' 'پ' 'ت' 'ث' 'ج' 'چ' 'ح' 'خ' 'د' 'ذ' 'ر' 'ز' 'ژ' 'س' 'ش' 'ص' 'ض' 'ط' 'ظ' 'ع' 'غ' 'ف' 'ق' 'ک' 'گ' 'ل' 'م' 'ن' 'و' 'ه' 'ی' 'اا' 'اب' 'اپ' 'ات' 'اث' 'اج' 'اچ' 'اح' 'اخ' 'اد' 'اذ' 'ار' 'از' 'اژ' 'اس' 'اش' 'اص' 'اض' 'اط' 'اظ' 'اع' 'اغ' 'اف' 'اق' 'اک' 'اگ' 'ال' 'ام' 'ان' 'او' 'اه' 'ای' 'با' 'بب' 'بپ' 'بت' 'بث' 'بج' 'بچ' 'بح' 'بخ' 'بد' 'بذ' 'بر' 'بز' 'بژ' 'بس' 'بش' 'بص' 'بض' 'بط' 'بظ' 'بع' 'بغ' 'بف' 'بق' 'بک' 'بگ' 'بل' 'بم' 'بن' 'بو' 'به' 'بی' 'پا' 'پب' 'پپ' 'پت' 'پث' 'پج' 'پچ' 'پح' 'پخ' 'پد' 'پذ' 'پر' 'پز' 'پژ' 'پس' 'پش' 'پص' 'پض' 'پط' 'پظ' 'پع' 'پغ' 'پف' 'پق' 'پک' 'پگ' 'پل' 'پم' 'پن' 'پو' 'په' 'پی' 'تا' 'تب' 'تپ' 'تت' 'تث' 'تج' 'تچ' 'تح' 'تخ' 'تد' 'تذ' 'تر' 'تز' 'تژ' 'تس' 'تش' 'تص' 'تض' 'تط' 'تظ' 'تع' 'تغ' 'تف' 'تق' 'تک' 'تگ' 'تل' 'تم' 'تن' 'تو' 'ته' 'تی' 'ثا' 'ثب' 'ثپ' 'ثت' 'ثث' 'ثج' 'ثچ' 'ثح' 'ثخ' 'ثد' 'ثذ' 'ثر' 'ثز' 'ثژ' 'ثس' 'ثش' 'ثص' 'ثض' 'ثط' 'ثظ' 'ثع' 'ثغ' 'ثف' 'ثق' 'ثک' 'ثگ' 'ثل' 'ثم' 'ثن' 'ثو' 'ثه' 'ثی' 'جا' 'جب' 'جپ' 'جت' 'جث' 'جج' 'جچ' 'جح' 'جخ' 'جد' 'جذ' 'جر' 'جز' 'جژ' 'جس' 'جش' 'جص' 'جض' 'جط' 'جظ' 'جع' 'جغ' 'جف' 'جق' 'جک' 'جگ' 'جل' 'جم' 'جن' 'جو' 'جه' 'جی' 'چا' 'چب' 'چپ' 'چت' 'چث' 'چج' 'چچ' 'چح' 'چخ' 'چد' 'چذ' 'چر' 'چز' 'چژ' 'چس' 'چش' 'چص' 'چض' 'چط' 'چظ' 'چع' 'چغ' 'چف' 'چق' 'چک' 'چگ' 'چل' 'چم' 'چن' 'چو' 'چه' 'چی' 'حا' 'حب' 'حپ' 'حت' 'حث' 'حج' 'حچ' 'حح' 'حخ' 'حد' 'حذ' 'حر' 'حز' 'حژ' 'حس' 'حش' 'حص' 'حض' 'حط' 'حظ' 'حع' 'حغ' 'حف' 'حق' 'حک' 'حگ' 'حل' 'حم' 'حن' 'حو' 'حه' 'حی' 'خا' 'خب' 'خپ' 'خت' 'خث' 'خج' 'خچ' 'خح' 'خخ' 'خد' 'خذ' 'خر' 'خز' 'خژ' 'خس' 'خش' 'خص' 'خض' 'خط' 'خظ' 'خع' 'خغ' 'خف' 'خق' 'خک' 'خگ' 'خل' 'خم' 'خن' 'خو' 'خه' 'خی' 'دا' 'دب' 'دپ' 'دت' 'دث' 'دج' 'دچ' 'دح' 'دخ' 'دد' 'دذ' 'در' 'دز' 'دژ' 'دس' 'دش' 'دص' 'دض' 'دط' 'دظ' 'دع' 'دغ' 'دف' 'دق' 'دک' 'دگ' 'دل' 'دم' 'دن' 'دو' 'ده' 'دی' 'ذا' 'ذب' 'ذپ' 'ذت' 'ذث' 'ذج' 'ذچ' 'ذح' 'ذخ' 'ذد' 'ذذ' 'ذر' 'ذز' 'ذژ' 'ذس' 'ذش' 'ذص' 'ذض' 'ذط' 'ذظ' 'ذع' 'ذغ' 'ذف' 'ذق' 'ذک' 'ذگ' 'ذل' 'ذم' 'ذن' 'ذو' 'ذه' 'ذی' 'را' 'رب' 'رپ' 'رت' 'رث' 'رج' 'رچ' 'رح' 'رخ' 'رد' 'رذ' 'رر' 'رز' 'رژ' 'رس' 'رش' 'رص' 'رض' 'رط' 'رظ' 'رع' 'رغ' 'رف' 'رق' 'رک' 'رگ' 'رل' 'رم' 'رن' 'رو' 'ره' 'ری' 'زا' 'زب' 'زپ' 'زت' 'زث' 'زج' 'زچ' 'زح' 'زخ' 'زد' 'زذ' 'زر' 'زز' 'زژ' 'زس' 'زش' 'زص' 'زض' 'زط' 'زظ' 'زع' 'زغ' 'زف' 'زق' 'زک' 'زگ' 'زل' 'زم' 'زن' 'زو' 'زه' 'زی' 'ژا' 'ژب' 'ژپ' 'ژت' 'ژث' 'ژج' 'ژچ' 'ژح' 'ژخ' 'ژد' 'ژذ' 'ژر' 'ژز' 'ژژ' 'ژس' 'ژش' 'ژص' 'ژض' 'ژط' 'ژظ' 'ژع' 'ژغ' 'ژف' 'ژق' 'ژک' 'ژگ' 'ژل' 'ژم' 'ژن' 'ژو' 'ژه' 'ژی' 'سا' 'سب' 'سپ' 'ست' 'سث' 'سج' 'سچ' 'سح' 'سخ' 'سد' 'سذ' 'سر' 'سز' 'سژ' 'سس' 'سش' 'سص' 'سض' 'سط' 'سظ' 'سع' 'سغ' 'سف' 'سق' 'سک' 'سگ' 'سل' 'سم' 'سن' 'سو' 'سه' 'سی' 'شا' 'شب' 'شپ' 'شت' 'شث' 'شج' 'شچ' 'شح' 'شخ' 'شد' 'شذ' 'شر' 'شز' 'شژ' 'شس' 'شش' 'شص' 'شض' 'شط' 'شظ' 'شع' 'شغ' 'شف' 'شق' 'شک' 'شگ' 'شل' 'شم' 'شن' 'شو' 'شه' 'شی' 'صا' 'صب' 'صپ' 'صت' 'صث' 'صج' 'صچ' 'صح' 'صخ' 'صد' 'صذ' 'صر' 'صز' 'صژ' 'صس' 'صش' 'صص' 'صض' 'صط' 'صظ' 'صع' 'صغ' 'صف' 'صق' 'صک' 'صگ' 'صل' 'صم' 'صن' 'صو' 'صه' 'صی' 'ضا' 'ضب' 'ضپ' 'ضت' 'ضث' 'ضج' 'ضچ' 'ضح' 'ضخ' 'ضد' 'ضذ' 'ضر' 'ضز' 'ضژ' 'ضس' 'ضش' 'ضص' 'ضض' 'ضط' 'ضظ' 'ضع' 'ضغ' 'ضف' 'ضق' 'ضک' 'ضگ' 'ضل' 'ضم' 'ضن' 'ضو' 'ضه' 'ضی' 'طا' 'طب' 'طپ' 'طت' 'طث' 'طج' 'طچ' 'طح' 'طخ' 'طد' 'طذ' 'طر' 'طز' 'طژ' 'طس' 'طش' 'طص' 'طض' 'طط' 'طظ' 'طع' 'طغ' 'طف' 'طق' 'طک' 'طگ' 'طل' 'طم' 'طن' 'طو' 'طه' 'طی' 'ظا' 'ظب' 'ظپ' 'ظت' 'ظث' 'ظج' 'ظچ' 'ظح' 'ظخ' 'ظد' 'ظذ' 'ظر' 'ظز' 'ظژ' 'ظس' 'ظش' 'ظص' 'ظض' 'ظط' 'ظظ' 'ظع' 'ظغ' 'ظف' 'ظق' 'ظک' 'ظگ' 'ظل' 'ظم' 'ظن' 'ظو' 'ظه' 'ظی' 'عا' 'عب' 'عپ' 'عت' 'عث' 'عج' 'عچ' 'عح' 'عخ' 'عد' 'عذ' 'عر' 'عز' 'عژ' 'عس' 'عش' 'عص' 'عض' 'عط' 'عظ' 'عع' 'عغ' 'عف' 'عق' 'عک' 'عگ' 'عل' 'عم' 'عن' 'عو' 'عه' 'عی' 'غا' 'غب' 'غپ' 'غت' 'غث' 'غج' 'غچ' 'غح' 'غخ' 'غد' 'غذ' 'غر' 'غز' 'غژ' 'غس' 'غش' 'غص' 'غض' 'غط' 'غظ' 'غع' 'غغ' 'غف' 'غق' 'غک' 'غگ' 'غل' 'غم' 'غن' 'غو' 'غه' 'غی' 'فا' 'فب' 'فپ' 'فت' 'فث' 'فج' 'فچ' 'فح' 'فخ' 'فد' 'فذ' 'فر' 'فز' 'فژ' 'فس' 'فش' 'فص' 'فض' 'فط' 'فظ' 'فع' 'فغ' 'فف' 'فق' 'فک' 'فگ' 'فل' 'فم' 'فن' 'فو' 'فه' 'فی' 'قا' 'قب' 'قپ' 'قت' 'قث' 'قج' 'قچ' 'قح' 'قخ' 'قد' 'قذ' 'قر' 'قز' 'قژ' 'قس' 'قش' 'قص' 'قض' 'قط' 'قظ' 'قع' 'قغ' 'قف' 'قق' 'قک' 'قگ' 'قل' 'قم' 'قن' 'قو' 'قه' 'قی' 'کا' 'کب' 'کپ' 'کت' 'کث' 'کج' 'کچ' 'کح' 'کخ' 'کد' 'کذ' 'کر' 'کز' 'کژ' 'کس' 'کش' 'کص' 'کض' 'کط' 'کظ' 'کع' 'کغ' 'کف' 'کق' 'کک' 'کگ' 'کل' 'کم' 'کن' 'کو' 'که' 'کی' 'گا' 'گب' 'گپ' 'گت' 'گث' 'گج' 'گچ' 'گح' 'گخ' 'گد' 'گذ' 'گر' 'گز' 'گژ' 'گس' 'گش' 'گص' 'گض' 'گط' 'گظ' 'گع' 'گغ' 'گف' 'گق' 'گک' 'گگ' 'گل' 'گم' 'گن' 'گو' 'گه' 'گی' 'لا' 'لب' 'لپ' 'لت' 'لث' 'لج' 'لچ' 'لح' 'لخ' 'لد' 'لذ' 'لر' 'لز' 'لژ' 'لس' 'لش' 'لص' 'لض' 'لط' 'لظ' 'لع' 'لغ' 'لف' 'لق' 'لک' 'لگ' 'لل' 'لم' 'لن' 'لو' 'له' 'لی' 'ما' 'مب' 'مپ' 'مت' 'مث' 'مج' 'مچ' 'مح' 'مخ' 'مد' 'مذ' 'مر' 'مز' 'مژ' 'مس' 'مش' 'مص' 'مض' 'مط' 'مظ' 'مع' 'مغ' 'مف' 'مق' 'مک' 'مگ' 'مل' 'مم' 'من' 'مو' 'مه' 'می' 'نا' 'نب' 'نپ' 'نت' 'نث' 'نج' 'نچ' 'نح' 'نخ' 'ند' 'نذ' 'نر' 'نز' 'نژ' 'نس' 'نش' 'نص' 'نض' 'نط' 'نظ' 'نع' 'نغ' 'نف' 'نق' 'نک' 'نگ' 'نل' 'نم' 'نن' 'نو' 'نه' 'نی' 'وا' 'وب' 'وپ' 'وت' 'وث' 'وج' 'وچ' 'وح' 'وخ' 'ود' 'وذ' 'ور' 'وز' 'وژ' 'وس' 'وش' 'وص' 'وض' 'وط' 'وظ' 'وع' 'وغ' 'وف' 'وق' 'وک' 'وگ' 'ول' 'وم' 'ون' 'وو' 'وه' 'وی' 'ها' 'هب' 'هپ' 'هت' 'هث' 'هج' 'هچ' 'هح' 'هخ' 'هد' 'هذ' 'هر' 'هز' 'هژ' 'هس' 'هش' 'هص' 'هض' 'هط' 'هظ' 'هع' 'هغ' 'هف' 'هق' 'هک' 'هگ' 'هل' 'هم' 'هن' 'هو' 'هه' 'هی' 'یا' 'یب' 'یپ' 'یت' 'یث' 'یج' 'یچ' 'یح' 'یخ' 'ید' 'یذ' 'یر' 'یز' 'یژ' 'یس' 'یش' 'یص' 'یض' 'یط' 'یظ' 'یع' 'یغ' 'یف' 'یق' 'یک' 'یگ' 'یل' 'یم' 'ین' 'یو' 'یه' 'یی';
@@ -944,6 +972,9 @@ fa.wikipedia.org: |
         content: counter( mw-references, persian ) '٫' counter( mw-ref-linkback, persian );
     }
 fi.wikisource.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-style: italic;
         content: counter( mw-ref-linkback, lower-alpha );
@@ -1083,6 +1114,9 @@ hi.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-alpha ) ']';
     }
 hr.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1092,6 +1126,9 @@ hr.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-alpha ) ']';
     }
 id.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1123,6 +1160,9 @@ id.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-greek ) ']';
     }
 ilo.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1154,6 +1194,9 @@ ilo.wikipedia.org: |
         content: '[' counter( mw-Ref, upper-roman ) ']';
     }
 it.wikiquote.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -1172,6 +1215,9 @@ ja.wikibooks.org: |
         content: "^";
     }
 jv.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -1208,6 +1254,9 @@ ka.wikipedia.org: |
         content: '[' counter( mw-Ref, upper-alpha ) ']';
     }
 kk.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1234,18 +1283,30 @@ ko.wikipedia.org: |
         content: '[' counter( mw-Ref, upper-alpha ) ']';
     }
 ku.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
 ku.wiktionary.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
 lad.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
 min.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1255,6 +1316,9 @@ mr.wikipedia.org: |
     a[ rel="mw:referencedBy" ]::before {
         font-weight: bold;
         content: "^";
+    }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
     }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
@@ -1283,6 +1347,9 @@ mr.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-alpha ) ']';
     }
 ms.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1322,6 +1389,9 @@ mt.wikipedia.org: |
         font-weight: bold;
         content: "^";
     }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1331,10 +1401,16 @@ mt.wikipedia.org: |
         content: '[' counter( mw-Ref, custom-group-label-lower-alpha ) ']';
     }
 nds.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
 no.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -1380,6 +1456,9 @@ nv.wikipedia.org: |
         content: "^ ";
     }
 pag.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1404,6 +1483,9 @@ pag.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-roman ) ']';
     }
 ro.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1479,6 +1561,9 @@ ru.wikivoyage.org: |
         content: "";
     }
 sco.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1494,6 +1579,9 @@ sco.wikipedia.org: |
         content: '[' counter( mw-Ref, decimal ) ']';
     }
 sk.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -1514,6 +1602,9 @@ sl.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-greek ) ']';
     }
 sq.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -1529,6 +1620,9 @@ sq.wikipedia.org: |
 sq.wikiquote.org: |
     span[ rel="mw:referencedBy" ]::before {
         content: "^ ";
+    }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
     }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
@@ -1564,6 +1658,9 @@ sr.wikipedia.org: |
     @counter-style custom-group-label-lower-alpha/sr {
         system: alphabetic;
         symbols: 'а' 'б' 'в' 'г' 'д' 'ђ' 'е' 'ж' 'з' 'и' 'ј' 'к' 'л' 'љ' 'м' 'н' 'њ' 'о' 'п' 'р' 'с' 'т' 'ћ' 'у' 'ф' 'х' 'ц' 'ч' 'џ' 'ш';
+    }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
     }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
@@ -1602,6 +1699,9 @@ sr.wikipedia.org: |
         content: '[' counter( mw-Ref, custom-group-label-lower-alpha/sr ) ']';
     }
 su.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -1615,6 +1715,9 @@ test.wikipedia.org: |
     span[ rel="mw:referencedBy" ]::before {
         content: "^ ";
     }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1627,6 +1730,9 @@ test.wikipedia.org: |
         content: '[' counter( mw-Ref, custom-group-label-thai-alphabetic ) ']';
     }
 ti.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1636,6 +1742,9 @@ tr.wikipedia.org: |
     span[ rel="mw:referencedBy" ]::before {
         font-weight: bold;
         content: "^ ";
+    }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
     }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
@@ -1659,12 +1768,18 @@ tr.wikipedia.org: |
         content: '[' counter( mw-Ref, upper-roman ) ']';
     }
 tr.wiktionary.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
         content: counter( mw-ref-linkback, lower-alpha );
     }
 ua.wikimedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1771,13 +1886,6 @@ vi.wikisource.org: |
         content: '[' counter( mw-Ref, lower-alpha ) ']';
     }
 vi.wiktionary.org: |
-    @counter-style custom-backlink {
-        system: alphabetic;
-        symbols: 'a' 'ă' 'â' 'b' 'c' 'd' 'đ' 'e' 'ê' 'g' 'h' 'i' 'k' 'l' 'm' 'n' 'o' 'ô' 'ơ' 'p' 'q' 'r' 's' 't' 'u' 'ư' 'v' 'x' 'y';
-    }
-    span[ rel="mw:referencedBy" ] {
-        counter-reset: mw-ref-linkback 0;
-    }
     span[ rel="mw:referencedBy" ]::before {
         content: "▲ ";
     }
@@ -1790,6 +1898,9 @@ vi.wiktionary.org: |
         content: "▲";
     }
 yi.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -1805,6 +1916,9 @@ zh.wiktionary.org: |
         content: " ";
     }
 fi.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-style: italic;
         content: counter( mw-ref-linkback, lower-alpha );
@@ -1828,6 +1942,9 @@ fi.wikipedia.org: |
         content: '[' counter( mw-Ref, upper-alpha ) ']';
     }
 hu.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1849,6 +1966,9 @@ hu.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-roman ) ']';
     }
 it.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-style: italic;
         content: counter( mw-ref-linkback, lower-alpha );
@@ -1871,6 +1991,9 @@ ja.wikipedia.org: |
     a[ rel="mw:referencedBy" ]::before {
         font-weight: bold;
         content: "^";
+    }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
     }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
@@ -1896,6 +2019,9 @@ ja.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-alpha ) ']';
     }
 nl.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1917,6 +2043,9 @@ nl.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-roman ) ']';
     }
 pl.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
     }
@@ -1950,6 +2079,9 @@ pt.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=lower-roman]::after {
         content: '[' counter( mw-Ref, lower-roman ) ']';
+    }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
     }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
@@ -1985,12 +2117,18 @@ uk.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-roman ) ']';
     }
 meta.wikimedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
         content: counter( mw-ref-linkback, lower-alpha );
     }
 commons.wikimedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
