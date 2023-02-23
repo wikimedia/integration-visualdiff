@@ -182,6 +182,9 @@ ru.wikipedia.org: |
        font-size: 80%;
    }
     /* The rest of these rules came from auto-generated output from a script */
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -592,7 +595,13 @@ azb.wikipedia.org: |
     .mw-ref > a[data-mw-group=upper-roman]::after {
         content: '[' counter( mw-Ref, upper-roman ) ']';
     }
+    span[ rel="mw:referencedBy" ] > a::before {
+        content: counter( mw-references, persian ) '٫' counter( mw-ref-linkback, persian );
+    }
 az.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-style: italic;
         content: counter( mw-ref-linkback, decimal );
@@ -779,6 +788,9 @@ bs.wikipedia.org: |
         content: '[' counter( mw-Ref, lower-roman ) ']';
     }
 ce.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, decimal );
     }
@@ -844,6 +856,9 @@ cs.wikisource.org: |
         content: counter( mw-ref-linkback, lower-alpha );
     }
 cv.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -929,7 +944,10 @@ en.wiktionary.org: |
     }
 es.wiktionary.org: |
     .mw-ref > a::after {
-        content:  counter( mw-Ref, decimal );
+        content: counter( mw-Ref, decimal );
+    }
+    .mw-ref > a[data-mw-group]::after {
+        content: attr(data-mw-group) ' ' counter( mw-Ref, decimal );
     }
 eu.wikipedia.org: |
     span[ rel="mw:referencedBy" ] {
@@ -1043,6 +1061,9 @@ he.wikipedia.org: |
     @counter-style custom-group-label-hebrew {
         system: fixed;
         symbols: 'א' 'ב' 'ג' 'ד' 'ה' 'ו' 'ז' 'ח' 'ט' 'י' 'י"א' 'י"ב' 'י"ג' 'י"ד' 'ט"ו' 'ט"ז' 'י"ז' 'י"ח' 'י"ט' 'כ' 'כ"א' 'כ"ב' 'כ"ג' 'כ"ד' 'כ"ה' 'כ"ו' 'כ"ז' 'כ"ח' 'כ"ט' 'ל' 'ל"א' 'ל"ב' 'ל"ג' 'ל"ד' 'ל"ה' 'ל"ו' 'ל"ז' 'ל"ח' 'ל"ט' 'מ' 'מ"א' 'מ"ב' 'מ"ג' 'מ"ד' 'מ"ה' 'מ"ו' 'מ"ז' 'מ"ח' 'מ"ט' 'נ' 'נ"א' 'נ"ב' 'נ"ג' 'נ"ד' 'נ"ה' 'נ"ו' 'נ"ז' 'נ"ח' 'נ"ט' 'ס' 'ס"א' 'ס"ב' 'ס"ג' 'ס"ד' 'ס"ה' 'ס"ו' 'ס"ז' 'ס"ח' 'ס"ט' 'ע' 'ע"א' 'ע"ב' 'ע"ג' 'ע"ד' 'ע"ה' 'ע"ו' 'ע"ז' 'ע"ח' 'ע"ט' 'פ' 'פ"א' 'פ"ב' 'פ"ג' 'פ"ד' 'פ"ה' 'פ"ו' 'פ"ז' 'פ"ח' 'פ"ט' 'צ' 'צ"א' 'צ"ב' 'צ"ג' 'צ"ד' 'צ"ה' 'צ"ו' 'צ"ז' 'צ"ח' 'צ"ט' 'ק' 'ק"א' 'ק"ב' 'ק"ג' 'ק"ד' 'ק"ה' 'ק"ו' 'ק"ז' 'ק"ח' 'ק"ט' 'ק"י' 'קי"א' 'קי"ב' 'קי"ג' 'קי"ד' 'קט"ו' 'קט"ז' 'קי"ז' 'קי"ח' 'קי"ט' 'ק"כ' 'קכ"א' 'קכ"ב' 'קכ"ג' 'קכ"ד' 'קכ"ה' 'קכ"ו' 'קכ"ז' 'קכ"ח' 'קכ"ט' 'ק"ל' 'קל"א' 'קל"ב' 'קל"ג' 'קל"ד' 'קל"ה' 'קל"ו' 'קל"ז' 'קל"ח' 'קל"ט' 'ק"מ' 'קמ"א' 'קמ"ב' 'קמ"ג' 'קמ"ד' 'קמ"ה' 'קמ"ו' 'קמ"ז' 'קמ"ח' 'קמ"ט' 'ק"נ' 'קנ"א' 'קנ"ב' 'קנ"ג' 'קנ"ד' 'קנ"ה' 'קנ"ו' 'קנ"ז' 'קנ"ח' 'קנ"ט' 'ק"ס' 'קס"א' 'קס"ב' 'קס"ג' 'קס"ד' 'קס"ה' 'קס"ו' 'קס"ז' 'קס"ח' 'קס"ט' 'ק"ע' 'קע"א' 'קע"ב' 'קע"ג' 'קע"ד' 'קע"ה' 'קע"ו' 'קע"ז' 'קע"ח' 'קע"ט' 'ק"פ' 'קפ"א' 'קפ"ב' 'קפ"ג' 'קפ"ד' 'קפ"ה' 'קפ"ו' 'קפ"ז' 'קפ"ח' 'קפ"ט' 'ק"צ' 'קצ"א' 'קצ"ב' 'קצ"ג' 'קצ"ד' 'קצ"ה' 'קצ"ו' 'קצ"ז' 'קצ"ח' 'קצ"ט' 'ר' 'ר"א' 'ר"ב' 'ר"ג' 'ר"ד' 'ר"ה' 'ר"ו' 'ר"ז' 'ר"ח' 'ר"ט' 'ר"י' 'רי"א' 'רי"ב' 'רי"ג' 'רי"ד' 'רט"ו' 'רט"ז' 'רי"ז' 'רי"ח' 'רי"ט' 'ר"כ' 'רכ"א' 'רכ"ב' 'רכ"ג' 'רכ"ד' 'רכ"ה' 'רכ"ו' 'רכ"ז' 'רכ"ח' 'רכ"ט' 'ר"ל' 'רל"א' 'רל"ב' 'רל"ג' 'רל"ד' 'רל"ה' 'רל"ו' 'רל"ז' 'רל"ח' 'רל"ט' 'ר"מ' 'רמ"א' 'רמ"ב' 'רמ"ג' 'רמ"ד' 'רמ"ה' 'רמ"ו' 'רמ"ז' 'רמ"ח' 'רמ"ט' 'ר"נ' 'רנ"א' 'רנ"ב' 'רנ"ג' 'רנ"ד' 'רנ"ה' 'רנ"ו' 'רנ"ז' 'רנ"ח' 'רנ"ט' 'ר"ס' 'רס"א' 'רס"ב' 'רס"ג' 'רס"ד' 'רס"ה' 'רס"ו' 'רס"ז' 'רס"ח' 'רס"ט' 'ר"ע' 'רע"א' 'רע"ב' 'רע"ג' 'רע"ד' 'רע"ה' 'רע"ו' 'רע"ז' 'רע"ח' 'רע"ט' 'ר"פ' 'רפ"א' 'רפ"ב' 'רפ"ג' 'רפ"ד' 'רפ"ה' 'רפ"ו' 'רפ"ז' 'רפ"ח' 'רפ"ט' 'ר"צ' 'רצ"א' 'רצ"ב' 'רצ"ג' 'רצ"ד' 'רצ"ה' 'רצ"ו' 'רצ"ז' 'רצ"ח' 'רצ"ט' 'ש';
+    }
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
     }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, decimal );
@@ -1202,10 +1223,13 @@ it.wikiquote.org: |
     }
 it.wikisource.org: |
     .mw-ref > a::after {
-        content:  counter( mw-Ref, decimal );
+        content: counter( mw-Ref, decimal );
+    }
+    .mw-ref > a[data-mw-group]::after {
+        content: attr(data-mw-group) ' ' counter( mw-Ref, decimal );
     }
     .mw-ref > a[data-mw-group=lower-alpha]::after {
-        content:  counter( mw-Ref, lower-alpha );
+        content: counter( mw-Ref, lower-alpha );
     }
 ja.wikibooks.org: |
     span[ rel="mw:referencedBy" ]::before {
@@ -1302,6 +1326,10 @@ lad.wikipedia.org: |
     }
     span[ rel="mw:referencedBy" ] > a::before {
         content: counter( mw-ref-linkback, lower-alpha );
+    }
+ln.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
+        content: " et ";
     }
 min.wikipedia.org: |
     span[ rel="mw:referencedBy" ] {
@@ -1408,11 +1436,15 @@ nds.wikipedia.org: |
         content: counter( mw-ref-linkback, lower-alpha );
     }
 no.wikipedia.org: |
+    @counter-style custom-backlink {
+        system: alphabetic;
+        symbols: 'a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'o' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z' 'æ' 'ø' 'å';
+    }
     span[ rel="mw:referencedBy" ] {
         counter-reset: mw-ref-linkback 0;
     }
     span[ rel="mw:referencedBy" ] > a::before {
-        content: counter( mw-ref-linkback, lower-alpha );
+        content: counter( mw-ref-linkback, custom-backlink );
     }
     span[ rel="mw:referencedBy" ]::before {
         font-weight: bold;
@@ -1454,6 +1486,14 @@ nv.wikipedia.org: |
     }
     span[ rel="mw:referencedBy" ]::before {
         content: "^ ";
+    }
+oc.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
+        content: " et ";
+    }
+oc.wiktionary.org: |
+    span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
+        content: " et ";
     }
 pag.wikipedia.org: |
     span[ rel="mw:referencedBy" ] {
@@ -1535,6 +1575,9 @@ ru.wikimedia.org: |
         content: counter( mw-ref-linkback, custom-backlink );
     }
 ru.wikiquote.org: |
+    span[ rel="mw:referencedBy" ] {
+        counter-reset: mw-ref-linkback 0;
+    }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
@@ -1659,13 +1702,17 @@ sr.wikipedia.org: |
         system: alphabetic;
         symbols: 'а' 'б' 'в' 'г' 'д' 'ђ' 'е' 'ж' 'з' 'и' 'ј' 'к' 'л' 'љ' 'м' 'н' 'њ' 'о' 'п' 'р' 'с' 'т' 'ћ' 'у' 'ф' 'х' 'ц' 'ч' 'џ' 'ш';
     }
+    @counter-style custom-backlink {
+        system: alphabetic;
+        symbols: 'а' 'б' 'в' 'г' 'д' 'ђ' 'е' 'ж' 'з' 'и' 'ј' 'к' 'л' 'љ' 'м' 'н' 'њ' 'о' 'п' 'р' 'с' 'т' 'ћ' 'у' 'ф' 'х' 'ц' 'ч' 'џ' 'ш';
+    }
     span[ rel="mw:referencedBy" ] {
         counter-reset: mw-ref-linkback 0;
     }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
-        content: counter( mw-ref-linkback, lower-alpha );
+        content: counter( mw-ref-linkback, custom-backlink );
     }
     span[ rel="mw:referencedBy" ]::before {
         content: "^ ";
@@ -1777,13 +1824,17 @@ tr.wiktionary.org: |
         content: counter( mw-ref-linkback, lower-alpha );
     }
 ua.wikimedia.org: |
+    @counter-style custom-backlink {
+        system: alphabetic;
+        symbols: 'а' 'б' 'в' 'г' 'д' 'е' 'ж' 'и' 'к' 'л' 'м' 'н' 'п' 'р' 'с' 'т' 'у' 'ф' 'х' 'ц' 'ш' 'щ' 'ю' 'я';
+    }
     span[ rel="mw:referencedBy" ] {
         counter-reset: mw-ref-linkback 0;
     }
     span[ rel="mw:referencedBy" ] > a::before {
         font-weight: bold;
         font-style: italic;
-        content: counter( mw-ref-linkback, lower-alpha );
+        content: counter( mw-ref-linkback, custom-backlink );
     }
 uk.wikinews.org: |
     @counter-style custom-backlink {
@@ -1838,12 +1889,12 @@ ur.wikipedia.org: |
     }
 vec.wikisource.org: |
     .mw-ref > a::after {
-        content:  counter( mw-Ref, decimal );
+        content: counter( mw-Ref, decimal );
+    }
+    .mw-ref > a[data-mw-group]::after {
+        content: attr(data-mw-group) ' ' counter( mw-Ref, decimal );
     }
 vi.wikibooks.org: |
-    span[ rel="mw:referencedBy" ] {
-        counter-reset: mw-ref-linkback 0;
-    }
     a[ rel="mw:referencedBy" ]::before {
         content: "▲";
     }
@@ -2463,4 +2514,19 @@ zh-yue.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=upper-alpha]::after {
         content: '[' counter( mw-Ref, upper-alpha ) ']';
+    }
+zh_classical.wikipedia.org: |
+    span[ rel="mw:referencedBy" ] > a::before {
+        content: counter( mw-references, lzh-counter ) '點' counter( mw-ref-linkback, lzh-counter );
+    }
+shy.wiktionary.org: |
+    span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
+        content: " et ";
+    }
+bh.wikipedia.org: |
+    .mw-ref > a::after {
+        content: '[' counter( mw-Ref, decimal ) ']';
+    }
+    .mw-ref > a[ data-mw-group ]::after {
+        content: '[' attr( data-mw-group ) ' ' counter( mw-Ref, decimal ) ']';
     }
