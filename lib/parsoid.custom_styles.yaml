@@ -353,9 +353,6 @@ th.wikipedia.org: |
        text-indent: 2.5em;
    }
 
-   span[rel="mw:referencedBy"] > a::before {
-       content: ' ' counter(mw-ref-linkback);
-   }
     /* The rest of these rules came from auto-generated output from a script */
     @counter-style custom-group-label-thai {
         system: alphabetic;
@@ -436,10 +433,6 @@ kn.wikipedia.org: |
 
 # ------------------------ These styles apply to iswiki only ------------------------
 is.wikipedia.org: |
-   /* Not related to Cite localization, but needed to match current Cite rendering */
-   span[rel="mw:referencedBy"] > a::before {
-       content: ' ' counter(mw-ref-linkback);
-   }
     /* The rest of these rules came from auto-generated output from a script */
     .mw-ref > a[data-mw-group=lower-alpha]::after {
         content: '[' counter( mw-Ref, lower-alpha ) ']';
