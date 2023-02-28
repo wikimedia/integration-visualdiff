@@ -53,12 +53,12 @@ fr.wikipedia.org: |
    }
 
    /* Needed to hide the '[' and ']' as noted above */
-   sup.reference > a::after {
+   .mw-ref > a::after {
        content: counter(mw-Ref,decimal);
    }
 
    /* Needed to hide the '[' and ']' as noted above */
-   sup.reference > a[data-mw-group]::after {
+   .mw-ref > a[data-mw-group]::after {
        content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
    }
     /* Huh! Looks like fr wikis changed their message from lower-alpha to this new thing! */
@@ -97,23 +97,24 @@ fr.wikipedia.org: |
 # The regexes in the script trips up on some stray characters
 es.wikipedia.org: |
    /* Not related to Cite localization, but needed to match current Cite rendering */
-   sup.reference a {
+   .mw-ref a {
        white-space: nowrap;
        margin-left: 0.6ch;
    }
 
-   sup.reference a::after {
+   .mw-ref a::before {
+       content: ' ';
+   }
+   .mw-ref a::after {
        content: counter(mw-Ref,decimal);
    }
-
-   sup.reference a[data-mw-group]::after {
+   .mw-ref a[data-mw-group]::after {
        content: attr(data-mw-group) ' ' counter(mw-Ref,decimal);
    }
-
-   sup.reference a[data-mw-group="decimal"]::after {
+   .mw-ref a[data-mw-group="decimal"]::after {
        content: counter(mw-Ref,decimal);
    }
-    /* The rest of these rules came from auto-generated output from a script */
+    /* The rest of these rules came from auto-generated output from a script -- tweaked to fix bugs */
     @counter-style custom-backlink {
         system: alphabetic;
         symbols: 'a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm' 'n' 'ñ' 'o' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z';
@@ -127,22 +128,22 @@ es.wikipedia.org: |
         content: counter( mw-ref-linkback, custom-backlink );
     }
     .mw-ref > a[data-mw-group=lower-greek]::after {
-        content: '[' counter( mw-Ref, lower-greek ) ']';
+        content: counter( mw-Ref, lower-greek );
     }
     .mw-ref > a[data-mw-group=decimal]::after {
-        content: '[' counter( mw-Ref, decimal ) ']';
+        content: counter( mw-Ref, decimal );
     }
     .mw-ref > a[data-mw-group=upper-roman]::after {
-        content: '[' counter( mw-Ref, upper-roman ) ']';
+        content: counter( mw-Ref, upper-roman );
     }
     .mw-ref > a[data-mw-group=lower-alpha]::after {
-        content: '[' counter( mw-Ref, lower-alpha ) ']';
+        content: counter( mw-Ref, lower-alpha );
     }
     .mw-ref > a[data-mw-group=upper-alpha]::after {
-        content: '[' counter( mw-Ref, upper-alpha ) ']';
+        content: counter( mw-Ref, upper-alpha );
     }
     .mw-ref > a[data-mw-group=lower-roman]::after {
-        content: '[' counter( mw-Ref, lower-roman ) ']';
+        content: counter( mw-Ref, lower-roman );
     }
 
 # ------------------------ These styles apply to svwiki only ------------------------
@@ -163,9 +164,6 @@ sv.wikipedia.org: |
        vertical-align: middle;
        font-size: 80%;
        content: counter( mw-ref-linkback, lower-alpha );
-   }
-   .reference {
-       line-height: 0;
    }
     /* The rest of these rules came from auto-generated output from a script */
     .mw-ref > a[data-mw-group=not]::after {
