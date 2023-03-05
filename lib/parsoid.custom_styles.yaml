@@ -1887,10 +1887,6 @@ zh.wikisource.org: |
     span[ rel="mw:referencedBy" ]::before {
         content: "^ ";
     }
-zh.wiktionary.org: |
-    span[ rel="mw:referencedBy" ] > a::after {
-        content: " ";
-    }
 fi.wikipedia.org: |
     span[ rel="mw:referencedBy" ] {
         counter-reset: mw-ref-linkback 0;
@@ -2439,10 +2435,6 @@ zh-yue.wikipedia.org: |
     }
     .mw-ref > a[data-mw-group=upper-alpha]::after {
         content: '[' counter( mw-Ref, upper-alpha ) ']';
-    }
-zh_classical.wikipedia.org: |
-    span[ rel="mw:referencedBy" ] > a::before {
-        content: counter( mw-references, lzh-counter ) '點' counter( mw-ref-linkback, lzh-counter );
     }
 shy.wiktionary.org: |
     span[ rel="mw:referencedBy" ] > a:nth-last-child(2)::after {
