@@ -206,25 +206,18 @@ function generateLocalHTMLFiles(opts) {
 
 			// Get rid of stylesheet link that Parsoid added
 			const oldStyles = dom.head.querySelectorAll('link[rel=stylesheet]');
-			const htmlVersionNode = dom.head.querySelector('meta[property=mw:htmlVersion]');
 			// Add some default skin stylesheets
 			let styleModules = '';
-			if (htmlVersionNode && semver.gt(htmlVersionNode.getAttribute('content'), '2.2.0')) {
-				// Get rid of Parsoid-added sheets
-				oldStyles.forEach((stag) => stag.parentNode.removeChild(stag));
+			// Get rid of Parsoid-added sheets
+			oldStyles.forEach((stag) => stag.parentNode.removeChild(stag));
 
-				// Collect modules that Parsoid has provided in <head>
-				// We changed mw:styleModules to mw:moduleStyles in a Parsoid commit
-				// without realizing it and deployed it. So, we'll need to look for
-				// both tags for a while.
-				metas = dom.head.querySelectorAll('meta[property=mw:styleModules],meta[property=mw:moduleStyles]');
-				if (metas.length > 0) {
-					styleModules = metas[0].getAttribute('content') + '|';
-				}
-			} else {
-				const sheet = oldStyles[0]; // expect there to be only 1
-				// Strip modules we are adding again below in the right order
-				sheet.setAttribute('href', sheet.getAttribute('href').replace(/(mediawiki.skinning.content.parsoid|site.styles)(%7C)?/g, ''));
+			// Collect modules that Parsoid has provided in <head>
+			// We changed mw:styleModules to mw:moduleStyles in a Parsoid commit
+			// without realizing it and deployed it. So, we'll need to look for
+			// both tags for a while.
+			metas = dom.head.querySelectorAll('meta[property=mw:styleModules],meta[property=mw:moduleStyles]');
+			if (metas.length > 0) {
+				styleModules = metas[0].getAttribute('content') + '|';
 			}
 			styleModules += "mediawiki.skinning.content.parsoid|jquery.makeCollapsible.styles|jquery.tablesorter.styles|skins.vector.styles.legacy|mediawiki.ui.button,checkbox,icon,input";
 			addStyleSheet(dom, '/w/load.php?modules=' + styleModules + '&only=styles&skin=vector&useskinversion=1&lang=' + lang);
