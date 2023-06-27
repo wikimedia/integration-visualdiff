@@ -1,7 +1,7 @@
 const Util = require('../../lib/differ.utils.js').Util;
 const path = require('path');
-const adaptor1 = require('../../lib/cache_purge.adaptor.js');
-const adaptor2 = require('../../lib/parsoid_vs_core.adaptor.js');
+const adaptor1 = require('../common/cache_purge.adaptor.js');
+const adaptor2 = require('./adaptor.js');
 
 module.exports = {
   preLoadHandler: [ adaptor1.purgeCache, adaptor2.pre ],
@@ -11,7 +11,7 @@ module.exports = {
   // Production wikipedia PHP parser output
   html1: {
     name: 'php',
-    postprocessorScript: path.resolve(__dirname, '../../lib/php_parser.postprocess.js'),
+    postprocessorScript: path.resolve(__dirname, './php_parser.postprocess.js'),
     injectJQuery: false,
     // suppress default base url computation code
     // since we are providing the full wiki domain
@@ -28,8 +28,8 @@ module.exports = {
   // Production/local-dev Parsoid HTML output
   html2: {
     name: 'parsoid',
-    stylesYamlFile: path.resolve(__dirname, '../../lib/parsoid.custom_styles.yaml'),
-    postprocessorScript: path.resolve(__dirname, '../../lib/parsoid.postprocess.js'),
+    stylesYamlFile: path.resolve(__dirname, '../common/parsoid.custom_styles.yaml'),
+    postprocessorScript: path.resolve(__dirname, './parsoid.postprocess.js'),
     injectJQuery: false,
     server: 'https://',
     computeURL: function(server, wiki, title) {

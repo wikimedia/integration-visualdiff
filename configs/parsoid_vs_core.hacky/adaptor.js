@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const Util = require('../lib/differ.utils.js').Util;
+const Util = require('../../lib/differ.utils.js').Util;
 const domino = require('domino');
 const crypto = require('crypto');
 const semver = require('semver');
@@ -133,11 +133,12 @@ function generateLocalHTMLFiles(opts) {
 					node.parentNode.insertBefore(node.firstChild, node.nextSibling);
 				}
 				node.parentNode.removeChild(node);
+				return null;
 			});
 
 			// Strip about-id-continuity spans added to template & extension content for the same reason as above
 			Array.from(dom.querySelectorAll('span[about]')).map(function(span) {
-				let fc = span.firstChild;
+				const fc = span.firstChild;
 				if (!fc) {
 					// Dummy wrapper -- remove
 					span.parentNode.removeChild(span);

@@ -1,4 +1,4 @@
-var adaptor = require('../../lib/tidy_vs_remex.adaptor.js');
+var adaptor = require('./adaptor.js');
 
 module.exports = {
   preLoadHandler: adaptor.pre,
@@ -7,7 +7,7 @@ module.exports = {
   // Production wikipedia PHP parser output
   html1: {
     name: 'tidy',
-    postprocessorScript: '../lib/tidy_vs_remex.postprocess.js',
+    postprocessorScript: './postprocess.js',
     injectJQuery: false,
     // suppress default base url computation code
     // since we are providing the full wiki domain
@@ -21,7 +21,7 @@ module.exports = {
 
   html2: {
     name: 'remex',
-    postprocessorScript: '../lib/tidy_vs_remex.postprocess.js',
+    postprocessorScript: './postprocess.js',
     injectJQuery: false,
     // suppress default base url computation code
     // since we are providing the full wiki domain

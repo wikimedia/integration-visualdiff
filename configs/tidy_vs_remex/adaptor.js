@@ -1,7 +1,7 @@
 "use strict";
 
 var fs = require('fs');
-var Util = require('../lib/differ.utils.js').Util;
+var Util = require('../../lib/differ.utils.js').Util;
 var domino = require('domino');
 var crypto = require('crypto');
 

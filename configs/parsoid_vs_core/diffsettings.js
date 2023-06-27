@@ -1,6 +1,6 @@
 const Util = require('../../lib/differ.utils.js').Util;
 const path = require('path');
-const adaptor1 = require('../../lib/cache_purge.adaptor.js');
+const adaptor1 = require('../common/cache_purge.adaptor.js');
 const adaptor2 = require('./adaptor.js');
 
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
   // Production/local-dev Parsoid HTML output
   html2: {
     name: 'parsoid',
-    stylesYamlFile: path.resolve(__dirname, '../../lib/parsoid.custom_styles.yaml'),
+    stylesYamlFile: path.resolve(__dirname, '../common/parsoid.custom_styles.yaml'),
     postprocessorScript: path.resolve(__dirname, './parsoid.postprocess.js'),
     injectJQuery: false,
     server: 'https://',
