@@ -193,19 +193,6 @@ function generateLocalHTMLFiles(opts) {
 				return link;
 			});
 
-			// Two temporary workarounds till these fixes merge / ride the train
-			const mwContentDiv = dom.body.querySelector('div#mw-content-text');
-			const fc = mwContentDiv.firstChild;
-			if (!fc || fc.nodeName !== 'div' || fc.getAttribute('class') !== 'mw-parser-output') {
-				const parserOutputDiv = dom.createElement('div');
-				parserOutputDiv.setAttribute('class', 'mw-parser-output');
-				migrateChildren(mwContentDiv, parserOutputDiv);
-				mwContentDiv.appendChild(parserOutputDiv);
-			}
-
-			let html = dom.outerHTML;
-			html = html.replace(/(w\/load.php\?lang=\w+&amp;modules=)/, "$1mediawiki.skinning.content.parsoid|");
-
 			// Save the Parsoid HTML to disk
 			const parsoidFileName = asciiFileName(opts.outdir, opts.html2.screenShot);
 			fs.writeFileSync(parsoidFileName, html);
