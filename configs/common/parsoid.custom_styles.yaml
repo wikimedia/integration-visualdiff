@@ -56,3 +56,7 @@ sv.wikipedia.org: |
    a[rel="mw:referencedBy"]::before {
        content: "^";
    }
+ar.wikipedia.org: |
+   [rel="mw:referencedBy"]::before {
+       content: "^ ";
+   ]
