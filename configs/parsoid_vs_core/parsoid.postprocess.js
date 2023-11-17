@@ -34,10 +34,5 @@ window.postprocessDOM = function(customCSS) {
 	// Hide quick surveys
 	$('.ext-quick-survey-panel').hide();
 
-	// Hide Kartographer maps since some JS code is not applying
-	// on Parsoid output and we know Kartographer extension needs
-	// to be adapted to Parsoid output.
-	$('div.mw-kartographer-container').hide();
-
 	return null;
 };
