@@ -2,16 +2,6 @@ window.postprocessDOM = function() {
 	// Hide Cite errors for now since Parsoid embeds error info elsewhere
 	$('<style type="text/css"> .mw-ext-cite-error { display: none; } </style>').appendTo('head');
 
-	// Hide talk page header added on some wikis (ex: frwiki)
-	$('div.mw-talkpageheader').hide();
-
-	// Hide DiscussionTools reply buttons - these are only added to core
-	// and will be added to Parsoid HTML as well when Parsoid HTML is used.
-	$('span.ext-discussiontools-init-replylink-buttons').hide();
-
-	// Hide DiscussionTools empty state output
-	$('div.ext-discussiontools-emptystate').hide();
-
 	// Hide edit links
 	$('span.mw-editsection').hide();
 

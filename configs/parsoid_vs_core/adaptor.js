@@ -63,9 +63,6 @@ function generateLocalHTMLFiles(opts) {
 		base.setAttribute('href', opts.html1.url);
 		dom.head.insertBefore(base, dom.head.firstChild);
 
-		// Disable discussion tools (since Parsoid won't have them enabled)
-		dom.body.classList.remove('ext-discussiontools-replytool-enabled');
-
 		// May not be necessary anymore, but removing this can
 		// speed up diffing and eliminate some spurious noise.
 		// Remove all chrome, only keep the actual content.
