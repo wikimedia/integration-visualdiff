@@ -5,11 +5,6 @@ window.postprocessDOM = function() {
 	// Hide edit links
 	$('span.mw-editsection').hide();
 
-	// Hide catlinks + footer
-	$('div.printFooter').hide();
-	$('div#catlinks').hide();
-	$('div#catlinks+div.visualClear').hide();
-
 	// FIXME: Yuck! This is not a scalable solution
 	$('.mw-collapsible-toggle-collapsed a').each(function() { this.click(); });
 	$('span.NavToggle a').each(function() { this.click(); }); // enwiktionary, ...
