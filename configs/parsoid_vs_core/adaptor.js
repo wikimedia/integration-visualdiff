@@ -182,7 +182,7 @@ function generateLocalHTMLFiles(opts) {
 			const canonicalTitle = canonicalURI.replace(/.*\/wiki\//, '').replace(/_/g, ' ');
 			const links = Array.from(dom.querySelectorAll('a[rel=mw:WikiLink]'));
 			links.map(function(link) {
-				if (link.getAttribute('href').replace(/^\.\//, '').replace(/_/g, ' ') === canonicalTitle) {
+				if (link.getAttribute('href').replace(/^(\.|.*\/wiki)\//, '').replace(/_/g, ' ') === canonicalTitle) {
 					link.removeAttribute('rel');
 					link.removeAttribute('href');
 					link.removeAttribute('title');
