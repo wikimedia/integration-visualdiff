@@ -139,21 +139,6 @@ function generateLocalHTMLFiles(opts) {
 				return null;
 			});
 
-			// Work around a difference in Parsoid's gallery implementation
-			// Add p-wrapping around image captions
-			Array.from(dom.querySelectorAll('div.gallerytext')).map(function(node) {
-				let c = node.firstChild;
-				if (c) {
-					const p = dom.createElement('p');
-					while (c) {
-						p.appendChild(c);
-						c = node.firstChild;
-					}
-					node.appendChild(p);
-				}
-				return node;
-			});
-
 			// Transform <p>(style|link|span-with-multiple-discussion-tools-marker-comment|></p>
 			// by stripping the paragraph wrapper that adds unnecessary whitespace in Parsoid output.
 			Array.from(dom.querySelectorAll('p')).map(function(p) {
