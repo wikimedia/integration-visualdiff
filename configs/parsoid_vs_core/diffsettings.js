@@ -18,7 +18,7 @@ module.exports = {
     // on the commandline
     server: 'https://',
     computeURL: function(server, wiki, title) {
-	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title) + "?useskin=vector&useskinversion=1";
+	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title);
       // console.log("LURL: " + url);
       return url;
     },
@@ -33,7 +33,7 @@ module.exports = {
     injectJQuery: false,
     server: 'https://',
     computeURL: function(server, wiki, title) {
-	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title) + "?useskin=vector&useskinversion=1&useparsoid=1";
+	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title) + "?useparsoid=1";
       // console.log("PURL: " + url);
       return url;
     },
