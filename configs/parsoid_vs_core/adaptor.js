@@ -63,10 +63,11 @@ function generateLocalHTMLFiles(opts) {
 		base.setAttribute('href', opts.html1.url);
 		dom.head.insertBefore(base, dom.head.firstChild);
 
-		// May not be necessary anymore, but removing this can
-		// speed up diffing and eliminate some spurious noise.
-		// Remove all chrome, only keep the actual content.
-		dom.body.innerHTML = dom.body.querySelectorAll('div.mw-body-content')[0].outerHTML;
+		// Remove div#catlinks since we know Parsoid doesn't emit them yet (T351931)
+		Array.from(dom.querySelectorAll('div#catlinks')).map(function(div) {
+			div.parentNode.removeChild(div);
+			return nll;
+		});
 
 		// Save the core HTML to disk
 		const coreFileName = asciiFileName(opts.outdir, opts.html1.screenShot);
@@ -102,11 +103,6 @@ function generateLocalHTMLFiles(opts) {
 			const base = dom.createElement('base');
 			base.setAttribute('href', opts.html2.url);
 			dom.head.insertBefore(base, dom.head.firstChild);
-
-			// May not be necessary anymore, but removing this can
-			// speed up diffing and eliminate some spurious noise.
-			// Remove all chrome, only keep the actual content.
-			dom.body.innerHTML = dom.body.querySelectorAll('div.mw-body-content')[0].outerHTML;
 
 			// Some CSS selectors (used in JS/CSS) don't always apply when <section> tags intervene.
 			// TO BE DETERMINED: Do we want <section> wrappers only in canonical Parsoid HTML

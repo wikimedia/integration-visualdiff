@@ -1,4 +1,7 @@
 window.postprocessDOM = function() {
+	// Expand viewport to max size (Vector 2022)
+	$('button.vector-limited-width-toggle').each(function() { this.click(); });
+
 	// Hide Cite errors for now since Parsoid embeds error info elsewhere
 	$('<style type="text/css"> .mw-ext-cite-error { display: none; } </style>').appendTo('head');
 

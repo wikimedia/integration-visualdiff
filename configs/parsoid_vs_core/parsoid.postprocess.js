@@ -5,6 +5,9 @@ window.postprocessDOM = function(customCSS) {
 		return 'REDIRECT';
 	}
 
+	// Expand viewport to max size (Vector 2022)
+	$('button.vector-limited-width-toggle').each(function() { this.click(); });
+
 	// Add custom CSS to reduce rendering diffs
 	$('<style type="text/css">' + customCSS + '</style>').appendTo('head');
 
