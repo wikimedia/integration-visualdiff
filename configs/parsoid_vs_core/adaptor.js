@@ -41,18 +41,6 @@ function stripSectionTags(node) {
 
 }
 
-// __DTHASLEDECONTENT__, __DTEMPTYTALKPAGE__, etc.
-function hasOnlyDTComments(n) {
-	let c = n.firstChild;
-	while (c) {
-		if (c.nodeType !== 8 || !/^__DT.*__$/.test(c.nodeValue)) {
-			return false;
-		}
-		c = c.nextSibling;
-	}
-	return true;
-}
-
 function generateLocalHTMLFiles(opts) {
 	// console.log("pre - generating!");
 
@@ -133,29 +121,6 @@ function generateLocalHTMLFiles(opts) {
 					span.parentNode.removeChild(span);
 				}
 				return null;
-			});
-
-			// Transform <p>(style|link|span-with-multiple-discussion-tools-marker-comment|></p>
-			// by stripping the paragraph wrapper that adds unnecessary whitespace in Parsoid output.
-			Array.from(dom.querySelectorAll('p')).map(function(p) {
-				let empty = true;
-				let c = p.firstChild;
-				while (c) {
-					if (c.nodeName !== 'LINK' &&
-						c.nodeName !== 'STYLE' &&
-						// Ignore anything that is not a span with DT-only comments
-						(c.nodeName !== 'SPAN' || !hasOnlyDTComments(c))
-					) {
-						empty = false;
-						break;
-					}
-					c = c.nextSibling;
-				}
-				if (empty) {
-					migrateChildren(p, p.parentNode, p.nextSibling);
-					p.parentNode.removeChild(p);
-				}
-				return p;
 			});
 
 			// Work around Parsoid's lack of handling of self-links
