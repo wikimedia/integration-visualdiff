@@ -66,7 +66,7 @@ function generateLocalHTMLFiles(opts) {
 		// Remove div#catlinks since we know Parsoid doesn't emit them yet (T351931)
 		Array.from(dom.querySelectorAll('div#catlinks')).map(function(div) {
 			div.parentNode.removeChild(div);
-			return nll;
+			return null;
 		});
 
 		// Save the core HTML to disk
