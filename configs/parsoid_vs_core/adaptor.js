@@ -101,25 +101,11 @@ function generateLocalHTMLFiles(opts) {
 			stripSectionTags(dom.body);
 
 			// Strip entity,etc. spans since they seem to render spurious invisible diffs
-			Array.from(dom.querySelectorAll('span[typeof=mw:Entity],span[typeof=mw:DisplaySpace],span[typeof=mw:Nowiki],span[typeof=mw:Placeholder]')).map(function(node) {
+			Array.from(dom.querySelectorAll('span[typeof=mw:Entity],span[typeof=mw:DisplaySpace]')).map(function(node) {
 				if (node.firstChild) {
 					node.parentNode.insertBefore(node.firstChild, node.nextSibling);
 				}
 				node.parentNode.removeChild(node);
-				return null;
-			});
-
-			// Strip about-id-continuity spans added to template & extension content for the same reason as above
-			Array.from(dom.querySelectorAll('span[about]')).map(function(span) {
-				const fc = span.firstChild;
-				if (!fc) {
-					// Dummy wrapper -- remove
-					span.parentNode.removeChild(span);
-				} else if (fc === span.lastChild && fc.nodeType === 3 && !span.hasAttribute('lang') && !span.hasAttribute('class') && !span.hasAttribute('style')) {
-					// Only 1 text child ==> span wrapped text node for template continuity
-					span.parentNode.insertBefore(fc, span.nextSibling);
-					span.parentNode.removeChild(span);
-				}
 				return null;
 			});
 
