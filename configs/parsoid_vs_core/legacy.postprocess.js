@@ -35,5 +35,8 @@ window.postprocessDOM = function() {
 	// Hide quick surveys
 	$('.ext-quick-survey-panel').hide();
 
+	// Hide notifications (Parsoid adds a new one now -- so all notifications)
+	$('div.mw-notification').hide();
+
 	return null;
 };
