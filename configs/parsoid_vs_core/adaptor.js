@@ -123,20 +123,6 @@ function generateLocalHTMLFiles(opts) {
 				return null;
 			});
 
-			// Work around Parsoid's lack of handling of self-links
-			const canonicalURI = decodeURI(dom.head.querySelectorAll('link[rel=canonical]')[0].getAttribute('href'));
-			const canonicalTitle = canonicalURI.replace(/.*\/wiki\//, '').replace(/_/g, ' ');
-			const links = Array.from(dom.querySelectorAll('a[rel=mw:WikiLink]'));
-			links.map(function(link) {
-				if (link.getAttribute('href').replace(/^(\.|.*\/wiki)\//, '').replace(/_/g, ' ') === canonicalTitle) {
-					link.removeAttribute('rel');
-					link.removeAttribute('href');
-					link.removeAttribute('title');
-					link.setAttribute('class', 'mw-selflink selflink');
-				}
-				return link;
-			});
-
 			// Save the Parsoid HTML to disk
 			const parsoidFileName = asciiFileName(opts.outdir, opts.html2.screenShot);
 			fs.writeFileSync(parsoidFileName, dom.outerHTML);
