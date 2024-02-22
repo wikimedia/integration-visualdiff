@@ -5,9 +5,6 @@ window.postprocessDOM = function() {
 	// Hide Cite errors for now since Parsoid embeds error info elsewhere
 	$('<style type="text/css"> .mw-ext-cite-error { display: none; } </style>').appendTo('head');
 
-	// Hide edit links
-	$('span.mw-editsection').hide();
-
 	// FIXME: Yuck! This is not a scalable solution
 	$('.mw-collapsible-toggle-collapsed a').each(function() { this.click(); });
 	$('span.NavToggle a').each(function() { this.click(); }); // enwiktionary, ...
@@ -37,6 +34,9 @@ window.postprocessDOM = function() {
 
 	// Hide notifications (Parsoid adds a new one now -- so all notifications)
 	$('div.mw-notification').hide();
+	// Hide Parsoid's "rendered with parsoid" indicator
+	// But this is too crude a hammer without an id on it.
+	$('div.cdx-info-chip').hide();
 
 	return null;
 };
