@@ -40,8 +40,7 @@ window.postprocessDOM = function(customCSS) {
 	// Hide notifications (Parsoid adds a new one now -- so all notifications)
 	$('div.mw-notification').hide();
 	// Hide Parsoid's "rendered with parsoid" indicator
-	// But this is too crude a hammer without an id on it.
-	$('div.cdx-info-chip').hide();
+	$('div#mw-indicator-parsoid').hide();
 
 	return null;
 };
