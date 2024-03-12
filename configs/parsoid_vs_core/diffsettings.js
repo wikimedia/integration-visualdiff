@@ -18,7 +18,7 @@ module.exports = {
     // on the commandline
     server: 'https://',
     computeURL: function(server, wiki, title) {
-	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title);
+	  const url = server + Util.getWikiDomain(wiki) + '/wiki/' + encodeURIComponent(title) + "?useparsoid=0";
       // console.log("LURL: " + url);
       return url;
     },
