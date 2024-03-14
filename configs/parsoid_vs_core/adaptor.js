@@ -25,7 +25,7 @@ function migrateChildren(from, to, beforeNode) {
 function stripSectionTags(node) {
 	let n = node.firstChild;
 	while (n) {
-		var next = n.nextSibling;
+		const next = n.nextSibling;
 		if (n.nodeType === 1) {
 			// Recurse into subtree before stripping this
 			stripSectionTags(n);
@@ -38,7 +38,45 @@ function stripSectionTags(node) {
 		}
 		n = next;
 	}
+}
 
+function noAttributes(node) {
+	return Array.from(node.attributes).filter((attr) => attr.name !== 'id').length === 0;
+}
+
+function isPBRP(node) {
+	if (node.nodeName !== 'P') {
+		return false;
+	}
+
+	let haveBR = false;
+	let n = node.firstChild;
+	while (n) {
+		if (n.nodeName === 'BR') {
+			if (!noAttributes(n)) {
+				return false;
+			}
+			haveBR = true;
+		} else if (n.nodeName !== 'STYLE' && n.nodeName !== 'LINK' && n.nodeValue !== '\n') {
+			return false;
+		}
+		n = n.nextSibling;
+	}
+
+	return haveBR;
+}
+
+function stripPBRPfragments(node) {
+	let n = node.firstChild;
+	while (n) {
+		const next = n.nextSibling;
+		if (isPBRP(n)) {
+			node.removeChild(n);
+		} else if (n.nodeType === 1) {
+			stripPBRPfragments(n);
+		}
+		n = next;
+	}
 }
 
 function generateLocalHTMLFiles(opts) {
@@ -57,6 +95,9 @@ function generateLocalHTMLFiles(opts) {
 			return null;
 		});
 
+		// Remove p-br-p from the content-div
+		// since it causes rendering diff noise!
+		stripPBRPfragments(dom.getElementById('mw-content-text').firstChild);
 		// Save the core HTML to disk
 		const coreFileName = asciiFileName(opts.outdir, opts.html1.screenShot);
 
@@ -99,6 +140,10 @@ function generateLocalHTMLFiles(opts) {
 			// DOM to move navboxes and other stuff around and <section> tags prevent the query
 			// selectors from applying).
 			stripSectionTags(dom.body);
+
+			// Remove p-br-p from the content-div
+			// since it causes rendering diff noise!
+			stripPBRPfragments(dom.getElementById('mw-content-text').firstChild);
 
 			// Strip entity,etc. spans since they seem to render spurious invisible diffs
 			Array.from(dom.querySelectorAll('span[typeof=mw:Entity],span[typeof=mw:DisplaySpace]')).map(function(node) {

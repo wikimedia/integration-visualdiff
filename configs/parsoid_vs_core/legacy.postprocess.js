@@ -35,5 +35,13 @@ window.postprocessDOM = function() {
 	// Hide notifications (Parsoid adds a new one now -- so all notifications)
 	$('div.mw-notification').hide();
 
+	// enwikivoyage specific hacks:
+	// 1. Hide all indicators for now - known problem
+	// 2. Hide related pages (which seems to come from some gadget which
+	//    don't always reliably load before the screenshotting and lead to
+	//    a lot of false positives and hence noise)
+	$('div.mw-indicators').hide();
+	$('div#mw-data-after-content').hide();
+
 	return null;
 };

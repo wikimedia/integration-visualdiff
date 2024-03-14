@@ -42,5 +42,13 @@ window.postprocessDOM = function(customCSS) {
 	// Hide Parsoid's "rendered with parsoid" indicator
 	$('div#mw-indicator-parsoid').hide();
 
+	// enwikivoyage specific hacks:
+	// 1. Hide all indicators for now - known problem
+	// 2. Hide related pages (which seems to come from some gadget which
+	//    don't always reliably load before the screenshotting and lead to
+	//    a lot of false positives and hence noise)
+	$('div.mw-indicators').hide();
+	$('div#mw-data-after-content').hide();
+
 	return null;
 };
