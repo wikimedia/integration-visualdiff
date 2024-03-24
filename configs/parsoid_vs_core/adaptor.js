@@ -89,12 +89,6 @@ function generateLocalHTMLFiles(opts) {
 		base.setAttribute('href', opts.html1.url);
 		dom.head.insertBefore(base, dom.head.firstChild);
 
-		// Remove div#catlinks since we know Parsoid doesn't emit them yet (T351931)
-		Array.from(dom.querySelectorAll('div#catlinks')).map(function(div) {
-			div.parentNode.removeChild(div);
-			return null;
-		});
-
 		// Remove p-br-p from the content-div
 		// since it causes rendering diff noise!
 		stripPBRPfragments(dom.getElementById('mw-content-text').firstChild);
