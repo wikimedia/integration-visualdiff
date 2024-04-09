@@ -26,6 +26,14 @@ function purgeCache(opts) {
 
 	const apiURL = opts.html1.url.replace(/\/wiki\/.*/, '/w/api.php'); // HARDCODED!
 	// console.log("Purging .. " + apiURL + " title: " + opts.title);
+
+	const headers = opts.headers || {};
+
+	// MW API authorization
+	if (opts.mwAccessToken) {
+		headers.Authorization = `Bearer ${opts.mwAccessToken}`;
+	}
+
 	return request({
 		uri: apiURL,
 		form: {
@@ -34,7 +42,8 @@ function purgeCache(opts) {
 			titles: opts.title,
 			redirects: true,
 		},
-		method: 'POST'
+		method: 'POST',
+		headers
 	}).spread(function(res, bodyStr) {
 		// console.log("got res: " + res.statusCode);
 		// console.log("body: " + bodyStr);
@@ -51,6 +60,9 @@ function purgeCache(opts) {
 			numSkips = 0;
 		} else {
 			numPurges++;
+		}
+		if (body.errors) {
+			console.log(body.errors);
 		}
 	}).catch(function(error) { /* suppress errors */
 		console.log(error);
