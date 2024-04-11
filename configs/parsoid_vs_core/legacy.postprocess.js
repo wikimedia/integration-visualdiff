@@ -40,8 +40,15 @@ window.postprocessDOM = function() {
 	// 2. Hide related pages (which seems to come from some gadget which
 	//    don't always reliably load before the screenshotting and lead to
 	//    a lot of false positives and hence noise)
+	// 3. Suppress gadget-added add listing links
 	$('div.mw-indicators').hide();
 	$('div#mw-data-after-content').hide();
+	// For some reason, these don't seem to consistently get added everywhere during visual diff tests
+	// but they are present when visited on the wiki -- so, suppress the noise for now
+	$('a.listingeditor-add').hide();
+	// Unfortunately, need to hide these as well which hide these from regular edit section links too.
+	// But, we know they render properly at this point, so we won't miss diffs here.
+	$('span.mw-editsection-bracket').hide();
 
 	return null;
 };
