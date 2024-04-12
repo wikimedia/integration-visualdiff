@@ -57,7 +57,9 @@ function isPBRP(node) {
 				return false;
 			}
 			haveBR = true;
-		} else if (n.nodeName !== 'STYLE' && n.nodeName !== 'LINK' && n.nodeValue !== '\n') {
+		} else if (n.nodeName === '#text' && !n.nodeValue.match(/^[ \n]+$/)) {
+			return false;
+		} else if (n.nodeName !== '#text' && n.nodeName !== 'STYLE' && n.nodeName !== 'LINK') {
 			return false;
 		}
 		n = n.nextSibling;
