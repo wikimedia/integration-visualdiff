@@ -81,40 +81,6 @@ function stripPBRPfragments(node) {
 	}
 }
 
-function isContent(node) {
-	if (node.nodeType === 8) {
-		return false;
-	}
-
-	if (node.nodeType === 3 && node.nodeValue.trim() === "") {
-		return false;
-	}
-
-	return true;
-}
-
-function stripIndicatorParagraph(node) {
-	let firstChild = node.firstChild.firstChild;
-
-	while (!(firstChild === null) && !isContent(firstChild)) {
-		firstChild = firstChild.nextSibling;
-	}
-
-	if (firstChild === null) {
-		return;
-	}
-
-	let nextSibling = firstChild.nextSibling;
-	while (!(nextSibling === null) && !isContent(nextSibling)) {
-		nextSibling = nextSibling.nextSibling;
-	}
-	firstChild.removeAttribute('data-parsoid');
-	if (firstChild.tagName === 'P' && noAttributes(firstChild) && nextSibling === null) {
-		migrateChildren(firstChild, node.firstChild, firstChild.nextSibling);
-		firstChild.remove();
-	}
-}
-
 function generateLocalHTMLFiles(opts) {
 	// console.log("pre - generating!");
 
@@ -184,9 +150,6 @@ function generateLocalHTMLFiles(opts) {
 				node.parentNode.removeChild(node);
 				return null;
 			});
-
-			// Strip paragraph wrappers from indicators
-			dom.querySelectorAll('.mw-indicator').forEach(stripIndicatorParagraph);
 
 			// Save the Parsoid HTML to disk
 			const parsoidFileName = asciiFileName(opts.outdir, opts.html2.screenShot);
