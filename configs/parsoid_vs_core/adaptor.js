@@ -81,6 +81,28 @@ function stripPBRPfragments(node) {
 	}
 }
 
+function stripBRFromFirstAndLastP(content) { // Slightly misnamed but gets the job done
+	// process first P tag, if it exists in the right place
+	let n = content.firstChild;
+	if (n && n.nodeName === 'P' && n.firstChild.nodeName === 'BR') {
+		n.removeChild(n.firstChild); // remove the <br>
+	}
+
+	// Get last P tag, if it exists in the right place and process it
+	n = content.lastChild;
+	while (n && n.nodeName !== 'P') {
+		/* skip past comments & "empty" text nodes */
+		if (n.nodeType !== 8 && (n.nodeName !== '#text' || !n.nodeValue.match(/^\s*$/))) {
+			// cannot proceed
+			return;
+		}
+		n = n.previousSibling;
+	}
+	if (n && n.firstChild.nodeName === 'BR') {
+		n.removeChild(n.firstChild); // remove the <br>
+	}
+}
+
 function generateLocalHTMLFiles(opts) {
 	// console.log("pre - generating!");
 
@@ -94,6 +116,9 @@ function generateLocalHTMLFiles(opts) {
 		// Remove p-br-p from the content-div
 		// since it causes rendering diff noise!
 		stripPBRPfragments(dom.getElementById('mw-content-text').firstChild);
+		// Remove <br> from first and last <p> in the content div
+		// since it causes rendering diff noise!
+		stripBRFromFirstAndLastP(dom.getElementById('mw-content-text').firstChild);
 
 		// Save the core HTML to disk
 		const coreFileName = asciiFileName(opts.outdir, opts.html1.screenShot);
