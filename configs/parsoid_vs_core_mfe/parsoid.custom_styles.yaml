@@ -1,0 +1,53 @@
+# ------------------------ These styles apply to all wikis ------------------------
+# FIXME: Is this still required?
+all: |
+    .mw-empty-elt {
+        display: none;
+    }
+
+# -- copied over form MediaWiki:Common.css
+# -- needed till we add this stuff to MediaWiki:Minerva.css on enwiki
+en.wikipedia.org: |
+  span[ rel="mw:referencedBy" ] {
+      counter-reset: mw-ref-linkback 0;
+  }
+
+  span[ rel='mw:referencedBy' ] > a::before {
+      content: counter( mw-ref-linkback, lower-alpha );
+      font-size: 80%;
+      font-weight: bold;
+      font-style: italic;
+  }
+
+  a[ rel="mw:referencedBy" ]::before {
+      font-weight: bold;
+      content: "^";
+  }
+
+  span[ rel="mw:referencedBy" ]::before {
+      content: "^ ";
+  }
+
+  .mw-ref > a[data-mw-group=lower-alpha]::after {
+      content: '[' counter( mw-Ref, lower-alpha ) ']';
+  }
+
+  .mw-ref > a[data-mw-group=upper-alpha]::after {
+      content: '[' counter( mw-Ref, upper-alpha ) ']';
+  }
+
+  .mw-ref > a[data-mw-group=decimal]::after {
+      content: '[' counter( mw-Ref, decimal ) ']';
+  }
+
+  .mw-ref > a[data-mw-group=lower-roman]::after {
+      content: '[' counter( mw-Ref, lower-roman ) ']';
+  }
+
+  .mw-ref > a[data-mw-group=upper-roman]::after {
+      content: '[' counter( mw-Ref, upper-roman ) ']';
+  }
+
+  .mw-ref > a[data-mw-group=lower-greek]::after {
+      content: '[' counter( mw-Ref, lower-greek ) ']';
+  }
