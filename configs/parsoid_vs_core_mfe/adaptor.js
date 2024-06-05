@@ -40,6 +40,43 @@ function stripSectionTags(node) {
 	}
 }
 
+function isEmptyNode(p) {
+	let n = p.firstChild;
+	while (n) {
+		if (n.nodeType === 3) { /* text */
+			if (!n.nodeValue.match(/^\s*$/)) {
+				return false;
+			}
+		} else if (n.nodeType === 1) { /* element */
+			if (n.nodeName !== 'STYLE' && n.nodeName !== 'LINK' && !isEmptyNode(n)) {
+				return false;
+			}
+		} else if (n.nodetype !== 8) { /* comment */
+			return false;
+		}
+		n = n.nextSibling;
+	}
+	return true;
+}
+
+function hoistLeadPara(leadSection) {
+	const paras = leadSection.getElementsByTagName('P');
+	let p = null, i = 0;
+	do {
+		p = paras.item(i);
+		i++;
+	} while (p && (p.getAttribute('class') === 'mw-empty-elt' || isEmptyNode(p)));
+
+	// Bail if we failed to find a paragraph here
+	if (!p) {
+		return;
+	}
+
+	// Found a paragraph - make sure it goes to the top
+	const parent = p.parentNode;
+	parent.insertBefore(p, parent.firstChild);
+}
+
 function noAttributes(node) {
 	return Array.from(node.attributes).filter((attr) => attr.name !== 'id').length === 0;
 }
@@ -154,6 +191,9 @@ function generateLocalHTMLFiles(opts) {
 			const base = dom.createElement('base');
 			base.setAttribute('href', opts.html2.url);
 			dom.head.insertBefore(base, dom.head.firstChild);
+
+			// Hacky lead para hoisting to work around T359002
+			hoistLeadPara(dom.body.getElementsByTagName("SECTION").item(0));
 
 			// Some CSS selectors (used in JS/CSS) don't always apply when <section> tags intervene.
 			// TO BE DETERMINED: Do we want <section> wrappers only in canonical Parsoid HTML

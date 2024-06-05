@@ -1,7 +1,9 @@
 window.postprocessDOM = function() {
+	// Parsoid doesn't have these yet
 	// Expand TOC & all sections
-	$('span.mw-expand-icon').each(function() { this.click(); });
+	$('span.mf-icon').each(function() { this.click(); });
 	$('span.toctogglespan').each(function() { this.click(); });
+	$('span.mf-icon').hide();
 
 	// Hide Cite errors for now since Parsoid embeds error info elsewhere
 	$('<style type="text/css"> .mw-ext-cite-error { display: none; } </style>').appendTo('head');
