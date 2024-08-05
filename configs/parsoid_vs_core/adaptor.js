@@ -84,10 +84,9 @@ function stripPBRPfragments(node) {
 function stripBRFromFirstAndLastP(content) { // Slightly misnamed but gets the job done
 	// process first P tag, if it exists in the right place
 	let n = content.firstChild;
-	if (n && n.nodeName === 'P' && n.firstChild.nodeName === 'BR') {
+	if (n && n.nodeName === 'P' && n.firstChild && n.firstChild.nodeName === 'BR') {
 		n.removeChild(n.firstChild); // remove the <br>
 	}
-
 	// Get last P tag, if it exists in the right place and process it
 	n = content.lastChild;
 	while (n && n.nodeName !== 'P') {
@@ -98,7 +97,7 @@ function stripBRFromFirstAndLastP(content) { // Slightly misnamed but gets the j
 		}
 		n = n.previousSibling;
 	}
-	if (n && n.firstChild.nodeName === 'BR') {
+	if (n && n.firstChild && n.firstChild.nodeName === 'BR') {
 		n.removeChild(n.firstChild); // remove the <br>
 	}
 }
