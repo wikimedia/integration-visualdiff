@@ -13,70 +13,6 @@ function asciiFileName(outdir, file) {
 		'.html';
 }
 
-function migrateChildren(from, to, beforeNode) {
-	if (beforeNode === undefined) {
-		beforeNode = null;
-	}
-	while (from.firstChild) {
-		to.insertBefore(from.firstChild, beforeNode);
-	}
-}
-
-function stripSectionTags(node) {
-	let n = node.firstChild;
-	while (n) {
-		const next = n.nextSibling;
-		if (n.nodeType === 1) {
-			// Recurse into subtree before stripping this
-			stripSectionTags(n);
-
-			// Strip <section> tags
-			if (n.nodeName === 'SECTION' && n.hasAttribute('data-mw-section-id')) {
-				migrateChildren(n, n.parentNode, n);
-				n.parentNode.removeChild(n);
-			}
-		}
-		n = next;
-	}
-}
-
-function isEmptyNode(p) {
-	let n = p.firstChild;
-	while (n) {
-		if (n.nodeType === 3) { /* text */
-			if (!n.nodeValue.match(/^\s*$/)) {
-				return false;
-			}
-		} else if (n.nodeType === 1) { /* element */
-			if (n.nodeName !== 'STYLE' && n.nodeName !== 'LINK' && !isEmptyNode(n)) {
-				return false;
-			}
-		} else if (n.nodetype !== 8) { /* comment */
-			return false;
-		}
-		n = n.nextSibling;
-	}
-	return true;
-}
-
-function hoistLeadPara(leadSection) {
-	const paras = leadSection.getElementsByTagName('P');
-	let p = null, i = 0;
-	do {
-		p = paras.item(i);
-		i++;
-	} while (p && (p.getAttribute('class') === 'mw-empty-elt' || isEmptyNode(p)));
-
-	// Bail if we failed to find a paragraph here
-	if (!p) {
-		return;
-	}
-
-	// Found a paragraph - make sure it goes to the top
-	const parent = p.parentNode;
-	parent.insertBefore(p, parent.firstChild);
-}
-
 function noAttributes(node) {
 	return Array.from(node.attributes).filter((attr) => attr.name !== 'id').length === 0;
 }
@@ -152,10 +88,10 @@ function generateLocalHTMLFiles(opts) {
 
 		// Remove p-br-p from the content-div
 		// since it causes rendering diff noise!
-		stripPBRPfragments(dom.getElementById('mw-content-text').firstChild);
+		stripPBRPfragments(dom.getElementById('mw-content-text'));
 		// Remove <br> from first and last <p> in the content div
 		// since it causes rendering diff noise!
-		stripBRFromFirstAndLastP(dom.getElementById('mw-content-text').firstChild);
+		stripBRFromFirstAndLastP(dom.getElementById('mw-content-text'));
 
 		// Save the core HTML to disk
 		const coreFileName = asciiFileName(opts.outdir, opts.html1.screenShot);
@@ -192,20 +128,9 @@ function generateLocalHTMLFiles(opts) {
 			base.setAttribute('href', opts.html2.url);
 			dom.head.insertBefore(base, dom.head.firstChild);
 
-			// Hacky lead para hoisting to work around T359002
-			hoistLeadPara(dom.body.getElementsByTagName("SECTION").item(0));
-
-			// Some CSS selectors (used in JS/CSS) don't always apply when <section> tags intervene.
-			// TO BE DETERMINED: Do we want <section> wrappers only in canonical Parsoid HTML
-			// or also in Parsoid's read view output? If we want them in read view output, then
-			// some JS/CSS fixes might be needed (ex: arwiki's Mediawiki:Common.js manipulates the
-			// DOM to move navboxes and other stuff around and <section> tags prevent the query
-			// selectors from applying).
-			stripSectionTags(dom.body);
-
 			// Remove p-br-p from the content-div
 			// since it causes rendering diff noise!
-			stripPBRPfragments(dom.getElementById('mw-content-text').firstChild);
+			stripPBRPfragments(dom.getElementById('mw-content-text'));
 
 			// Strip entity,etc. spans since they seem to render spurious invisible diffs
 			Array.from(dom.querySelectorAll('span[typeof=mw:Entity],span[typeof=mw:DisplaySpace]')).map(function(node) {
