@@ -1,4 +1,8 @@
 window.postprocessDOM = function() {
+	const customCSS = '.content ul + .mw-heading3 { margin-top: 1.5em; }';
+	// Add custom CSS to reduce rendering diffs
+	$('<style type="text/css">' + customCSS + '</style>').appendTo('head');
+
 	// enwikivoyage specific hacks:
 	// 1. Hide related pages (which seems to come from some gadget which
 	//    don't always reliably load before the screenshotting and lead to
