@@ -13,6 +13,10 @@ window.postprocessDOM = function() {
 	$('a.UitklapToggle').each(function() { this.click(); }); // nlwiki
 	// $('.collapseButton a').each(function() { this.click(); }); // enwiki ruwiki
 
+	// jawikivoyage specific hack -- legacy output seems to render this
+	// as well causing duplicate blocks and incorrect visual diff noise.
+	$('div#mobile').hide();
+
 	// Hide show/hide buttons
 	$('span.NavToggle').hide();
 	$('a.NavToggle').hide();
