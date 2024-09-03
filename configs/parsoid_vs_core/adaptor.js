@@ -114,7 +114,7 @@ function generateLocalHTMLFiles(opts) {
 
 		// Remove p-br-p from the content-div
 		// since it causes rendering diff noise!
-		stripPBRPfragments(dom.getElementById('mw-content-text').firstChild);
+		stripPBRPfragments(dom.getElementById('mw-content-text'));
 		// Remove <br> from first and last <p> in the content div
 		// since it causes rendering diff noise!
 		stripBRFromFirstAndLastP(dom.getElementById('mw-content-text').firstChild);
@@ -164,7 +164,7 @@ function generateLocalHTMLFiles(opts) {
 
 			// Remove p-br-p from the content-div
 			// since it causes rendering diff noise!
-			stripPBRPfragments(dom.getElementById('mw-content-text').firstChild);
+			stripPBRPfragments(dom.getElementById('mw-content-text'));
 
 			// Strip entity,etc. spans since they seem to render spurious invisible diffs
 			Array.from(dom.querySelectorAll('span[typeof=mw:Entity],span[typeof=mw:DisplaySpace]')).map(function(node) {
