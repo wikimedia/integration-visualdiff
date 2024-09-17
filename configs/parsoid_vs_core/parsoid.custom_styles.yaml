@@ -1,0 +1,5 @@
+ja.wikivoyage.org: |
+  .mw-parser-output .hlist ol.references > li {
+     counter-increment: listitem mw-ref-extends-parent mw-references;
+     counter-reset: mw-ref-extends-child;
+  }
