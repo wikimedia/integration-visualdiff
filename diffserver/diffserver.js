@@ -71,6 +71,9 @@ function getLink(screenShot, baseDir, targetDir) {
 
 function sendResponse(res, opts) {
 	const pageTitle = 'Visual diff for ' + opts.wiki + ':' + opts.title;
+	// Normalize both urls to desktop mode
+	const url1 = opts.html1.computeURL(opts.html1.server, opts.wiki, opts.title).replace(/\.m\./, '');
+	const url2 = opts.html2.computeURL(opts.html2.server, opts.wiki, opts.title).replace(/\.m\./, '');
 	let page = '<html>';
 	page += '<head><title>' + pageTitle + '</title></head>';
 	page += '<body>';
@@ -81,10 +84,16 @@ function sendResponse(res, opts) {
 	page += '<li><a target="_blank" href="' + getLink(opts.html2.screenShot, baseDir, 'images') + '">' + opts.html2.name + ' Screenshot</a></li>';
 	page += '<li><a target="_blank" href="' + getLink(opts.diffFile, baseDir, 'images') + '">Visual Diff</a></li>';
 	page += '</ul>\n';
-	page += '<h2>Page on the target wikis</h2>\n';
+	page += '<h2>Desktop page on the target wikis</h2>\n';
 	page += '<ul>\n';
-	page += '<li><a target="_blank" href="' + opts.html1.computeURL(opts.html1.server, opts.wiki, opts.title) + '">' + opts.html1.name + ' HTML</a></li>\n';
-	page += '<li><a target="_blank" href="' + opts.html2.computeURL(opts.html2.server, opts.wiki, opts.title) + '">' + opts.html2.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + url1 + '">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + url2 + '">' + opts.html2.name + ' HTML</a></li>\n';
+	page += '</ul>\n';
+	page += '<h2>Mobile page on the target wikis</h2>\n';
+	page += '<ul>\n';
+	page += '<li><a target="_blank" href="' + url1.replace(/\./, '.m.') + '">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + url2.replace(/\./, '.m.') + '">' + opts.html2.name + ' HTML</a></li>\n';
+	page += '</ul>\n';
 	page += '</body></html>';
 
 	// Send response
