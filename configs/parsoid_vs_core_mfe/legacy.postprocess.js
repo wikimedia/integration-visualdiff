@@ -3,6 +3,9 @@ window.postprocessDOM = function() {
 	// Add custom CSS to reduce rendering diffs
 	$('<style type="text/css">' + customCSS + '</style>').appendTo('head');
 
+	// Hide all maps
+	$('.mw-kartographer-map').hide();
+
 	// enwikivoyage specific hacks:
 	// 1. Hide related pages (which seems to come from some gadget which
 	//    don't always reliably load before the screenshotting and lead to
