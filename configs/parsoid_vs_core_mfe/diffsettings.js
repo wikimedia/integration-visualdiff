@@ -13,6 +13,7 @@ module.exports = {
   // Production wikipedia PHP parser output
   html1: {
     name: 'php',
+    stylesYamlFile: path.resolve(__dirname, 'legacy.custom_styles.yaml'),
     postprocessorScript: path.resolve(__dirname, './legacy.postprocess.js'),
     injectJQuery: false,
     // suppress default base url computation code

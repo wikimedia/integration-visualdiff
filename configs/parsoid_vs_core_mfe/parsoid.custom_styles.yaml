@@ -1,12 +1,8 @@
 # Workaround
 all: |
-  .content .mw-parser-output .mw-heading2,
-  .content .section-heading {
-    margin-bottom:0.5em;
-  }
-  .content p + section > .mw-heading3,
-  .content section + section > .mw-heading3 {
-    margin-top:1.5em;
+  /* Workaround for https://phabricator.wikimedia.org/T375137 */
+  section > div.mw-heading3 + div > figure:first-child {
+    margin-top: 1.5px !important;
   }
 
 # -- copied over form MediaWiki:Common.css

@@ -1,0 +1,4 @@
+# Workaround
+all: |
+  /* Workaround for T374753 */
+  .skin-minerva .content p + .mw-heading3 { margin-top: 0; }

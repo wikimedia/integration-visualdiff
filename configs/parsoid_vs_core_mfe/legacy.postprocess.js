@@ -1,5 +1,4 @@
-window.postprocessDOM = function() {
-	const customCSS = '.content ul + .mw-heading3 { margin-top: 1.5em; }';
+window.postprocessDOM = function(customCSS) {
 	// Add custom CSS to reduce rendering diffs
 	$('<style type="text/css">' + customCSS + '</style>').appendTo('head');
 
@@ -17,6 +16,5 @@ window.postprocessDOM = function() {
 	// For some reason, these don't seem to consistently get added everywhere during visual diff tests
 	// but they are present when visited on the wiki -- so, suppress the noise for now
 	$('a.listingeditor-add').hide();
-
 	return null;
 };

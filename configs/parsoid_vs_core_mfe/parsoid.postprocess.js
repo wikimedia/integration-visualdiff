@@ -13,6 +13,15 @@ window.postprocessDOM = function(customCSS) {
 
 	$('div.mw-notification-area').hide();
 
+	// Workaround for https://phabricator.wikimedia.org/T374883.
+	// Make collapsible h3s caused by GIGO etc.. behave like legacy parser.
+	const invalidHeadings = $( '.mw-heading.mf-collapsible-heading:not(.mw-heading2)' );
+	invalidHeadings.find( '.mf-icon' ).remove();
+	invalidHeadings
+		.css( 'padding-left', 0 )
+		.css( 'border-bottom', 0 )
+		.removeClass('mf-collapsible-heading' );
+
 	// enwikivoyage specific hacks:
 	// 1. Hide related pages (which seems to come from some gadget which
 	//    don't always reliably load before the screenshotting and lead to
