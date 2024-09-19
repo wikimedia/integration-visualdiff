@@ -6,6 +6,8 @@ window.postprocessDOM = function() {
 	// Hide all maps
 	$('.mw-kartographer-map').hide();
 
+	$('div.mw-notification-area').hide();
+
 	// enwikivoyage specific hacks:
 	// 1. Hide related pages (which seems to come from some gadget which
 	//    don't always reliably load before the screenshotting and lead to
