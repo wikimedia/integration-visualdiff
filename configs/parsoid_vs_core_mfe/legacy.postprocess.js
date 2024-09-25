@@ -5,7 +5,11 @@ window.postprocessDOM = function(customCSS) {
 	// Hide all maps
 	$('.mw-kartographer-map').hide();
 
+	// Hide notifications
 	$('div.mw-notification-area').hide();
+
+	// Hide footer -- adds imperceptible noise in some tests
+	$('footer').hide();
 
 	// enwikivoyage specific hacks:
 	// 1. Hide related pages (which seems to come from some gadget which

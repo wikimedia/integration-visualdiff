@@ -11,7 +11,11 @@ window.postprocessDOM = function(customCSS) {
 	// Hide all maps
 	$('.mw-kartographer-map').hide();
 
+	// Hide notifications
 	$('div.mw-notification-area').hide();
+
+	// Hide footer -- adds imperceptible noise in some tests
+	$('footer').hide();
 
 	// Workaround for https://phabricator.wikimedia.org/T374883.
 	// Make collapsible h3s caused by GIGO etc.. behave like legacy parser.
