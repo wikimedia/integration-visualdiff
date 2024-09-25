@@ -2,3 +2,9 @@
 all: |
   /* Workaround for T374753 */
   .skin-minerva .content p + .mw-heading3 { margin-top: 0; }
+  /* Banners can lead to false positives so hide */
+  .mw-dismissable-notice,
+  /* Banners can reflow on mobile to adjust their focal point so hide */
+  .ext-wpb-pagebanner,
+  /* Galleries cause reflows so ignore. T242143 */
+  .gallery { display: none !important; }

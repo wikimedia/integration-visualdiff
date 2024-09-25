@@ -4,6 +4,12 @@ all: |
   section > div.mw-heading3 + div > figure:first-child {
     margin-top: 1.5px !important;
   }
+  /* Banners can lead to false positives so hide */
+  .mw-dismissable-notice,
+  /* Banners can reflow on mobile to adjust their focal point so hide */
+  .ext-wpb-pagebanner,
+  /* Galleries cause reflows so ignore. T242143 */
+  .gallery { display: none !important; }
 
 # -- copied over form MediaWiki:Common.css
 # -- needed till we add this stuff to MediaWiki:Minerva.css on enwiki
