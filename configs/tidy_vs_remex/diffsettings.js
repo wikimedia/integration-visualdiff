@@ -4,6 +4,8 @@ module.exports = {
   preLoadHandler: adaptor.pre,
   postRenderHandler: adaptor.post,
 
+  noSandBox: true, // we trust content & sandbox isn't set up anyway
+
   // Production wikipedia PHP parser output
   html1: {
     name: 'tidy',
@@ -39,6 +41,6 @@ module.exports = {
   // UprightDiff options
   uprightDiffSettings: {
     // Path to your local uprightdiff install
-    binary: '/usr/local/bin/uprightdiff',
+    binary: '/usr/bin/uprightdiff',
   },
 };
