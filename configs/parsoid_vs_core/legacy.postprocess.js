@@ -2,6 +2,11 @@ window.postprocessDOM = function() {
 	// Expand viewport to max size (Vector 2022)
 	$('button.vector-limited-width-toggle').each(function() { this.click(); });
 
+	// For ru & ja wikivoyages
+	$('p > br').each((i, br) => {
+		br.remove();
+	} );
+
 	// FIXME: Yuck! This is not a scalable solution
 	$('.mw-collapsible-toggle-collapsed a').each(function() { this.click(); });
 	$('span.NavToggle a').each(function() { this.click(); }); // enwiktionary, ...
