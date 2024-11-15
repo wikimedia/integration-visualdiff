@@ -29,7 +29,7 @@ module.exports = {
   // Production/local-dev Parsoid HTML output
   html2: {
     name: 'parsoid',
-    stylesYamlFile: path.resolve(__dirname, '../common/parsoid.custom_styles.yaml'),
+    stylesYamlFile: path.resolve(__dirname, './parsoid.custom_styles.yaml'),
     postprocessorScript: path.resolve(__dirname, './parsoid.postprocess.js'),
     injectJQuery: false,
     server: 'https://',
