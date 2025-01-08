@@ -1,0 +1,16 @@
+[Unit]
+Description=parsoid-vs-core-vd: Testreduce HTTP service for Parsoid vs Core visual-diff results
+After=network.target
+
+[Service]
+User=testreduce
+Group=testreduce
+LimitNOFILE=10000
+
+Environment=NODE_PATH=/srv/testreduce/node_modules
+WorkingDirectory=/srv/testreduce/server
+ExecStart=/usr/bin/nodejs server.js --config /etc/testreduce/parsoid-vs-core-vd.settings.js
+StandardInput=null
+StandardOutput=journal
+StandardError=journal
+RestartSec=2
