@@ -1,6 +1,8 @@
+* setup_vm.sh has all the commands you need to run
+  You need to set the PASSWORD for the testreduce user.
+	You need to set the name of the mysql dumps file.
+
 * The directory names are self-explanatory.
-  Copy the files in those directories to the corresponding
-	directories on the server.
 
 * Dump the databases on the server and migrate over and recreate
   the databases.
@@ -13,6 +15,3 @@
 * The mysql database passwords are all elided from these config files.
   Edit the configs and add in the password once the mysql databases
 	have been created.
-
-* There is an mediawiki access token in /home/testreduce/.mw-api-access-token
-  that should be migrated over from the old VM to the new VM
