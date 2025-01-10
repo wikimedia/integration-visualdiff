@@ -5,8 +5,9 @@ window.postprocessDOM = function(customCSS) {
 		return 'REDIRECT';
 	}
 
-	// Expand viewport to max size (Vector 2022)
-	$('button.vector-limited-width-toggle').each(function() { this.click(); });
+	// Expand viewport to max size (Vector 2022) + use small fonts
+	$('input#skin-client-pref-vector-feature-custom-font-size-value-0').each(function() { this.click(); });
+	$('input#skin-client-pref-vector-feature-limited-width-value-0').each(function() { this.click(); });
 
 	// For ru & ja wikivoyages
 	$('p > br').each((i, br) => {
