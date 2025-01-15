@@ -5,6 +5,7 @@
 const express = require('express');
 const yargs = require('yargs');
 const fs = require('fs');
+const path = require('path');
 const Util = require('../lib/differ.utils.js').Util;
 const VisualDiffer = require('../lib/differ.js').VisualDiffer;
 const { exit } = require('process');
@@ -47,6 +48,10 @@ try {
 	console.error(e.stack);
 	process.exit(1);
 }
+// Browser HTML file
+const browserHtml = fs.readFileSync(
+	path.resolve(__dirname, './browser.html'), 'utf8'
+);
 
 const baseDir = settings.outdir.slice().replace(/\/$/, '');
 
@@ -69,6 +74,21 @@ function getLink(screenShot, baseDir, targetDir) {
 	return '../../' + encodeURIComponent(screenShot.replace(baseDir, targetDir)).replace(/%2F/g, '/');
 }
 
+function sendBrowserResponse(res, opts) {
+	const urls = {
+		title: 'Visual diff browser: ' + opts.wiki + ':' + opts.title,
+		core: '../' + getLink(opts.html1.screenShot, baseDir, 'images'),
+		parsoid: '../' + getLink(opts.html2.screenShot, baseDir, 'images'),
+		diff: '../' + getLink(opts.diffFile, baseDir, 'images'),
+	};
+	const html = browserHtml.replace(
+		/proton[.](title|core|parsoid|diff)[.]png/g,
+		(match, p1) => urls[p1]
+	);
+	res.setHeader('Content-Type', 'text/html; charset=UTF-8');
+	res.status(200).send(html);
+}
+
 function sendResponse(res, opts) {
 	const pageTitle = 'Visual diff for ' + opts.wiki + ':' + opts.title;
 	// Normalize both urls to desktop mode
@@ -78,6 +98,7 @@ function sendResponse(res, opts) {
 	page += '<head><title>' + pageTitle + '</title></head>';
 	page += '<body>';
 	page += '<h1>' + pageTitle + '</h1>';
+	page += '<ul><li><a target="_blank" href="./' + encodeURIComponent(opts.title) + '/browse">Visual Diff Browser</a></li></ul>';
 	page += '<h2>Screenshots</h2>\n';
 	page += '<ul>';
 	page += '<li><a target="_blank" href="' + getLink(opts.html1.screenShot, baseDir, 'images') + '">' + opts.html1.name + ' Screenshot</a></li>';
@@ -101,11 +122,13 @@ function sendResponse(res, opts) {
 	res.status(200).send(page);
 }
 
-app.get(/^\/diff\/([^/]*)\/(.*)/, async function(req, res) {
+app.get(/^\/diff\/([^/]*)\/([^/]*)(\/browse)?/, async function(req, res) {
 	const wiki = req.params[0];
 	const title = req.params[1];
+	const isBrowse = req.params[2];
 	const oldId = req.query.oldId;
 	const logger = settings.quiet ? function(){} : function(msg) { console.log(msg); };
+	const respond = isBrowse ? sendBrowserResponse : sendResponse;
 
 	// Clone before modifying it!
 	var opts = Util.clone(settings);
@@ -117,12 +140,12 @@ app.get(/^\/diff\/([^/]*)\/(.*)/, async function(req, res) {
 		fs.existsSync(opts.html1.screenShot) &&
 		fs.existsSync(opts.html2.screenShot)) {
 		// Everything found on disk .. send them along!
-		sendResponse(res, opts);
+		respond(res, opts);
 	} else if (opts.onDemandDiffs) {
 		try {
 			const diffData = await (new VisualDiffer()).genVisualDiff(opts, logger);
 			if (diffData) {
-				sendResponse(res, opts);
+				respond(res, opts);
 			} else {
 				res.status(500).send('Encountered diffing error for ' + wiki + ':' + title);
 			}

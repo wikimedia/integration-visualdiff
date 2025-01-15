@@ -1,0 +1,164 @@
+<html>
+  <head>
+    <title>proton.title.png</title>
+    <script>
+const getCanvas = () => document.getElementById('canvas');
+let imageA, imageB, imageC, background;
+let currentAX = 0;
+let currentAY = 0;
+let currentBX = 0;
+let currentBY = 0;
+const modeOrder = [ 'C', 'A', 'B', 'both' ];
+let mode = modeOrder[0];
+
+const refreshCanvas = () => {
+	const context = getCanvas().getContext('2d');
+	// Checkered background
+	context.fillStyle = context.createPattern(background, "repeat");
+	context.fillRect(0,0,context.canvas.width,context.canvas.height);
+	context.fillStyle = 'black';
+	context.globalCompositeOperation = 'source-over';
+	const makeLabel = (text) => {
+		context.font = '24px sans-serif';
+		const metrics = context.measureText(text);
+		const padding = 4;
+		context.fillStyle = 'white';
+		context.strokeStyle = 'blue';
+		context.lineWidth = 2;
+		context.globalCompositeOperation = 'source-over';
+		const box = [
+			metrics.actualBoundingBoxLeft + padding,
+			padding,
+			metrics.actualBoundingBoxRight + 2*padding,
+			metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent + 2*padding
+		];
+		context.fillRect.apply(context, box);
+		context.strokeRect.apply(context, box);
+		context.strokeStyle = 'none';
+		context.fillStyle = 'black';
+		context.fillText(text,
+						 1.5*padding,
+						 metrics.actualBoundingBoxAscent + 2*padding);
+	};
+	if (mode === 'A') {
+		context.drawImage(imageA, currentAX, currentAY);
+		makeLabel("Legacy Parser");
+	} else if (mode === 'B') {
+		context.drawImage(imageB, currentBX, currentBY);
+		makeLabel("Parsoid", 0, 0);
+	} else if (mode === 'C') {
+		context.drawImage(imageC, currentAX, currentAY);
+		makeLabel("Visual Diff");
+	} else {
+		context.drawImage(imageA, currentAX, currentAY);
+		context.globalCompositeOperation = 'darken'; // 'xor';
+		context.drawImage(imageB, currentBX, currentBY);
+		makeLabel("Legacy + Parsoid (shift-drag to realign)");
+	}
+};
+
+const resizeObserver = new ResizeObserver((entries) => {
+	// Set canvas height to match body height
+	for (const entry of entries) {
+		if (entry.contentRect) {
+			getCanvas().width = entry.contentRect.width;
+			getCanvas().height = entry.contentRect.height;
+			refreshCanvas();
+		}
+	}
+});
+
+const setup = (event) => {
+	let dragging = false;
+	let lastX, lastY, lastMode = mode;
+	// Load all images
+	imageA = document.getElementById("core");
+	imageB = document.getElementById("parsoid");
+	imageC = document.getElementById("diff");
+	background = document.getElementById("background");
+	// Ensure canvas size matches body size
+	resizeObserver.observe(document.body);
+	// Click handlers
+	getCanvas().addEventListener("dblclick", (event) => {
+	    // Reset
+	    currentAX = 0;
+	    currentAY = 0;
+	    currentBX = 0;
+	    currentBY = 0;
+	    mode = modeOrder[0];
+	    refreshCanvas();
+	});
+	const clickHandler = (event) => {
+		if (event.button !== 0 && event.button !== 2) {
+			return;
+		}
+		event.preventDefault();
+		if (dragging) {
+			dragging = false;
+			mode = lastMode;
+		} else {
+			let idx = modeOrder.indexOf(mode);
+			const amt = (event.button === 0) ? 1 : (modeOrder.length - 1);
+			idx = (idx + amt) % modeOrder.length;
+			mode = modeOrder[idx];
+		}
+		refreshCanvas();
+	};
+	getCanvas().addEventListener("click", clickHandler);
+	// Capture right-click as well.
+	getCanvas().addEventListener("contextmenu", clickHandler);
+	// Click-and-drag handler
+	getCanvas().addEventListener('mousemove', (event) => {
+		const primaryButton = event.buttons & 1;
+		if (primaryButton && !dragging) {
+			lastMode = mode;
+		}
+		if (dragging && primaryButton) {
+			const distX = event.clientX - lastX;
+			const distY = event.clientY - lastY;
+			currentAX += distX;
+			currentAY += distY;
+			currentBX += distX;
+			if (!event.shiftKey) {
+				currentBY += distY;
+			} else {
+				mode = 'both';
+			}
+			if (distX !== 0 || distY !== 0) {
+				refreshCanvas();
+			}
+		}
+		if (dragging && !primaryButton) {
+			mode = lastMode;
+			refreshCanvas();
+		}
+		if (primaryButton) {
+			dragging = true;
+			lastX = event.clientX;
+			lastY = event.clientY;
+		} else {
+			dragging = false;
+		}
+	});
+	// Scroll wheel handler
+	getCanvas().addEventListener('wheel', (event) => {
+		currentAX += event.deltaX;
+		currentBX += event.deltaX;
+		const y = Math.max(event.deltaY, currentAY);
+		currentAY -= y;
+		currentBY -= y;
+		refreshCanvas();
+	});
+};
+
+// Setup will be called after all images are loaded
+addEventListener("load", setup);
+    </script>
+  </head>
+  <body style="height:100%; width:100%; padding:0; margin: 0;"><div style="display:none;">
+      <img id="core" src="proton.core.png" />
+      <img id="parsoid" src="proton.parsoid.png" />
+      <img id="diff" src="proton.diff.png" />
+      <img id="background" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAAAHUlEQVQ4T2NYggai0QDDqIIRpQBdAF3DqIIRpQAAIcT+EDmElnYAAAAASUVORK5CYII=" />
+    </div><canvas id="canvas"></canvas></body>
+</html>
