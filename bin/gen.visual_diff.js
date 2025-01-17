@@ -7,12 +7,12 @@ const customOpts = {
 	'viewportWidth': {
 		description: "Viewport width",
 		'boolean': false,
-		'default': 1920
+		'default': 1600
 	},
 	'viewportHeight': {
 		description: "Viewport height",
 		'boolean': false,
-		'default': 1080
+		'default': 0 // Lets puppeteer pick max window height
 	},
 	'stylesYamlFile': {
 		description: "YAML file containing custom CSS",
