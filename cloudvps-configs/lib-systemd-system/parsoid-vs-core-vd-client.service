@@ -1,0 +1,15 @@
+[Unit]
+Description=Testreduce test client for Parsoid vs Core visual diffing
+After=network.target
+
+[Service]
+User=testreduce
+Group=testreduce
+
+Environment=PATH=/sbin:/usr/sbin:/bin:/usr/bin
+WorkingDirectory=/srv/testreduce/client
+ExecStart=/usr/bin/nodejs client-cluster.js -c 10 /etc/testreduce/parsoid-vs-core-vd-client.config.js
+StandardOutput=journal
+StandardError=journal
+Restart=on-failure
+RestartSec=5s

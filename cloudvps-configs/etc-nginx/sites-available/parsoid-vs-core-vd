@@ -1,0 +1,29 @@
+server {
+    server_name parsoid-vs-core.wmflabs.org;
+    listen 80;
+    listen [::]:80;
+
+    root /usr/share/nginx/www;
+    index index.html index.htm;
+
+    # diffserver web UI for an individual test item
+    location /diff {
+        proxy_pass         http://localhost:8022;
+        proxy_redirect     off;
+        proxy_set_header   Host $host;
+    }
+
+    # Serve the contents of the diff directories
+    location /images {
+        alias /srv/visualdiff/pngs;
+        autoindex on;
+        charset utf-8;
+    }
+
+    # testreduce web UI for visualdiffing
+    location  / {
+        proxy_pass         http://localhost:8020;
+        proxy_redirect     off;
+        proxy_set_header   Host $host;
+    }
+}
