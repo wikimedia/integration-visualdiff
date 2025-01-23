@@ -1,0 +1,13 @@
+Notes about retrying
+
+Once a test run finishes, here is the order in which to try thing:
+
+* bash purge_404s.sh $DB $DB_PASSWORD
+* bash retry_significant_failures.sh $DB $DB_PASSWORD
+* bash retry_all_regressions.sh $DB $DB_PASSWORD
+* bash retry_significant_regressions.sh $DB $DB_PASSWORD
+
+You could retry the last one a few times, if needed.
+
+The trick to automating these is to add an API endpoint to testreduce
+which can be queried to figure out if we are at > 99.9% completion.
