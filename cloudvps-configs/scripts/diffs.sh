@@ -2,7 +2,7 @@
 
 if [ $# -lt 2 ]; then
 	echo "USAGE: $0 MYSQL_DB MYSQL_DB_PASSWORD (csv)"
-	echo "Add 'csv' as the third org to emit a CSV instead of a wikitable which is the default"
+	echo "Add 'csv' as the third arg to emit a CSV instead of a wikitable which is the default"
 	exit 1
 fi
 

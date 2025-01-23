@@ -8,10 +8,17 @@
   the databases.
 
 	$ mysqldump --all-databases > all-databases.sql
-	$ .. scp/rsync this file to the new server
+	$ mv all-databases.sql /srv
+
+	When you recreate a new VM, you are likely going to unmount /srv
+	and detach that volume from the old VM and attach it to the new VM.
+	This will avoid the necessity to scp/rsync.
 
 	On the new server, recreate all databases from this sql dump
 
 * The mysql database passwords are all elided from these config files.
   Edit the configs and add in the password once the mysql databases
 	have been created.
+
+* There is a mediawiki access token in /home/testreduce/.mw-api-access-token
+  that should be migrated over from the old VM to the new VM
