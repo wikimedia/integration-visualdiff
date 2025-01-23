@@ -1,10 +1,5 @@
-ja.wikivoyage.org: |
-  .mw-parser-output .hlist ol.references > li {
-     counter-increment: listitem mw-ref-extends-parent mw-references;
-     counter-reset: mw-ref-extends-child;
-  }
+fr.wikipedia.org: |
+  span.cite-bracket { display: none; }
 
-# work around a bad parsoid html <-> html5 tree builder interaction
-# to suppress some visual diff noise
-ru.wikivoyage.org: |
-  .mw-body small > p { margin: 8px 0 16px 0; line-height: 25.6px; }
+es.wikipedia.org: |
+  span.cite-bracket { display: none; }
