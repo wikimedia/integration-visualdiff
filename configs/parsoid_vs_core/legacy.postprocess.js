@@ -8,6 +8,15 @@ window.postprocessDOM = function() {
 		br.remove();
 	} );
 
+	// Hide sitenotices - they don't always how consistently and
+	// maybe they rotate among multiple options. They seem to be
+	// introducing noise on arwiktionary & elwiktionary in some runs
+	$('div#siteNotice').hide();
+
+	// Temporarily hide catlink boxes till we fix all the differenes
+	// between rendering of catlinks in the catlinks box.
+	$('div#catlinks').hide();
+
 	// FIXME: Yuck! This is not a scalable solution
 	$('.mw-collapsible-toggle-collapsed a').each(function() { this.click(); });
 	$('span.NavToggle a').each(function() { this.click(); }); // enwiktionary, ...
@@ -15,10 +24,6 @@ window.postprocessDOM = function() {
 	$('a.NavToggle').each(function() { this.click(); });
 	$('a.UitklapToggle').each(function() { this.click(); }); // nlwiki
 	// $('.collapseButton a').each(function() { this.click(); }); // enwiki ruwiki
-
-	// jawikivoyage specific hack -- legacy output seems to render this
-	// as well causing duplicate blocks and incorrect visual diff noise.
-	$('div#mobile').hide();
 
 	// Hide show/hide buttons
 	$('span.NavToggle').hide();
