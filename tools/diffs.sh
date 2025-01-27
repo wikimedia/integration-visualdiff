@@ -32,11 +32,11 @@ do
 
 	if [ "$format" == "csv" ]
 	then
-		echo "$wiki,Score,Hyperlinked Diff,Investigator,Blocker,Phab task,Remarks"
+		echo "$wiki,Score,Hyperlinked Diff,Investigator,2nd Opinion needed?,Blocker,Phab task,Remarks"
 	else
 		printf "=== Diffs for %s ===\n\n" $wiki
 		echo "{| class='wikitable'"
-		echo "! Diff score !! Diff Link !! Investigator !! Blocker !! Phab task !! Remarks"
+		echo "! Diff score !! Diff Link !! Investigator !! 2nd Opinion needed? !! Blocker !! Phab task !! Remarks"
 	fi
 	for row in $r1
 	do
@@ -46,9 +46,9 @@ do
 		uri="http://parsoid-vs-core.wmflabs.org/diff/$wiki/$uri"
 		if [ "$format" == "csv" ]
 		then
-			echo ",${cols[0]},=HYPERLINK(\"$uri\";\"${cols[1]}\"),,,,"
+			echo ",${cols[0]},=HYPERLINK(\"$uri\";\"${cols[1]}\"),,,,,"
 		else
-			echo "|${cols[0]} || [$uri ${cols[1]}] || || || ||";
+			echo "|${cols[0]} || [$uri ${cols[1]}] || || || || ||";
 		fi
 	done
 
