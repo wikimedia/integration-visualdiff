@@ -1,5 +1,5 @@
 Notes about retrying
-
+--------------------
 Once a test run finishes, here is the order in which to try thing:
 
 * bash purge_404s.sh $DB $DB_PASSWORD
@@ -11,3 +11,28 @@ You could retry the last one a few times, if needed.
 
 The trick to automating these is to add an API endpoint to testreduce
 which can be queried to figure out if we are at > 99.9% completion.
+
+It is unlikely you will need in the common case, but if you wanted
+to tweak the adaptor code and retry all failing tests, you would use
+* bash retry_all_failures $DB $DB_PASSWORD
+
+In all these cases, remember to restart the parsoid-vs-core-vd-client
+service if you made any changes at all to the config file OR to the
+diffing / scoring code (when you are experimenting / exploring an idea
+for suppressing noise or known diff).
+
+Other tools in this directory
+-----------------------------
+* diffs.sh
+  Generates either a wiki table or a csv table of diffs to investigate.
+	Ex: mw:Parsoid/Parser_Unification/Confidence_Framework/Pixel_Diff_Results/Diffs
+	check the oldids of that page.
+
+* stats.sh
+  Generate aggregate stats for publishing on wiki.
+  Ex: mw:Parsoid/Parser_Unification/Confidence_Framework/Pixel_Diff_Results
+	We may not publish more of these reports going forward.
+
+* confidence_report.sh
+  Generates a confidence report table for publishing on wiki.
+  Ex: mw:Parsoid/Parser_Unification/Confidence_Framework/Reports/Wiktionary
