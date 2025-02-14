@@ -26,6 +26,19 @@ fi
 echo "$header"
 printf "\n\n"
 
+manydiffs=$(echo "select prefix from (select prefix, count(*) as n from stats join pages on stats.page_id = pages.id where score>1000 group by prefix) as wikistats where wikistats.n >= 15;" | $mysql | tail -n +2 | tr '\n' ' ')
+nodiffs=$(echo "select distinct prefix from pages where prefix not in(select prefix from (select prefix, count(*) as n from stats join pages on stats.page_id = pages.id where score>1000 group by prefix) as wikistats where wikistats.n >= 1) order by prefix;" | $mysql | tail -n +2 | tr '\n' ' ')
+
+if [ "$format" == "csv" ]
+then
+	echo "Wikis with no significant diffs,$nodiffs"
+	echo "Wikis with more than 15 significant diffs,$manydiffs\n\n"
+else
+	echo "''Wikis with more than 15 significant diffs:'' $nodiffs\n\n"
+	echo "''Wikis with more than 15 significant diffs:'' $manydiffs\n\n"
+fi
+
+
 for wiki in $(echo "select prefix from (select prefix, count(*) as n from pages where latest_score >= 1000 group by prefix) as tmp where n < 15 " | $mysql)
 do
 	r1=$(echo "select latest_score,title from pages where prefix='$wiki' and latest_score >= 1000 /*and title not like '%:%'*/ order by latest_score desc;" | $mysql | sed 's/ /_/g;s/\t/;/g;');
@@ -46,7 +59,7 @@ do
 		uri="http://parsoid-vs-core.wmflabs.org/diff/$wiki/$uri"
 		if [ "$format" == "csv" ]
 		then
-			echo ",${cols[0]},=HYPERLINK(\"$uri\";\"${cols[1]}\"),,,,,"
+			echo ",${cols[0]},\"=HYPERLINK(\"\"$uri\"\";\"\"${cols[1]}\"\")\",,,,,"
 		else
 			echo "|${cols[0]} || [$uri ${cols[1]}] || || || || ||";
 		fi
