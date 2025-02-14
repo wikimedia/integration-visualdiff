@@ -1,9 +1,12 @@
 Notes about retrying
 --------------------
-Once a test run finishes, here is the order in which to try thing:
+Once a test run finishes, here is the order in which to try things:
 
 * bash purge_404s.sh $DB $DB_PASSWORD
 * bash retry_significant_failures.sh $DB $DB_PASSWORD
+
+If you have done test runs on multiple commits, and want to re-check
+regressions:
 * bash retry_all_regressions.sh $DB $DB_PASSWORD
 * bash retry_significant_regressions.sh $DB $DB_PASSWORD
 
@@ -25,13 +28,13 @@ Other tools in this directory
 -----------------------------
 * diffs.sh
   Generates either a wiki table or a csv table of diffs to investigate.
-	Ex: mw:Parsoid/Parser_Unification/Confidence_Framework/Pixel_Diff_Results/Diffs
-	check the oldids of that page.
+  Ex: mw:Parsoid/Parser_Unification/Confidence_Framework/Pixel_Diff_Results/Diffs
+  check the oldids of that page.
 
 * stats.sh
   Generate aggregate stats for publishing on wiki.
   Ex: mw:Parsoid/Parser_Unification/Confidence_Framework/Pixel_Diff_Results
-	We may not publish more of these reports going forward.
+  We may not publish more of these reports going forward.
 
 * confidence_report.sh
   Generates a confidence report table for publishing on wiki.
