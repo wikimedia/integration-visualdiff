@@ -26,18 +26,18 @@ fi
 echo "$header"
 printf "\n\n"
 
-manydiffs=$(echo "select prefix from (select prefix, count(*) as n from stats join pages on stats.page_id = pages.id where score>1000 group by prefix) as wikistats where wikistats.n >= 15;" | $mysql | tail -n +2 | tr '\n' ' ')
-nodiffs=$(echo "select distinct prefix from pages where prefix not in(select prefix from (select prefix, count(*) as n from stats join pages on stats.page_id = pages.id where score>1000 group by prefix) as wikistats where wikistats.n >= 1) order by prefix;" | $mysql | tail -n +2 | tr '\n' ' ')
+manydiffs=$(echo "select prefix from (select prefix, count(*) as n from pages where latest_score >= 1000 group by prefix) as wikistats where wikistats.n >= 15;" | $mysql | tr '\n' ' ')
+nodiffs=$(echo "select distinct prefix from pages where prefix not in (select prefix from (select prefix, count(*) as n from pages where latest_score >= 1000 group by prefix) as wikistats where wikistats.n >= 1) order by prefix;" | $mysql | tr '\n' ' ')
 
 if [ "$format" == "csv" ]
 then
 	echo "Wikis with no significant diffs,$nodiffs"
-	echo "Wikis with more than 15 significant diffs,$manydiffs\n\n"
+	echo "Wikis with more than 15 significant diffs,$manydiffs"
 else
-	echo "''Wikis with more than 15 significant diffs:'' $nodiffs\n\n"
-	echo "''Wikis with more than 15 significant diffs:'' $manydiffs\n\n"
+	echo "''Wikis with more than 15 significant diffs:'' $nodiffs"
+	echo "''Wikis with more than 15 significant diffs:'' $manydiffs"
 fi
-
+printf "\n\n"
 
 for wiki in $(echo "select prefix from (select prefix, count(*) as n from pages where latest_score >= 1000 group by prefix) as tmp where n < 15 " | $mysql)
 do
@@ -67,3 +67,29 @@ do
 
 	printf $table_end
 done
+
+# -- selection of 50 random non-significant diff pages --
+r1=$(echo "select latest_score,title,prefix from pages where latest_score > 10 and latest_score < 1000 /*and title not like '%:%'*/ order by rand() limit 50;" | $mysql | sed 's/ /_/g;s/\t/;/g;');
+if [ "$format" == "csv" ]
+then
+	echo "ALL,Score,Hyperlinked Diff,Investigator,2nd Opinion needed?,Blocker,Phab task,Remarks"
+else
+	printf "=== Non-significant diffs ===\n\n"
+	echo "{| class='wikitable'"
+	echo "! Diff score !! Diff Link !! Investigator !! 2nd Opinion needed? !! Blocker !! Phab task !! Remarks"
+fi
+for row in $r1
+do
+	cols=($(echo $row | sed 's/;/\n/g;'));
+	# URL-encode to ensure these are always clickable in google sheets
+	uri=$(echo -n ${cols[1]} | jq -sRr @uri | sed 's/%3A/:/g;')
+	uri="http://parsoid-vs-core.wmflabs.org/diff/${cols[2]}/$uri"
+	if [ "$format" == "csv" ]
+	then
+		echo ",${cols[0]},\"=HYPERLINK(\"\"$uri\"\";\"\"${cols[1]}\"\")\",,,,,"
+	else
+		echo "|${cols[0]} || [$uri ${cols[1]}] || || || || ||";
+	fi
+done
+
+printf $table_end
