@@ -60,5 +60,8 @@ window.postprocessDOM = function() {
 	// But, we know they render properly at this point, so we won't miss diffs here.
 	$('span.mw-editsection-bracket').hide();
 
+	// Hide the footer
+	$('div.mw-footer-container').hide();
+
 	return null;
 };
