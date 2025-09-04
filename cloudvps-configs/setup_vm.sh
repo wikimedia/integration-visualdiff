@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "Adding user testreduce"
 sudo adduser testreduce
 sudo adduser testreduce testreduce
 

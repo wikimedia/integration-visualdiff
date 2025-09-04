@@ -1,24 +1,28 @@
 * setup_vm.sh has all the commands you need to run
   You need to set the PASSWORD for the testreduce user.
-	You need to set the name of the mysql dumps file.
+  You need to set the name of the mysql dumps file.
 
 * The directory names are self-explanatory.
 
 * Dump the databases on the server and migrate over and recreate
   the databases.
 
-	$ mysqldump --all-databases > all-databases.sql
-	$ mv all-databases.sql /srv
+  $ mysqldump --all-databases > all-databases.sql
+  $ mv all-databases.sql /srv
 
-	When you recreate a new VM, you are likely going to unmount /srv
-	and detach that volume from the old VM and attach it to the new VM.
-	This will avoid the necessity to scp/rsync.
+  When you recreate a new VM, you are likely going to unmount /srv
+  and detach that volume from the old VM and attach it to the new VM.
+  This will avoid the necessity to scp/rsync.
 
-	On the new server, recreate all databases from this sql dump
+  On the new server, recreate all databases from this sql dump
 
 * The mysql database passwords are all elided from these config files.
   Edit the configs and add in the password once the mysql databases
-	have been created.
+  have been created.
 
 * There is a mediawiki access token in /home/testreduce/.mw-api-access-token
   that should be migrated over from the old VM to the new VM
+
+* You will need to edit /etc/nginx/sites-available/parsoid-vs-core-vd to
+  update the server_name to the proxy you set up in horizon.wikimedia.org
+  for this cloud VPS instance.
