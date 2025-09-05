@@ -20,7 +20,7 @@ do
 	i=$((i+1))
 done
 
-command="update pages set num_fetch_errors=0,latest_stat=null,latest_result=null,claim_hash='' where id in (select old.page_id from stats old join stats new on old.page_id=new.page_id and old.commit_hash='${hashes[2]}' and new.commit_hash='${hashes[1]}' and new.score > 1000 && old.score < 1000);"
+command="update pages set num_fetch_errors=0,latest_stat=null,latest_result=null,claim_hash='' where id in (select old.page_id from stats old join stats new on old.page_id=new.page_id and old.commit_hash='${hashes[2]}' and new.commit_hash='${hashes[1]}' and new.score >= 1000 && old.score < 1000);"
 echo "-- Running sql command --"
 echo $command
 
