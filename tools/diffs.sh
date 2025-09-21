@@ -1,14 +1,17 @@
 #!/bin/bash
 
-if [ $# -lt 2 ]; then
-	echo "USAGE: $0 MYSQL_DB MYSQL_DB_PASSWORD (csv)"
-	echo "Add 'csv' as the third arg to emit a CSV instead of a wikitable which is the default"
+if [ $# -lt 3 ]; then
+	echo "USAGE: $0 MYSQL_DB MYSQL_DB_PASSWORD MAX_DIFFS (csv)"
+	echo "The 3rd arg (MAX_DIFFS) specifies cutoff for generating diff lists."
+	echo "Add 'csv' as the fourth arg to emit a CSV instead of a wikitable which is the default."
 	exit 1
 fi
 
 db=$1
 db_password=$2
-format=$3
+maxdiffs=$3
+format=$4
+server="http://prv-tests.wmcloud.org"
 mysql="mysql -u testreduce -p${db_password} ${db} -N"
 
 r1=$(echo "select hash from commits order by timestamp desc limit 1"  | $mysql);
@@ -26,20 +29,30 @@ fi
 echo "$header"
 printf "\n\n"
 
-manydiffs=$(echo "select prefix from (select prefix, count(*) as n from pages where latest_score >= 1000 group by prefix) as wikistats where wikistats.n >= 15;" | $mysql | tr '\n' ' ')
+manydiffs=$(echo "select prefix from (select prefix, count(*) as n from pages where latest_score >= 1000 group by prefix) as wikistats where wikistats.n >= $maxdiffs;" | $mysql | tr '\n' ' ')
 nodiffs=$(echo "select distinct prefix from pages where prefix not in (select prefix from (select prefix, count(*) as n from pages where latest_score >= 1000 group by prefix) as wikistats where wikistats.n >= 1) order by prefix;" | $mysql | tr '\n' ' ')
 
 if [ "$format" == "csv" ]
 then
 	echo "Wikis with no significant diffs,$nodiffs"
-	echo "Wikis with more than 15 significant diffs,$manydiffs"
+	printf "\n"
+	echo "Wikis with $maxdiffs or more significant diffs"
+	echo ",Wiki,Topfails URL,Investigator,,,,Analysis summary"
+	for wiki in $manydiffs
+	do
+		echo ",$wiki,\"=HYPERLINK(\"\"$server/topfails?wiki=$wiki\"\";\"\"Topfails\"\")\",,,,"
+	done
 else
-	echo "''Wikis with more than 15 significant diffs:'' $nodiffs"
-	echo "''Wikis with more than 15 significant diffs:'' $manydiffs"
+	echo "''Wikis with no significant diffs:'' $nodiffs"
+	echo "''Wikis with $maxdiffs or more significant diffs:''"
+	for wiki in $manydiff
+	do
+		echo "* [$server/topfails?wiki=$wiki $wiki]"
+	done
 fi
 printf "\n\n"
 
-for wiki in $(echo "select prefix from (select prefix, count(*) as n from pages where latest_score >= 1000 group by prefix) as tmp where n < 15 " | $mysql)
+for wiki in $(echo "select prefix from (select prefix, count(*) as n from pages where latest_score >= 1000 group by prefix) as tmp where n < $maxdiffs " | $mysql)
 do
 	r1=$(echo "select latest_score,title from pages where prefix='$wiki' and latest_score >= 1000 /*and title not like '%:%'*/ order by latest_score desc;" | $mysql | sed 's/ /_/g;s/\t/;/g;');
 
@@ -56,7 +69,7 @@ do
 		cols=($(echo $row | sed 's/;/\n/g;'));
 		# URL-encode to ensure these are always clickable in google sheets
 		uri=$(echo -n ${cols[1]} | jq -sRr @uri | sed 's/%3A/:/g;')
-		uri="http://parsoid-vs-core.wmflabs.org/diff/$wiki/$uri"
+		uri="$server/diff/$wiki/$uri"
 		if [ "$format" == "csv" ]
 		then
 			echo ",${cols[0]},\"=HYPERLINK(\"\"$uri\"\";\"\"${cols[1]}\"\")\",,,,,"
@@ -83,7 +96,7 @@ do
 	cols=($(echo $row | sed 's/;/\n/g;'));
 	# URL-encode to ensure these are always clickable in google sheets
 	uri=$(echo -n ${cols[1]} | jq -sRr @uri | sed 's/%3A/:/g;')
-	uri="http://parsoid-vs-core.wmflabs.org/diff/${cols[2]}/$uri"
+	uri="$server/diff/${cols[2]}/$uri"
 	if [ "$format" == "csv" ]
 	then
 		echo ",${cols[0]},\"=HYPERLINK(\"\"$uri\"\";\"\"${cols[1]}\"\")\",,,,,"
