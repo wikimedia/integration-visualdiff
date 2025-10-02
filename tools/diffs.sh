@@ -54,7 +54,7 @@ printf "\n\n"
 
 for wiki in $(echo "select prefix from (select prefix, count(*) as n from pages where latest_score >= 1000 group by prefix) as tmp where n < $maxdiffs " | $mysql)
 do
-	r1=$(echo "select latest_score,title from pages where prefix='$wiki' and latest_score >= 1000 /*and title not like '%:%'*/ order by latest_score desc;" | $mysql | sed 's/ /_/g;s/\t/;/g;');
+	r1=$(echo "select latest_score,title from pages where prefix='$wiki' and latest_score >= 1000 /*and title not like '%:%'*/ order by latest_score desc;" | $mysql | sed 's/ /%20/g;s/\t/;/g;');
 
 	if [ "$format" == "csv" ]
 	then
@@ -68,7 +68,7 @@ do
 	do
 		cols=($(echo $row | sed 's/;/\n/g;'));
 		# URL-encode to ensure these are always clickable in google sheets
-		uri=$(echo -n ${cols[1]} | jq -sRr @uri | sed 's/%3A/:/g;')
+		uri=$(echo -n ${cols[1]} | jq -sRr @uri | sed 's/%3A/:/g;s/%25/%/g;')
 		uri="$server/diff/$wiki/$uri"
 		if [ "$format" == "csv" ]
 		then
