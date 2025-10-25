@@ -27,7 +27,7 @@ function purgeCache(opts) {
 	const apiURL = opts.html1.url.replace(/\/wiki\/.*/, '/w/api.php'); // HARDCODED!
 	// console.log("Purging .. " + apiURL + " title: " + opts.title);
 
-	const headers = opts.headers || {};
+	const headers = opts.headers || { 'User-Agent': 'VisualDiffer (Content Transform Team @ WMF)' };
 
 	// MW API authorization
 	if (opts.mwAccessToken) {
