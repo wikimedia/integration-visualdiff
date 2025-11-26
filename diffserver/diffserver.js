@@ -112,8 +112,8 @@ function sendResponse(res, opts) {
 	page += '</ul>\n';
 	page += '<h2>Mobile page on the target wikis</h2>\n';
 	page += '<ul>\n';
-	page += '<li><a target="_blank" href="' + url1.replace(/\./, '.m.') + '">' + opts.html1.name + ' HTML</a></li>\n';
-	page += '<li><a target="_blank" href="' + url2.replace(/\./, '.m.') + '">' + opts.html2.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + url1 + '&useformat=mobile">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + url2 + '&useformat=mobile">' + opts.html2.name + ' HTML</a></li>\n';
 	page += '</ul>\n';
 	page += '</body></html>';
 
