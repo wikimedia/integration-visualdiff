@@ -1,5 +1,7 @@
 # Workaround
 all: |
+  /* Workaround for empty rows e.g. https://nl.wikipedia.org/wiki/Lethrus_mucronatus?useparsoid=0 */
+  .infobox tr td:only-child:empty { display: none; }
   /* Workaround for T374753 */
   .skin-minerva .content p + .mw-heading3 { margin-top: 0; }
   /* Banners can lead to false positives so hide */

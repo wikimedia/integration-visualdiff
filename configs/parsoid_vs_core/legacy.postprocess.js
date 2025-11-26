@@ -63,5 +63,7 @@ window.postprocessDOM = function() {
 	// Hide the footer
 	$('div.mw-footer-container').hide();
 
+	/* Workaround for empty rows e.g. https://nl.wikipedia.org/wiki/Lethrus_mucronatus?useparsoid=0 */
+	$('.infobox tr td:only-child:empty').hide();
 	return null;
 };
