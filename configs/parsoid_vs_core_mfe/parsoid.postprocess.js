@@ -49,5 +49,12 @@ window.postprocessDOM = function(customCSS) {
 
 	// Trick article to load all images by simulating a print event.
 	window.dispatchEvent(new Event('beforeprint'));
+	// Lazy loading works slightly different in Parsoid.
+	// Parsoid behaves more correctly so unset any CSS style attributes
+	// relating to width or height.
+	setTimeout( () => {
+		$('img[style]').css( { height: '', width: '' } );
+	}, 400 );
+
 	return null;
 };
