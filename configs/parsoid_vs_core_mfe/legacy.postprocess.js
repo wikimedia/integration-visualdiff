@@ -27,6 +27,11 @@ window.postprocessDOM = function(customCSS) {
 			br.parentNode.remove();
 		}
 	} );
+
+	// Expand first 2 sections (Should be enough for comparison)
+	Array.from(document.querySelectorAll( '.collapsible-heading' ))
+		.slice( 0, 2 ).forEach((a) => a.click());
+
 	// Trick article to load all images by simulating a print event.
 	window.dispatchEvent(new Event('beforeprint'));
 	return null;

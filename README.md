@@ -32,7 +32,7 @@ The <code>bin/examples</code> directory has a sample enwiki titles list and a bu
 * batching.diffsettings.js for comparing Parsoid output without use of the Parsoid batching API against Parsoid output that uses the parsoid batching API
 * php_output.diffsettings.js sample file (incomplete) for some use case that might compare PHP parser output in 2 different configurations
 
-bin/examples directory also provides a rundiffs.sh script for generating diffs on a bunch of titles (provided in a file as a CLI arg) and run with a CLI-provided config file.
+bin/examples directory also provides a gendiffs.sh script for generating diffs on a bunch of titles (provided in a file as a CLI arg) and run with a CLI-provided config file.
 At the very least, you may have to update the binary property for uprightdiff in the config files.
 
 ## Testreduce client
