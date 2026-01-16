@@ -8,9 +8,6 @@ window.postprocessDOM = function(customCSS) {
 	// Add custom CSS to reduce rendering diffs
 	$('<style type="text/css">' + customCSS + '</style>').appendTo('head');
 
-	// Hide all maps
-	$('.mw-kartographer-map').hide();
-
 	// Hide notifications
 	$('div.mw-notification-area').hide();
 
