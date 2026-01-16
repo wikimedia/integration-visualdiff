@@ -79,7 +79,11 @@ function stripBRFromFirstAndLastP(content) { // Slightly misnamed but gets the j
 function generateLocalHTMLFiles(opts) {
 	// console.log("pre - generating!");
 
-	return Util.retryingHTTPRequest(2, { uri: opts.html1.url, method: 'GET' })
+	return Util.retryingHTTPRequest(2, {
+		'User-Agent': "Android Mobile (visual-diff-testing)",
+		uri: opts.html1.url,
+		method: 'GET'
+	})
 	.spread(function(_, res) {
 		const dom = domino.createDocument(res);
 		const base = dom.createElement('base');
@@ -101,7 +105,11 @@ function generateLocalHTMLFiles(opts) {
 		opts.html1.url = "file://" + path.resolve('.', coreFileName);
 		// console.log('stored to ' + coreFileName);
 	}).then(function() {
-		return Util.retryingHTTPRequest(2, { uri: opts.html2.url, method: 'GET' })
+		return Util.retryingHTTPRequest(2, {
+			'User-Agent': "Android Mobile (visual-diff-testing)",
+			uri: opts.html2.url,
+			method: 'GET'
+		})
 		.spread(function(_, res) {
 			const addScriptTag = function(doc, opts2) {
 				const script = doc.createElement('script');
