@@ -154,14 +154,6 @@ function generateLocalHTMLFiles(opts) {
 			base.setAttribute('href', opts.html2.url);
 			dom.head.insertBefore(base, dom.head.firstChild);
 
-			// Some CSS selectors (used in JS/CSS) don't always apply when <section> tags intervene.
-			// TO BE DETERMINED: Do we want <section> wrappers only in canonical Parsoid HTML
-			// or also in Parsoid's read view output? If we want them in read view output, then
-			// some JS/CSS fixes might be needed (ex: arwiki's Mediawiki:Common.js manipulates the
-			// DOM to move navboxes and other stuff around and <section> tags prevent the query
-			// selectors from applying).
-			stripSectionTags(dom.body);
-
 			// Remove p-br-p from the content-div
 			// since it causes rendering diff noise!
 			stripPBRPfragments(dom.getElementById('mw-content-text'));
