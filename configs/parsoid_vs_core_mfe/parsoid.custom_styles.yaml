@@ -9,6 +9,8 @@ all: |
   }
   /* Banners can lead to false positives so hide */
   .mw-dismissable-notice,
+  /* Map loading is too unpredictable for diffs */
+  .mw-kartographer-map,
   /* Banners can reflow on mobile to adjust their focal point so hide */
   .ext-wpb-pagebanner,
   /* Galleries cause reflows so ignore. T242143 */
