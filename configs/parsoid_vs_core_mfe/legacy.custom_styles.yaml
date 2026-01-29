@@ -13,3 +13,5 @@ all: |
   .ext-wpb-pagebanner,
   /* Galleries cause reflows so ignore. T242143 */
   .gallery { display: none !important; }
+  /* Do not need to diff images and avoids issues with lazy loading image logic */
+  img { content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==); }

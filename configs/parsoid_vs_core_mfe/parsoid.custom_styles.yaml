@@ -15,3 +15,5 @@ all: |
   .gallery { display: none !important; }
   /* Workaround for https://phabricator.wikimedia.org/T414882 */.
   .mw-heading3 { margin-top: 0 !important; }
+  /* Do not need to diff images and avoids issues with lazy loading image logic */
+  img { content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==); }
