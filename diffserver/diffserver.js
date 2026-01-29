@@ -92,8 +92,8 @@ function sendBrowserResponse(res, opts) {
 function sendResponse(res, opts) {
 	const pageTitle = 'Visual diff for ' + opts.wiki + ':' + opts.title;
 	// Normalize both urls to desktop mode
-	const url1 = opts.html1.computeURL(opts.html1.server, opts.wiki, opts.title).replace(/\.m\./, '');
-	const url2 = opts.html2.computeURL(opts.html2.server, opts.wiki, opts.title).replace(/\.m\./, '');
+	const url1 = opts.html1.computeURL(opts.html1.server, opts.wiki, opts.title);
+	const url2 = opts.html2.computeURL(opts.html2.server, opts.wiki, opts.title);
 	let page = '<html>';
 	page += '<head><title>' + pageTitle + '</title></head>';
 	page += '<body>';
