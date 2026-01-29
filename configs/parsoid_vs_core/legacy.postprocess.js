@@ -65,5 +65,6 @@ window.postprocessDOM = function() {
 
 	/* Workaround for empty rows e.g. https://nl.wikipedia.org/wiki/Lethrus_mucronatus?useparsoid=0 */
 	$('.infobox tr td:only-child:empty').hide();
+
 	return null;
 };

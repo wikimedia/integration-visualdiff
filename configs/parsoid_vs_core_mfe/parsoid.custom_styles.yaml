@@ -1,5 +1,8 @@
 # Workaround
 all: |
+  /* Disable JS enhancements of interactive elements */
+  .mw-tmh-player, wiki-chart { background: white; }
+  .mw-tmh-player *, wiki-chart * { visibility: hidden; }
   /* Workaround for https://phabricator.wikimedia.org/T375137 */
   section > div.mw-heading3 + div > figure:first-child {
     margin-top: 1.5px !important;
