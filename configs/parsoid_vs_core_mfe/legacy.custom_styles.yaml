@@ -5,8 +5,8 @@ all: |
   .mw-tmh-player *, wiki-chart * { visibility: hidden; }
   /* Workaround for empty rows e.g. https://nl.wikipedia.org/wiki/Lethrus_mucronatus?useparsoid=0 */
   .infobox tr td:only-child:empty { display: none; }
-  /* Workaround for T374753 */
-  .skin-minerva .content p + .mw-heading3 { margin-top: 0; }
+  /* Workaround for https://phabricator.wikimedia.org/T414882 */.
+  .mw-heading3 { margin-top: 0 !important; }
   /* Banners can lead to false positives so hide */
   .mw-dismissable-notice,
   /* Banners can reflow on mobile to adjust their focal point so hide */

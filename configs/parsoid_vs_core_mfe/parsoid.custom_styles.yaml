@@ -14,4 +14,4 @@ all: |
   /* Galleries cause reflows so ignore. T242143 */
   .gallery { display: none !important; }
   /* Workaround for https://phabricator.wikimedia.org/T414882 */.
-  .mf-collapsible-content:not(:has(> p, > ul, > ol)) > section:first-of-type .mw-heading3 { margin-top: 0 !important; }
+  .mw-heading3 { margin-top: 0 !important; }
