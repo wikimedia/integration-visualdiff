@@ -19,3 +19,6 @@ all: |
   .mw-heading3 { margin-top: 0 !important; }
   /* Do not need to diff images and avoids issues with lazy loading image logic */
   img { content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==); }
+  /* Redact references (T415789) */
+  .mw-references-wrap { overflow: hidden; height: 50px; background: green; }
+  .mw-references-wrap * { display none; }
