@@ -90,8 +90,10 @@ function sendBrowserResponse(res, opts) {
 }
 
 function sendResponse(res, opts) {
-	const pageTitle = 'Visual diff for ' + opts.wiki + ':' + opts.title;
-	// Normalize both urls to desktop mode
+	const extra = opts.variant ? ` (variant ${opts.variant})` : '';
+	const pageTitle = `Visual diff for ${opts.wiki}:${opts.title}${extra}`;
+	const optsDesktop = Object.assign({}, opts, { mobile: false });
+	const optsMobile = Object.assign({}, opts, { mobile: true });
 	const url1 = opts.html1.computeURL(opts.html1.server, opts.wiki, opts.title);
 	const url2 = opts.html2.computeURL(opts.html2.server, opts.wiki, opts.title);
 	let page = '<html>';
@@ -107,13 +109,13 @@ function sendResponse(res, opts) {
 	page += '</ul>\n';
 	page += '<h2>Desktop page on the target wikis</h2>\n';
 	page += '<ul>\n';
-	page += '<li><a target="_blank" href="' + url1 + '">' + opts.html1.name + ' HTML</a></li>\n';
-	page += '<li><a target="_blank" href="' + url2 + '">' + opts.html2.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + Util.transformIfNeeded(url1, optsDesktop) + '">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + Util.transformIfNeeded(url2, optsDesktop) + '">' + opts.html2.name + ' HTML</a></li>\n';
 	page += '</ul>\n';
 	page += '<h2>Mobile page on the target wikis</h2>\n';
 	page += '<ul>\n';
-	page += '<li><a target="_blank" href="' + url1 + '&useformat=mobile">' + opts.html1.name + ' HTML</a></li>\n';
-	page += '<li><a target="_blank" href="' + url2 + '&useformat=mobile">' + opts.html2.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + Util.transformIfNeeded(url1, optsMobile) + '">' + opts.html1.name + ' HTML</a></li>\n';
+	page += '<li><a target="_blank" href="' + Util.transformIfNeeded(url2, optsMobile) + '">' + opts.html2.name + ' HTML</a></li>\n';
 	page += '</ul>\n';
 	page += '</body></html>';
 
