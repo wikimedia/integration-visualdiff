@@ -24,7 +24,7 @@ END
 
 for wiki in `echo "select distinct(prefix) from pages order by prefix" | $mysqlcmd`
 do
-	wikirow=`echo "select claim_hash, count(*) as n, (select DATE(timestamp) from commits where commits.hash=claim_hash) as timestamp from pages where prefix='$wiki';" | $mysqlcmd`
+	wikirow=`echo "select claim_hash, count(*) as n, (select DATE(timestamp) from commits where commits.hash=claim_hash) as timestamp from pages where prefix='$wiki' and claim_hash != '';" | $mysqlcmd`
 	cols=(`echo $wikirow | sed 's/;/\n/g'`)
 	commit=${cols[0]}
 	pagecount=${cols[1]}
