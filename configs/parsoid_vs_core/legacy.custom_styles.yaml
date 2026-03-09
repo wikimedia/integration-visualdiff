@@ -1,11 +1,6 @@
+# Workaround
 all: |
   /* Workaround for empty rows e.g. https://nl.wikipedia.org/wiki/Lethrus_mucronatus?useparsoid=0 */
   .infobox tr td:only-child:empty { display: none; }
   /* Do not need to diff images and avoids issues with lazy loading image logic */
   img { content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==); }
-
-fr.wikipedia.org: |
-  span.cite-bracket { display: none; }
-
-es.wikipedia.org: |
-  span.cite-bracket { display: none; }

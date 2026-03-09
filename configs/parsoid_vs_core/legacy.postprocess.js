@@ -1,4 +1,4 @@
-window.postprocessDOM = function() {
+window.postprocessDOM = function(customCSS) {
 	// Expand viewport to max size (Vector 2022) + use small fonts
 	$('input#skin-client-pref-vector-feature-custom-font-size-value-0').each(function() { this.click(); });
 	$('input#skin-client-pref-vector-feature-limited-width-value-0').each(function() { this.click(); });
@@ -7,6 +7,9 @@ window.postprocessDOM = function() {
 	$('p > br').each((i, br) => {
 		br.remove();
 	} );
+
+	// Add custom CSS to reduce rendering diffs
+	$('<style type="text/css">' + customCSS + '</style>').appendTo('head');
 
 	// Hide sitenotices - they don't always how consistently and
 	// maybe they rotate among multiple options. They seem to be
