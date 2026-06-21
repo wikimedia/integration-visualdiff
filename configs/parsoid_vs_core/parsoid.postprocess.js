@@ -73,5 +73,8 @@ window.postprocessDOM = function(customCSS) {
 	// Hide the footer
 	$('div.mw-footer-container').hide();
 
+	// Hide charts -- leads to false positives
+	$('wiki-chart').hide();
+
 	return null;
 };
