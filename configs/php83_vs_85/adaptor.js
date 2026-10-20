@@ -25,14 +25,12 @@ function generateLocalHTMLFiles(opts) {
 		method: 'GET',
 		headers: opts.html1.headers || {}
 	}).spread(function(_, body) {
-		// Follow redirects by replacing the original base url
-		// with the canonical url in the page header.
-		// Ex: <link rel="canonical" href="https://www.mediawiki.org/wiki/Parsoid"/>
-		canonicalUrl = body.replace(/^[\s\S]*<link\s*rel="canonical"\s*href="([^"]*)"\s*\/>[\s\S]*$/, '$1');
-		// Add base href
-		body = body.replace(/<head>/, '<head>\n<base href=' + canonicalUrl + '>\n');
+		const dom = domino.createDocument(body);
+		const base = dom.createElement('base');
+		base.setAttribute('href', opts.html1.url);
+		dom.head.insertBefore(base, dom.head.firstChild);
 		// Save the Tidy HTML to disk
-		fs.writeFileSync(html1FileName, body);
+		fs.writeFileSync(html1FileName, dom.outerHTML);
 		opts.html1.url = "file://" + path.resolve('.', html1FileName);
 	}).then(function() {
 		return Util.retryingHTTPRequest(2, {
@@ -41,14 +39,12 @@ function generateLocalHTMLFiles(opts) {
 			headers: opts.html2.headers || {}
 		});
 	}).spread(function(_, body) {
-		// Follow redirects by replacing the original base url
-		// with the canonical url in the page header.
-		// Ex: <link rel="canonical" href="https://www.mediawiki.org/wiki/Parsoid"/>
-		canonicalUrl = body.replace(/^[\s\S]*<link\s*rel="canonical"\s*href="([^"]*)"\s*\/>[\s\S]*$/, '$1');
-		// Add base href
-		body = body.replace(/<head>/, '<head>\n<base href=' + canonicalUrl + '>\n');
+		const dom = domino.createDocument(body);
+		const base = dom.createElement('base');
+		base.setAttribute('href', opts.html2.url);
+		dom.head.insertBefore(base, dom.head.firstChild);
 		// Save the Tidy HTML to disk
-		fs.writeFileSync(html2FileName, body);
+		fs.writeFileSync(html2FileName, dom.outerHTML);
 		opts.html2.url = "file://" + path.resolve('.', html2FileName);
 	});
 }
